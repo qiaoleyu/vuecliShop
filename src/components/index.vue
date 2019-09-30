@@ -3,7 +3,7 @@
     <el-button type="primary" plain @click="login()">登录</el-button>
     <el-button type="primary" plain @click="regist()">注册</el-button>
     <el-button type="primary" plain @click="logout()">退出登录</el-button>
-    <h1>{{ msg }}</h1>
+
   </div>
 </template>
 

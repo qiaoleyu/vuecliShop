@@ -2,13 +2,19 @@
   <div id="app">
 
     <!--<img src="./assets/logo1.jpg">-->
+    <h1>{{ msg }}</h1>
     <router-view/>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data(){
+      return{
+          msg:'Welcome to 小米 首页'
+      }
+  }
 }
 </script>
 
