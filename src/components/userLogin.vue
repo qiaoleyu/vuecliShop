@@ -2,17 +2,17 @@
   <div>
     <h1 >{{ msg }}</h1>
     <br>
-    <el-form :model="tbSysUser" status-icon :rules="rules" ref="tbSysUser" label-width="100px" style="width: 40%;margin: auto" >
-      <el-form-item label="昵称" prop="username" style="text-align: left">
-        <el-input type="text" name="username" v-model="tbSysUser.username" style="width: 340px" placeholder="请输入用户名"></el-input>
+    <el-form :model="users" status-icon :rules="rules" ref="users" label-width="100px" style="width: 40%;margin: auto" >
+      <el-form-item label="昵称" prop="uName" style="text-align: left">
+        <el-input type="text" name="uName" v-model="users.uName" style="width: 340px" placeholder="请输入用户名"></el-input>
       </el-form-item><br>
-      <el-form-item label="密码" prop="password" style="text-align: left">
-        <el-input type="password" password="password" v-model="tbSysUser.password" style="width: 340px" placeholder="请输入密码"></el-input>
+      <el-form-item label="密码" prop="uPassword" style="text-align: left">
+        <el-input type="uPassword" password="uPassword" v-model="users.uPassword" style="width: 340px" placeholder="请输入密码"></el-input>
       </el-form-item><br>
       <el-row style="margin-right: 80px">
         <el-button type="primary" plain @click="login()">确认</el-button>
         <el-button type="primary" plain @click="toinsetUser()">注册</el-button>
-        <el-button type="primary" plain @click="resetForm('tbSysUser')">重置</el-button>
+        <el-button type="primary" plain @click="resetForm('users')">重置</el-button>
       </el-row>
     </el-form>
   </div>
@@ -34,38 +34,39 @@
       if (value === '') {
         callback(new Error('请输入密码'));
       } else {
-        if (this.tbSysUser.checkPass !== '') {
-          this.$refs.tbSysUser.validateField('checkPass');
+        if (this.users.uPassword !== '') {
+          this.$refs.users.validateField('uPassword');
         }
         callback();
       }
     };
     return {
       msg: '登录',
-      tbSysUser:{
-        username:'',
-        password:''
+      users:{
+          uId:'',
+        uName:'',
+        uPassword:''
       },
       rules: {
-        username: [{ validator: checkName, trigger: 'blur' }],
-        password: [{ validator: validatePass, trigger: 'blur' }],
+        uName: [{ validator: checkName, trigger: 'blur' }],
+        uPassword: [{ validator: validatePass, trigger: 'blur' }],
       }
     }
   },
     methods: {
       login:function () {
-          this.$refs['tbSysUser'].validate((valid)=>{
+          this.$refs['users'].validate((valid)=>{
               if(valid){
 //                  alert("submit");
                   //获得用户的数据
                 //console.log(this.user.name, this.user.password )
 
                 //发送请求 把参数发给后端（把用户名和密码发给后端 验证是否存在这个账号）
-                axios.post("api/login", this.tbSysUser).then(res=>{
+                axios.post("api/userLogin", this.users).then(res=>{
                     //接收后端返回来的数据
                   if(res.data!=null&&res.data!=''){
                       alert("登录成功！");
-                      this.$router.push("/userlist");
+                      this.$router.push("/index");
                   }else{
                       alert("登录失败");
                       this.$router.push("/");
