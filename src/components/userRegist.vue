@@ -60,9 +60,10 @@
       <!--</el-upload>-->
       <el-form-item label="验证码" prop="code" style="text-align: left">
         <el-input type="text" v-model="code" placeholder="请输入验证码" style="width: 290px"></el-input>
-        <el-container id='app'>
-          <el-button type="primary" plain @click="sendMail()" :disabled="isDisabled">{{buttonName}}</el-button>
-        </el-container>
+        <!--<el-container id='app'>-->
+        <!-- :disabled="isDisabled"-->
+          <el-button type="primary" plain @click="sendMail()">发送</el-button>
+        <!--</el-container>-->
       </el-form-item>
       <el-form-item label="密码" prop="uPassword" style="text-align: left">
         <el-input type="password" v-model="users.uPassword"  autocomplete="off" placeholder="请设置密码"></el-input>
@@ -165,7 +166,7 @@
         }
       };
       var checkPic = (rule, value, callback) => {
-        if (!this.$refs.user) {
+        if (!this.$refs.users) {
           return callback(new Error('用户名不能为空'));
         }
       };
@@ -194,7 +195,7 @@
         msg: '注册',
         code:'',
         file:'',
-        tbSysUser:{
+        users:{
             uId:1,
             uName:'',
             uPassword:'',
@@ -276,7 +277,7 @@
 //          })
 //        },
       resetForm() {
-        this.$refs['tbSysUser'].resetFields();
+        this.$refs['users'].resetFields();
       },
       fileChange(file) {
         const typeArr = ['image/png', 'image/gif', 'image/jpeg', 'image/jpg'];
