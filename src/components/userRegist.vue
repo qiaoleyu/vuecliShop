@@ -17,12 +17,12 @@
 
     <!--</from>-->
 
-    <el-form :model="tbSysUser" status-icon :rules="rules" ref="tbSysUser" label-width="100px"
+    <el-form :model="users" status-icon :rules="rules" ref="users" label-width="100px"
              style="width: 35%;margin: auto" class="demo-ruleForm"
              >
       <!--Content-Type="multipart/form-data"-->
-      <el-form-item label="用户名" prop="username" style="text-align: left" >
-        <el-input type="text" v-model="tbSysUser.username" placeholder="请设置用户名"></el-input>
+      <el-form-item label="用户名" prop="uName" style="text-align: left" >
+        <el-input type="text" v-model="users.uName" placeholder="请设置用户名"></el-input>
       </el-form-item>
       <!--<el-form-item label="头像"  style="text-align: left">-->
         <!--&lt;!&ndash;<el-input type="file" v-model="file" name="file"></el-input>&ndash;&gt;-->
@@ -60,20 +60,26 @@
       <!--</el-upload>-->
       <el-form-item label="验证码" prop="code" style="text-align: left">
         <el-input type="text" v-model="code" placeholder="请输入验证码" style="width: 290px"></el-input>
-        <el-button type="primary" plain @click="sendMail()">发送</el-button>
+        <el-container id='app'>
+          <el-button type="primary" plain @click="sendMail()" :disabled="isDisabled">{{buttonName}}</el-button>
+        </el-container>
       </el-form-item>
-      <el-form-item label="密码" prop="password" style="text-align: left">
-        <el-input type="password" v-model="tbSysUser.password"  autocomplete="off" placeholder="请设置密码"></el-input>
+      <el-form-item label="密码" prop="uPassword" style="text-align: left">
+        <el-input type="password" v-model="users.uPassword"  autocomplete="off" placeholder="请设置密码"></el-input>
       </el-form-item>
       <el-form-item label="确认密码" prop="checkPass" style="text-align: left">
-        <el-input type="password" v-model="tbSysUser.checkPass" autocomplete="off"  placeholder="请输入确认密码"></el-input>
+        <el-input type="password" v-model="users.checkPass" autocomplete="off"  placeholder="请输入确认密码"></el-input>
       </el-form-item>
       <el-form-item label="注册时间" prop="createTime" style="text-align: left" >
-        <el-input type="date" v-model="tbSysUser.createTime"></el-input>
+        <el-input type="date" v-model="users.createTime"></el-input>
       </el-form-item>
-      <el-form-item label="真实姓名" prop="realname" style="text-align: left" >
-      <el-input type="text" v-model="tbSysUser.realname" placeholder="请填写家庭住址"></el-input>
-    </el-form-item>
+      <el-form-item label="联系方式" prop="uTell" style="text-align: left" >
+        <el-input type="text" v-model="users.uTell" placeholder="请填写联系方式"></el-input>
+      </el-form-item>
+      <el-form-item label="家庭住址" prop="uAddress" style="text-align: left" >
+        <el-input type="text" v-model="users.uAddress" placeholder="请填写家庭住址"></el-input>
+      </el-form-item>
+
       <el-form-item>
         <el-button type="primary" plain @click="add()">提交</el-button>
         <el-button type="primary" plain @click="resetForm()">重置</el-button>
@@ -85,6 +91,47 @@
 </template>
 
 <script>
+  new Vue({
+    el:'#app',
+    data:{
+      buttonName: "发送短信",
+        isDisabled: false,
+        time: 60
+    },
+    methods:{
+      sendMail:function () {
+        alert(this.users.uName);
+//        this.$refs['code'].validate((valid) => {
+//          if(valid){
+        axios.post("api/sendMail",this.users).then(res=>{
+
+          if(res.data==true){
+            alert("发送成功！");
+          }else{
+            alert("发送失败！");
+            let me = this;
+            me.isDisabled = true;
+            let interval = window.setInterval(function() {
+              me.buttonName = '（' + me.time + '秒）后重新发送';
+              --me.time;
+              if(me.time < 0) {
+                me.buttonName = "重新发送";
+                me.time = 60;
+                me.isDisabled = false;
+                window.clearInterval(interval);
+              }
+            }, 1000);
+
+          }
+        })
+//          }else{
+//            console.log('error submit!!');
+//            return false;
+//          }
+//        })
+      },
+    }
+  });
   import axios from 'axios'
   import ElRadio from "../../node_modules/element-ui/packages/radio/src/radio";
 
@@ -102,8 +149,8 @@
         if (value === '') {
           callback(new Error('请输入密码'));
         } else {
-          if (this.tbSysUser.checkPass !== '') {
-            this.$refs.tbSysUser.validateField('checkPass');
+          if (this.users.checkPass !== '') {
+            this.$refs.users.validateField('checkPass');
           }
           callback();
         }
@@ -111,7 +158,7 @@
       var validatePass2 = (rule, value, callback) => {
         if (value === '') {
           callback(new Error('请再次输入密码'));
-        } else if (value !== this.tbSysUser.password) {
+        } else if (value !== this.users.password) {
           callback(new Error('两次输入密码不一致!'));
         } else {
           callback();
@@ -122,16 +169,16 @@
           return callback(new Error('用户名不能为空'));
         }
       };
-      var checkRealName = (rule, value, callback) => {
+      var checkUaddress = (rule, value, callback) => {
         if (!value) {
           return callback(new Error('家庭住址不能为空'));
         }else{
             return callback();
         }
       };
-      var checkState = (rule, value, callback) => {
+      var checkUtell = (rule, value, callback) => {
         if (!value) {
-          return callback(new Error('状态码不能为空'));
+          return callback(new Error('联系方式不能为空'));
         }else{
           return callback();
         }
@@ -148,22 +195,23 @@
         code:'',
         file:'',
         tbSysUser:{
-            userId:1,
-            username:'',
-            password:'',
+            uId:1,
+            uName:'',
+            uPassword:'',
             checkPass:'',
             pic:'',
             state:'',
             createTime:'',
-            realname:'',
+            uAddress:'',
+            uTell:''
           },
           rules: {
-          username: [{ validator: checkName, trigger: 'blur' }],
-          password: [{ validator: validatePass, trigger: 'blur' }],
+          uName: [{ validator: checkName, trigger: 'blur' }],
+          uPassword: [{ validator: validatePass, trigger: 'blur' }],
           checkPass: [{ validator: validatePass2, trigger: 'blur' }],
 //          pic: [{ validator: checkPic, trigger: 'blur' }],
-          realname: [{ validator: checkRealName, trigger: 'blur' }],
-          state: [{ validator: checkState, trigger: 'blur' }],
+          uAddress: [{ validator: checkUaddress, trigger: 'blur' }],
+          uTell: [{ validator: checkUtell, trigger: 'blur' }],
 //            code:[{validator:checkCode,trigger:'blur'}]
 
         }
@@ -173,33 +221,16 @@
         back:function(){
             this.$router.push("/");
         },
-      sendMail:function () {
-        alert(this.tbSysUser.username);
-//        this.$refs['code'].validate((valid) => {
-//          if(valid){
-        axios.post("api/sendMail",this.tbSysUser).then(res=>{
 
-          if(res.data==true){
-            alert("发送成功！");
-          }else{
-            alert("发送失败！");
-          }
-        })
-//          }else{
-//            console.log('error submit!!');
-//            return false;
-//          }
-//        })
-      },
         add:function(){
 //          const formData = new FormData();
 //          Object.keys(this.user).forEach((ele) => {
 //            formData.append(ele, this.user[ele]);
 //          });
 //          formData.append('file', this.files);
-          this.$refs['tbSysUser'].validate((valid) => {
+          this.$refs['users'].validate((valid) => {
             if(valid){
-             axios.post("api/add",{tbSysUser:this.tbSysUser,code:this.code}).then(res=>{
+             axios.post("api/add",{users:this.users,code:this.code}).then(res=>{
                if(res.data==true){
                    alert("注册成功！");
                  this.$router.push("/")
