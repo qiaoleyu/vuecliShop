@@ -91,47 +91,47 @@
 </template>
 
 <script>
-  new Vue({
-    el:'#app',
-    data:{
-      buttonName: "发送短信",
-        isDisabled: false,
-        time: 60
-    },
-    methods:{
-      sendMail:function () {
-        alert(this.users.uName);
-//        this.$refs['code'].validate((valid) => {
-//          if(valid){
-        axios.post("api/sendMail",this.users).then(res=>{
-
-          if(res.data==true){
-            alert("发送成功！");
-          }else{
-            alert("发送失败！");
-            let me = this;
-            me.isDisabled = true;
-            let interval = window.setInterval(function() {
-              me.buttonName = '（' + me.time + '秒）后重新发送';
-              --me.time;
-              if(me.time < 0) {
-                me.buttonName = "重新发送";
-                me.time = 60;
-                me.isDisabled = false;
-                window.clearInterval(interval);
-              }
-            }, 1000);
-
-          }
-        })
+//  new Vue({
+//    el:'#app',
+//    data:{
+//      buttonName: "发送短信",
+//        isDisabled: false,
+//        time: 60
+//    },
+//    methods:{
+//      sendMail:function () {
+//        alert(this.users.uName);
+////        this.$refs['code'].validate((valid) => {
+////          if(valid){
+//        axios.post("api/sendMail",this.users).then(res=>{
+//
+//          if(res.data==true){
+//            alert("发送成功！");
 //          }else{
-//            console.log('error submit!!');
-//            return false;
+//            alert("发送失败！");
+//            let me = this;
+//            me.isDisabled = true;
+//            let interval = window.setInterval(function() {
+//              me.buttonName = '（' + me.time + '秒）后重新发送';
+//              --me.time;
+//              if(me.time < 0) {
+//                me.buttonName = "重新发送";
+//                me.time = 60;
+//                me.isDisabled = false;
+//                window.clearInterval(interval);
+//              }
+//            }, 1000);
+//
 //          }
 //        })
-      },
-    }
-  });
+////          }else{
+////            console.log('error submit!!');
+////            return false;
+////          }
+////        })
+//      },
+//    }
+//  });
   import axios from 'axios'
   import ElRadio from "../../node_modules/element-ui/packages/radio/src/radio";
 
@@ -244,6 +244,24 @@
             }
           })
         },
+      sendMail:function () {
+        alert(this.users.uName);
+//        this.$refs['code'].validate((valid) => {
+//          if(valid){
+        axios.post("api/sendMail",this.users).then(res=>{
+
+          if(res.data==true){
+            alert("发送成功！");
+          }else{
+            alert("发送失败！");
+          }
+        })
+//          }else{
+//            console.log('error submit!!');
+//            return false;
+//          }
+//        })
+      },
 //        add:function(){
 //
 ////          var url="api/add"
