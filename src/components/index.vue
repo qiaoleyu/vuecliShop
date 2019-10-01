@@ -124,14 +124,14 @@
     <!--一二级菜单、轮播图-->
     <el-row :gutter="10">
       <el-col :span="6" >
-        <div class="grid-content bg-purple-dark" style="height: 320px;line-height: 320px">
+        <div class="grid-content bg-purple-dark" style="height: 370px;line-height: 370px">
           一二级菜单
         </div>
       </el-col>
       <el-col :span="18">
-        <div class="grid-content bg-purple-light" style="height: 320px">
+        <div class="grid-content bg-purple-light" style="height: 370px">
           <template>
-            <el-carousel :interval="4000" type="card" height="300px">
+            <el-carousel :interval="4000" type="card" height="350px">
               <el-carousel-item v-for="item in 6" :key="item">
                 <h3 class="medium">{{ item }}</h3>
               </el-carousel-item>
@@ -296,7 +296,7 @@
     color: #475669;
     font-size: 14px;
     opacity: 0.75;
-    line-height: 280px;
+    line-height: 330px;
     margin: 0;
   }
 
