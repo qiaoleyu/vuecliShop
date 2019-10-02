@@ -105,7 +105,7 @@
     <el-row :gutter="10">
       <el-col :span="6">
         <div class="grid-content bg-purple" style="height: 80px;line-height: 80px">
-            logo
+            <el-image src="../static/logo1.jpg" style="height: 80px"></el-image>
         </div>
       </el-col>
       <el-col :span="12">
