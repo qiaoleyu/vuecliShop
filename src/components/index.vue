@@ -1,5 +1,5 @@
 <template>
-  <div class="hello" style="width: 98%;margin: auto">
+  <div class="hello" style="width: 95%;margin: auto">
     <!--<el-button type="primary" plain @click="login()">登录</el-button>-->
     <!--<el-button type="primary" plain @click="regist()">注册</el-button>-->
     <!--<el-button type="primary" plain @click="logout()">退出登录</el-button>-->
@@ -204,10 +204,26 @@
     </el-row>
     <!--多、快、好、省-->
     <el-row :gutter="10">
-      <el-col :span="6"><div class="grid-content bg-purple" style="height: 80px;line-height: 80px">多</div></el-col>
-      <el-col :span="6"><div class="grid-content bg-purple" style="height: 80px;line-height: 80px">快</div></el-col>
-      <el-col :span="6"><div class="grid-content bg-purple" style="height: 80px;line-height: 80px">好</div></el-col>
-      <el-col :span="6"><div class="grid-content bg-purple" style="height: 80px;line-height: 80px">省</div></el-col>
+      <el-col :span="6">
+        <div  style="height: 50px;line-height: 50px;border-right: 1px solid #e5e9f2">
+          <el-image src="../static/duo.jpg" style="height: 50px;width: 50px"></el-image>
+        </div>
+      </el-col>
+      <el-col :span="6">
+        <div  style="height: 50px;line-height: 50px;border-right: 1px solid #e5e9f2">
+          <el-image src="../static/kuai.jpg" style="height: 50px;width: 50px"></el-image>
+        </div>
+      </el-col>
+      <el-col :span="6">
+        <div  style="height: 50px;line-height: 50px;border-right: 1px solid #e5e9f2">
+          <el-image src="../static/hao.jpg" style="height: 50px;width: 50px"></el-image>
+        </div>
+      </el-col>
+      <el-col :span="6">
+        <div  style="height: 50px;line-height: 50px">
+          <el-image src="../static/sheng.jpg" style="height: 50px;width: 50px"></el-image>
+        </div>
+      </el-col>
     </el-row>
     <el-row>
       <el-col :span="3">
