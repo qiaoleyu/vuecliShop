@@ -1,24 +1,16 @@
 <template>
   <div>
+    <div style="width: 100%;color:orangered;margin-top: 20px">
+      <span style="margin-right: 530px;font-size: 20px">LOGO欢迎注册</span>
+      <span style="margin-right:-10px">
+        已有账号？<router-link :to="{name:'userLogin'}" style="color:red">请登录></router-link>
+      </span>
+    </div>
+    <hr style="width: 60%">
     <h1 >{{ msg }}</h1>
-    <!--<from>-->
-      <!--<table style="margin-left: 540px">-->
-        <!--<tr>-->
-          <!--<td>用户名：</td>-->
-          <!--<td><input type="text" v-model="user.username"></td>-->
-        <!--</tr><tr>-->
-          <!--<td>密码：</td>-->
-          <!--<td><input type="text" v-model="user.password"></td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-          <!--<td><input type="button" @click="add()" value="提交"></td>-->
-         <!--</tr>-->
-      <!--</table>-->
-
-    <!--</from>-->
 
     <el-form :model="users" status-icon :rules="rules" ref="users" label-width="100px"
-             style="width: 35%;margin: auto" class="demo-ruleForm"
+             style="width: 40%;margin: auto" class="demo-ruleForm"
              >
       <!--Content-Type="multipart/form-data"-->
       <el-form-item label="用户名" prop="uName" style="text-align: left" >
@@ -59,7 +51,7 @@
         <!--&lt;!&ndash;<div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>&ndash;&gt;-->
       <!--</el-upload>-->
       <el-form-item label="验证码" prop="code" style="text-align: left">
-        <el-input type="text" v-model="code" placeholder="请输入验证码" style="width: 290px"></el-input>
+        <el-input type="text" v-model="code" placeholder="请输入验证码" style="width: 350px"></el-input>
         <!--<el-container id='app'>-->
         <!-- :disabled="isDisabled"-->
           <el-button type="primary" plain @click="sendMail()">发送</el-button>
@@ -82,7 +74,7 @@
       </el-form-item>
 
       <el-form-item>
-        <el-button type="primary" plain @click="add()">提交</el-button>
+        <el-button type="primary" plain @click="add()">注册</el-button>
         <el-button type="primary" plain @click="resetForm()">重置</el-button>
         <el-button type="primary" plain @click="back()">返回</el-button>
       </el-form-item>

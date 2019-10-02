@@ -3,7 +3,8 @@ import Router from 'vue-router'
 import index from '@/components/index'
 import userLogin from '@/components/userLogin'
 import userRegist from '@/components/userRegist'
-
+import userCart from '@/components/userCart'
+import userOrder from '@/components/userOrder'
 Vue.use(Router)
 
 export default new Router({
@@ -22,6 +23,16 @@ export default new Router({
       path: '/userRegist',
       name: 'userRegist',
       component: userRegist
+    },
+    {
+      path: '/userCart',
+      name: 'userCart',
+      component: userCart
+    },
+    {
+      path: '/userOrder',
+      name: 'userOrder',
+      component: userOrder
     }
   ]
 })

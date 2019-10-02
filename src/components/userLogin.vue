@@ -1,20 +1,37 @@
 <template>
-  <div>
-    <h1 >{{ msg }}</h1>
-    <br>
-    <el-form :model="users" status-icon :rules="rules" ref="users" label-width="100px" style="width: 40%;margin: auto" >
+  <div style="width: 100%;margin: auto;margin-top: 40px">
+    <div style="height: 40px;margin-left: 200px">
+      <el-row :gutter="10">
+        <el-col :span="6">
+          <div class="grid-content"
+               style="line-height: 40px;font-weight: bolder;font-size: 20px;color:orangered;font-weight: bold">
+            LOGO欢迎登录</div>
+
+        </el-col>
+
+      </el-row>
+
+    </div>
+
+
+    <div style="width: 60%;margin: auto;height: 400px;margin-top: 20px">
+      <hr width="100%">
+      <br>
+      <h1 >{{ msg }}</h1>
+    <el-form :model="users" status-icon :rules="rules" ref="users" label-width="40px" style="width: 50%;margin: auto" >
       <el-form-item label="昵称" prop="uName" style="text-align: left">
         <el-input type="text" name="uName" v-model="users.uName" style="width: 340px" placeholder="请输入用户名"></el-input>
       </el-form-item><br>
       <el-form-item label="密码" prop="uPassword" style="text-align: left">
         <el-input type="uPassword" password="uPassword" v-model="users.uPassword" style="width: 340px" placeholder="请输入密码"></el-input>
       </el-form-item><br>
-      <el-row style="margin-right: 80px">
+      <el-row>
         <el-button type="primary" plain @click="login()">确认</el-button>
         <el-button type="primary" plain @click="toinsetUser()">注册</el-button>
         <el-button type="primary" plain @click="resetForm('users')">重置</el-button>
       </el-row>
     </el-form>
+    </div>
   </div>
 </template>
 
