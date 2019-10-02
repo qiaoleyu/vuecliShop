@@ -96,15 +96,19 @@
             <el-col :span="12">
               <div class="grid-content bg-purple-light" style="height: 80px">
                 <el-input type="text" style="width: 80%;margin: auto;margin-top: 20px"></el-input>
-                <el-button type="danger" plain @click="search()">查询</el-button>
+                <el-button type="danger" icon="el-icon-search" plain @click="search()">查询</el-button>
               </div>
             </el-col>
             <el-col :span="6">
               <div class="grid-content bg-purple" style="height: 80px;line-height: 80px">
                 <el-badge :value="100" :max="10" class="item">
-                  <el-button size="">
-                    <router-link :to="{name:'userCart'}" style="color: red">购物车</router-link>
+                  <el-tooltip content="购物车" placement="bottom" effect="light">
+                  <el-button size="" plain style="width: 180px;height: 60px">
+                    <i style="font-size: 16px; font-weight: bold;color:red"  class="el-icon-shopping-cart-full "></i>
+                    <router-link :to="{name:'userCart'}" style="color: red;font-size: 16px">购物车</router-link>
+
                   </el-button>
+                  </el-tooltip>
                 </el-badge>
 
               </div>
@@ -123,7 +127,9 @@
                 <template>
                   <el-carousel :interval="4000" type="card" height="350px">
                     <el-carousel-item v-for="item in 6" :key="item">
-                      <h3 class="medium">{{ item }}</h3>
+
+                      <el-image src="../static/logo1.jpg"></el-image>
+                      <h3 class="medium">图{{ item }}</h3>
                     </el-carousel-item>
                   </el-carousel>
                 </template>
@@ -132,33 +138,122 @@
           </el-row>
           <!--热卖中-->
           <el-row :gutter="10">
-            <el-col :span="6"><div class="grid-content bg-purple" style="line-height: 40px">热卖中</div></el-col>
+            <el-col :span="6">
+              <div class="grid-content bg-purple" style="line-height: 60px;font-weight: bolder">热卖中</div>
+            </el-col>
+            <el-col :span="6" :offset="12">
+              <div class="grid-content" style="line-height: 60px;float: right">
+                <el-tooltip content="上一页" placement="bottom" effect="light">
+                  <el-button class="el-icon-arrow-left" plain @click=""></el-button>
+                </el-tooltip>
+                <el-tooltip content="下一页" placement="bottom" effect="light">
+                  <el-button class="el-icon-arrow-right" plain @click=""></el-button>
+                </el-tooltip>
+              </div>
+            </el-col>
           </el-row>
           <!--热卖中四个模块-->
           <el-row :gutter="10">
-            <el-col :span="6"><div class="grid-content bg-purple" style="height: 200px;line-height: 200px">商品1</div></el-col>
-            <el-col :span="6"><div class="grid-content bg-purple" style="height: 200px;line-height: 200px">商品2</div></el-col>
-            <el-col :span="6"><div class="grid-content bg-purple" style="height: 200px;line-height: 200px">商品3</div></el-col>
-            <el-col :span="6"><div class="grid-content bg-purple" style="height: 200px;line-height: 200px">商品4</div></el-col>
+            <el-col :span="6">
+              <div class="grid-content bg-purple" style="height: 200px">
+                <el-image src="../static/logo1.jpg" style="height: 160px">商品1</el-image>
+                <div><span>商品1</span></div>
+              </div>
+            </el-col>
+            <el-col :span="6">
+              <div class="grid-content bg-purple" style="height: 200px">
+                <el-image src="../static/logo1.jpg" style="height: 160px">商品2</el-image>
+                <div><span>商品2</span></div>
+              </div>
+            </el-col>
+            <el-col :span="6">
+              <div class="grid-content bg-purple" style="height: 200px">
+                <el-image src="../static/logo1.jpg" style="height: 160px">商品3</el-image>
+                <div><span>商品3</span></div>
+              </div>
+            </el-col>
+            <el-col :span="6">
+              <div class="grid-content bg-purple" style="height: 200px">
+                <div><el-image src="../static/logo1.jpg" style="height: 160px">商品4</el-image></div>
+                <div><span>商品4</span></div>
+
+              </div>
+            </el-col>
           </el-row>
           <!--新品上市-->
           <el-row :gutter="10">
-            <el-col :span="6"><div class="grid-content bg-purple" style="line-height: 40px">新品上市</div></el-col>
+            <el-col :span="6">
+              <div class="grid-content bg-purple" style="line-height: 60px;font-weight: bolder">新品上市</div>
+            </el-col>
+            <el-col :span="6" :offset="12">
+              <div class="grid-content" style="line-height: 60px;float: right">
+                <el-tooltip content="上一页" placement="bottom" effect="light">
+                  <el-button class="el-icon-arrow-left" plain @click=""></el-button>
+                </el-tooltip>
+                <el-tooltip content="下一页" placement="bottom" effect="light">
+                  <el-button class="el-icon-arrow-right" plain @click=""></el-button>
+                </el-tooltip>
+              </div>
+            </el-col>
           </el-row>
           <!--新品五个模块-->
           <el-row :gutter="10">
-            <el-col :span="4"><div class="grid-content bg-purple" style="height: 410px;line-height: 410px">商品类别</div></el-col>
+            <el-col :span="4">
+              <div class="grid-content bg-purple" style="height: 410px;line-height: 410px">
+                <el-image src="../static/logo1.jpg">商品类别</el-image>
+              </div>
+            </el-col>
             <el-col :span="20">
-              <el-col :span="6"><div class="grid-content bg-purple" style="height: 200px;line-height: 200px">商品1</div></el-col>
-              <el-col :span="6"><div class="grid-content bg-purple" style="height: 200px;line-height: 200px">商品2</div></el-col>
-              <el-col :span="6"><div class="grid-content bg-purple" style="height: 200px;line-height: 200px">商品3</div></el-col>
-              <el-col :span="6"><div class="grid-content bg-purple" style="height: 200px;line-height: 200px">商品4</div></el-col>
+              <el-col :span="6">
+                <div class="grid-content bg-purple" style="height: 200px">
+                  <el-image src="../static/logo1.jpg">商品1</el-image>
+                  <div><span>商品1</span></div>
+                </div>
+              </el-col>
+              <el-col :span="6">
+                <div class="grid-content bg-purple" style="height: 200px">
+                  <el-image src="../static/logo1.jpg">商品2</el-image>
+                  <div><span>商品2</span></div>
+                </div>
+              </el-col>
+              <el-col :span="6">
+                <div class="grid-content bg-purple" style="height: 200px">
+                  <el-image src="../static/logo1.jpg">商品3</el-image>
+                  <div><span>商品3</span></div>
+                </div>
+              </el-col>
+              <el-col :span="6">
+                <div class="grid-content bg-purple" style="height: 200px">
+                  <el-image src="../static/logo1.jpg">商品4</el-image>
+                  <div><span>商品4</span></div>
+                </div>
+              </el-col>
             </el-col>
             <el-col :span="20" style="margin-top: 10px">
-              <el-col :span="6"><div class="grid-content bg-purple" style="height: 200px;line-height: 200px">商品5</div></el-col>
-              <el-col :span="6"><div class="grid-content bg-purple" style="height: 200px;line-height: 200px">商品6</div></el-col>
-              <el-col :span="6"><div class="grid-content bg-purple" style="height: 200px;line-height: 200px">商品7</div></el-col>
-              <el-col :span="6"><div class="grid-content bg-purple" style="height: 200px;line-height: 200px">商品8</div></el-col>
+              <el-col :span="6">
+                <div class="grid-content bg-purple" style="height: 200px">
+                  <el-image src="../static/logo1.jpg">商品5</el-image>
+                  <div><span>商品5</span></div>
+                </div>
+              </el-col>
+              <el-col :span="6">
+                <div class="grid-content bg-purple" style="height: 200px">
+                  <el-image src="../static/logo1.jpg">商品6</el-image>
+                  <div><span>商品6</span></div>
+                </div>
+              </el-col>
+              <el-col :span="6">
+                <div class="grid-content bg-purple" style="height: 200px">
+                  <el-image src="../static/logo1.jpg">商品7</el-image>
+                  <div><span>商品7</span></div>
+                </div>
+              </el-col>
+              <el-col :span="6">
+                <div class="grid-content bg-purple" style="height: 200px">
+                  <div><el-image src="../static/logo1.jpg">商品8</el-image></div>
+                  <div><span>商品8</span></div>
+                </div>
+              </el-col>
             </el-col>
           </el-row>
           <!--&lt;!&ndash;促销模块&ndash;&gt;-->
@@ -173,80 +268,172 @@
           <!--<el-col :span="5"><div class="grid-content bg-purple"></div></el-col>-->
           <!--<el-col :span="5"><div class="grid-content bg-purple"></div></el-col>-->
           <!--</el-row>-->
+
+          <!--促销-->
+          <el-row :gutter="10">
+            <el-col :span="6">
+              <div class="grid-content bg-purple" style="line-height: 60px;font-weight: bolder">促销</div>
+            </el-col>
+            <el-col :span="6" :offset="12">
+              <div class="grid-content" style="line-height: 60px;float: right">
+                <el-tooltip content="上一页" placement="bottom" effect="light">
+                  <el-button class="el-icon-arrow-left" plain @click=""></el-button>
+                </el-tooltip>
+                <el-tooltip content="下一页" placement="bottom" effect="light">
+                  <el-button class="el-icon-arrow-right" plain @click=""></el-button>
+                </el-tooltip>
+              </div>
+            </el-col>
+          </el-row>
           <!--倒计时栏-->
           <el-row :gutter="10">
-            <el-col :span="4"><div class="grid-content bg-purple" style="height: 250px;line-height: 250px">倒计时</div></el-col>
-            <el-col :span="5">
-              <div class="grid-content bg-purple" style="height: 250px;line-height: 250px">促销商品1</div>
+            <el-col :span="4">
+              <div class="grid-content bg-purple" style="height: 250px;line-height: 250px">
+                倒计时
+              </div>
             </el-col>
             <el-col :span="5">
-              <div class="grid-content bg-purple" style="height: 250px;line-height: 250px">促销商品2</div>
+              <div class="grid-content bg-purple" style="height: 250px;line-height: 250px">
+                促销商品1
+              </div>
             </el-col>
             <el-col :span="5">
-              <div class="grid-content bg-purple" style="height: 250px;line-height: 250px">促销商品3</div>
+              <div class="grid-content bg-purple" style="height: 250px;line-height: 250px">
+                促销商品2
+              </div>
             </el-col>
-            <el-col :span="5"><div class="grid-content bg-purple" style="height: 250px;line-height: 250px">专题4</div></el-col>
+            <el-col :span="5">
+              <div class="grid-content bg-purple" style="height: 250px;line-height: 250px">
+                促销商品3
+              </div>
+            </el-col>
+            <el-col :span="5">
+              <div class="grid-content bg-purple" style="height: 250px">
+                <template>
+                  <el-carousel height="250px" direction="vertical" :autoplay="false">
+                    <el-carousel-item v-for="item2 in 3" :key="item2">
+                      <el-image src="../static/logo1.jpg" style="height: 250px"></el-image>
+                      <!--<h3 class="medium">{{ item2 }}</h3>-->
+                    </el-carousel-item>
+                  </el-carousel>
+                </template>
+              </div>
+            </el-col>
           </el-row>
           <!--多、快、好、省-->
           <el-row :gutter="10">
             <el-col :span="6">
               <div  style="height: 50px;line-height: 50px;border-right: 1px solid #e5e9f2">
-                <el-image src="../static/duo.jpg" style="height: 50px;width: 50px"></el-image>
-                <span style="height: 50px;width:100px;font-weight: bolder">品类齐全，轻松购物</span>
+                <div style="height: 50px;width: 50px;float: left;margin-left: 50px"><el-image src="../static/duo.jpg" style="height: 50px;width: 50px"></el-image></div>
+                <div style="height: 50px;width: 150px;font-weight: bolder;float: left">品类齐全，轻松购物</div>
               </div>
             </el-col>
             <el-col :span="6">
               <div  style="height: 50px;line-height: 50px;border-right: 1px solid #e5e9f2">
-                <el-image src="../static/kuai.jpg" style="height: 50px;width: 50px"></el-image>
-                <span style="height: 50px;width:100px;font-weight: bolder">多仓直发，极速配送</span>
+                <div style="height: 50px;width: 50px;float: left;margin-left: 50px">
+                  <el-image src="../static/kuai.jpg" style="height: 50px;width: 50px"></el-image>
+                </div>
+                <div style="height: 50px;width: 150px;font-weight: bolder;float: left">多仓直发，极速配送</div>
               </div>
             </el-col>
             <el-col :span="6">
               <div  style="height: 50px;line-height: 50px;border-right: 1px solid #e5e9f2">
-                <el-image src="../static/hao.jpg" style="height: 50px;width: 50px"></el-image>
-                <span style="height: 50px;width:100px;font-weight: bolder">正品行货，精致服务</span>
+                <div style="height: 50px;width: 50px;float: left;margin-left: 50px">
+                  <el-image src="../static/hao.jpg" style="height: 50px;width: 50px"></el-image>
+                </div>
+                <div style="height: 50px;width: 150px;font-weight: bolder;float: left">正品行货，精致服务</div>
               </div>
             </el-col>
             <el-col :span="6">
               <div  style="height: 50px;line-height: 50px">
-                <el-image src="../static/sheng.jpg" style="height: 50px;width: 50px"></el-image>
-                <span style="height: 50px;width:100px;font-weight: bolder">天天低价，畅选无忧</span>
+                <div style="height: 50px;width: 50px;float: left;margin-left: 50px">
+                  <el-image src="../static/sheng.jpg" style="height: 50px;width: 50px"></el-image>
+                </div>
+                <div style="height: 50px;width: 150px;font-weight: bolder;float: left">天天低价，畅选无忧</div>
               </div>
             </el-col>
           </el-row>
           <el-row>
             <el-col :span="3">
-              <div class="grid-content bg-purple" style="height: 200px;line-height: 50px">
-                帮助中心
+              <div class="bg-purple" style="height: 180px;line-height: 40px">
+                <div style="font-weight: bold">帮助中心</div>
+                <div style="font-size: 14px">账户管理</div>
+                <div style="font-size: 14px">购物指南</div>
+                <div style="font-size: 14px">订单操作</div>
               </div>
             </el-col>
-            <el-col :span="3"><div class="grid-content bg-purple" style="height: 200px;line-height: 50px">服务支持</div></el-col>
-            <el-col :span="3"><div class="grid-content bg-purple" style="height:200px;line-height: 50px">线下门店</div></el-col>
-            <el-col :span="3"><div class="grid-content bg-purple" style="height: 200px;line-height: 50px">关于小米</div></el-col>
-            <el-col :span="3"><div class="grid-content bg-purple" style="height: 200px;line-height: 50px">关于我们</div></el-col>
-            <el-col :span="3"><div class="grid-content bg-purple" style="height: 200px;line-height: 50px">特色服务</div></el-col>
-            <el-col :span="6"><div class="grid-content bg-purple" style="height: 200px;line-height: 200px">人工客服</div></el-col>
+            <el-col :span="3">
+              <div class="bg-purple" style="height: 180px;line-height: 40px">
+                <div style="font-weight: bold">服务支持</div>
+                <div style="font-size: 14px">售后政策</div>
+                <div style="font-size: 14px">自动服务</div>
+                <div style="font-size: 14px">相关下载</div>
+              </div>
+            </el-col>
+            <el-col :span="3">
+              <div class="bg-purple" style="height:180px;line-height: 40px">
+                <div style="font-weight: bold">线下门店</div>
+                <div style="font-size: 14px">小米之家</div>
+                <div style="font-size: 14px">服务网点</div>
+                <div style="font-size: 14px">授权体验店</div>
+              </div>
+            </el-col>
+            <el-col :span="3">
+              <div class="bg-purple" style="height: 180px;line-height: 40px">
+                <div style="font-weight: bold">关于小米</div>
+                <div style="font-size: 14px">了解小米</div>
+                <div style="font-size: 14px">加入小米</div>
+                <div style="font-size: 14px">投资者关系</div>
+              </div>
+            </el-col>
+            <el-col :span="3">
+              <div class="bg-purple" style="height: 180px;line-height: 40px">
+                <div style="font-weight: bold">关于我们</div>
+                <div style="font-size: 14px">新浪微博</div>
+                <div style="font-size: 14px">官网微博</div>
+                <div style="font-size: 14px">联系我们</div>
+              </div>
+            </el-col>
+            <el-col :span="3">
+              <div class="bg-purple" style="height: 180px;line-height: 40px;border-right: 1px solid #898683">
+                <div style="font-weight: bold">特色服务</div>
+                <div style="font-size: 14px">F码通道</div>
+                <div style="font-size: 14px">礼物码</div>
+                <div style="font-size: 14px">防伪查验</div>
+              </div>
+            </el-col>
+            <el-col :span="6">
+              <div class="grid-content bg-purple" style="height: 180px;line-height: 60px">
+                <div style="height:90px;line-height: 30px;padding-top: 20px;color: orangered">
+                  400-100-5678<br>
+                  周一至周日 8:00-18:00<br>
+                  （仅收市话费）
+                </div>
+                <div><el-button type="danger" plain class="el-icon-s-comment">人工客服</el-button></div>
+              </div>
+            </el-col>
           </el-row>
 
         </el-main>
-        <el-footer style="height: 100px">
+        <el-footer style="height: 120px">
 
           <!--bottom-->
           <el-row>
-            <el-col :span="24">
-              <div class="grid-content bg-purple" style="height: 100px;line-height: 25px;font-size: 12px;text-align: center;margin: auto">
+            <el-col :span="24"  class="bg-purple">
+              <div style="height: 120px;line-height: 20px;font-size: 13px;text-align: center">
                 <ul>
-                  <li >
-                    小米商城 | MIUI | 米家 | 米聊 | 多看 | 游戏 |路由器 | 米粉卡 | 政企服务 | 小米天猫店 | 小米集团隐私政策 | 小米公司儿童信息保护规则 | 小米商城隐私政策 | 小米商城用户协议 | 问题反馈 | 廉正举报 | 诚信合规 | Select Location</li><br>
+                  <li>
+                    小米商城 | MIUI | 米家 | 米聊 | 多看 | 游戏 |路由器 | 米粉卡 | 政企服务 | 小米天猫店 | 小米集团隐私政策 | 小米公司儿童信息保护规则 | 小米商城隐私政策 | 小米商城用户协议 | 问题反馈 | 廉正举报 | 诚信合规 | Select Location
+                  </li>
                   <li>
                     © mi.com 京ICP证110507号 京ICP备10046444号 京公网安备11010802020134号 京网文[2017]1530-131号
-                  </li>
+                  </li><br>
                   <li>
                     （京）网械平台备字（2018）第00005号 互联网药品信息服务资格证 (京) -非经营性-2014-0090 营业执照 医疗器械公告
-                  </li>
+                  </li><br>
                   <li>
                     增值电信业务许可证  网络食品经营备案（京）【2018】WLSPJYBAHF-12   食品经营许可证
-                  </li>
+                  </li><br>
                   <li>
                     违法和不良信息举报电话：185-0130-1238 知识产权侵权投诉 本网站所列数据，除特殊说明，所有数据均出自我司实验室测试
                   </li>
@@ -289,35 +476,35 @@
     padding: 10px 0;
     background-color: #f9fafc;
   }
-  /*.el-header, .el-footer {*/
+  .el-header, .el-footer {
     /*background-color: #B3C0D1;*/
     /*color: #333;*/
     /*text-align: center;*/
-    /*!*line-height: 60px;*!*/
-  /*}*/
+    /*line-height: 60px;*/
+  }
 
-  /*.el-aside {*/
+  .el-aside {
     /*background-color: #D3DCE6;*/
     /*color: #333;*/
     /*text-align: center;*/
-    /*!*line-height: 200px;*!*/
-  /*}*/
+    /*line-height: 200px;*/
+  }
 
-  /*.el-main {*/
+  .el-main {
     /*background-color: #E9EEF3;*/
     /*color: #333;*/
     /*text-align: center;*/
-    /*!*line-height: 160px;*!*/
-  /*}*/
+    /*line-height: 160px;*/
+  }
 
-  /*body > .el-container {*/
-    /*!*margin-bottom: 40px;*!*/
-  /*}*/
+  body > .el-container {
+    /*margin-bottom: 40px;*/
+  }
 
-  /*.el-container:nth-child(5) .el-aside,*/
-  /*.el-container:nth-child(6) .el-aside {*/
-    /*line-height: 260px;*/
-  /*}*/
+  .el-container:nth-child(5) .el-aside,
+  .el-container:nth-child(6) .el-aside {
+    line-height: 260px;
+  }
   .el-dropdown-menu{
     width: 100px;
   }
