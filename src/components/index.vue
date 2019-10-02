@@ -116,7 +116,12 @@
       </el-col>
       <el-col :span="6">
         <div class="grid-content bg-purple" style="height: 80px;line-height: 80px">
-          <router-link :to="{name:'userCart'}" style="color: red">购物车</router-link>
+          <el-badge :value="100" :max="10" class="item">
+            <el-button size="">
+              <router-link :to="{name:'userCart'}" style="color: red">购物车</router-link>
+            </el-button>
+          </el-badge>
+
         </div>
       </el-col>
     </el-row>
@@ -183,19 +188,19 @@
       <!--<el-col :span="5"><div class="grid-content bg-purple"></div></el-col>-->
       <!--<el-col :span="5"><div class="grid-content bg-purple"></div></el-col>-->
     <!--</el-row>-->
-    <!--专题栏-->
+    <!--倒计时栏-->
     <el-row :gutter="10">
-      <el-col :span="6"><div class="grid-content bg-purple" style="height: 150px;line-height: 150px">倒计时</div></el-col>
-      <el-col :span="4">
-        <div class="grid-content bg-purple" style="height: 150px;line-height: 150px">促销商品1</div>
+      <el-col :span="4"><div class="grid-content bg-purple" style="height: 250px;line-height: 250px">倒计时</div></el-col>
+      <el-col :span="5">
+        <div class="grid-content bg-purple" style="height: 250px;line-height: 250px">促销商品1</div>
       </el-col>
-      <el-col :span="4">
-        <div class="grid-content bg-purple" style="height: 150px;line-height: 150px">促销商品2</div>
+      <el-col :span="5">
+        <div class="grid-content bg-purple" style="height: 250px;line-height: 250px">促销商品2</div>
       </el-col>
-      <el-col :span="4">
-        <div class="grid-content bg-purple" style="height: 150px;line-height: 150px">促销商品3</div>
+      <el-col :span="5">
+        <div class="grid-content bg-purple" style="height: 250px;line-height: 250px">促销商品3</div>
       </el-col>
-      <el-col :span="6"><div class="grid-content bg-purple" style="height: 150px;line-height: 150px">专题4</div></el-col>
+      <el-col :span="5"><div class="grid-content bg-purple" style="height: 250px;line-height: 250px">专题4</div></el-col>
     </el-row>
     <!--多、快、好、省-->
     <el-row :gutter="10">
