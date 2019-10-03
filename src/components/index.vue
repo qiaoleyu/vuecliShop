@@ -13,7 +13,7 @@
             <div class="grid-content bg-purple" style="color: black;font-size: 14px;line-height: 30px">
               <el-dropdown>
           <span class="el-dropdown-link">
-            地址<i class="el-icon-arrow-down el-icon--right"></i>
+            <a>地址</a><i class="el-icon-arrow-down el-icon--right"></i>
           </span>
                 <el-dropdown-menu slot="dropdown">
                   <el-dropdown-item >北京</el-dropdown-item>
@@ -23,17 +23,17 @@
                   <el-dropdown-item>杭州</el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
-              <router-link type="info" :to="{name:'userLogin'}" style="color:black">请登录</router-link>
-              <router-link type="info" :to="{name:'userRegist'}" style="color:black">免费注册</router-link>
+              <router-link type="info" :to="{name:'userLogin'}" style="color:black"><a>请登录</a></router-link>
+              <router-link type="info" :to="{name:'userRegist'}" style="color:black"><a>免费注册</a></router-link>
 
             </div>
           </el-col>
           <el-col :span="14">
             <div class="grid-content bg-purple-light" style="color: black;line-height: 30px;font-size: 14px">
-              <router-link type="info" :to="{name:'userOrder'}" style="color: black">我的订单</router-link>
+              <router-link type="info" :to="{name:'userOrder'}" style="color: black"><a>我的订单</a></router-link>
               <el-dropdown style="margin-left: 10px">
           <span class="el-dropdown-link">
-            个人中心<i class="el-icon-arrow-down el-icon--left"></i>
+            <a>个人中心</a><i class="el-icon-arrow-down el-icon--left"></i>
           </span>
                 <el-dropdown-menu slot="dropdown">
                   <el-dropdown-item>1</el-dropdown-item>
@@ -45,7 +45,7 @@
               </el-dropdown>
               <el-dropdown>
           <span class="el-dropdown-link">
-            企业采购<i class="el-icon-arrow-down el-icon--left"></i>
+            <a>企业采购</a><i class="el-icon-arrow-down el-icon--left"></i>
           </span>
                 <el-dropdown-menu slot="dropdown">
                   <el-dropdown-item>1</el-dropdown-item>
@@ -57,7 +57,7 @@
               </el-dropdown>
               <el-dropdown>
           <span class="el-dropdown-link">
-            客户服务<i class="el-icon-arrow-down el-icon--left"></i>
+            <a>客户服务</a><i class="el-icon-arrow-down el-icon--left"></i>
           </span>
                 <el-dropdown-menu slot="dropdown">
                   <el-dropdown-item>1</el-dropdown-item>
@@ -69,7 +69,7 @@
               </el-dropdown>
               <el-dropdown>
           <span class="el-dropdown-link">
-            网站导航<i class="el-icon-arrow-down el-icon--left"></i>
+            <a>网站导航</a><i class="el-icon-arrow-down el-icon--left"></i>
           </span>
                 <el-dropdown-menu slot="dropdown">
                   <el-dropdown-item>1</el-dropdown-item>
@@ -105,7 +105,7 @@
                   <el-tooltip content="购物车" placement="bottom" effect="light">
                   <el-button size="" plain style="width: 180px;height: 60px">
                     <i style="font-size: 16px; font-weight: bold;color:red"  class="el-icon-shopping-cart-full "></i>
-                    <router-link :to="{name:'userCart'}" style="color: red;font-size: 16px">购物车</router-link>
+                    <router-link :to="{name:'userCart'}" style="font-size: 16px"><a>购物车</a></router-link>
 
                   </el-button>
                   </el-tooltip>
@@ -325,7 +325,7 @@
             <el-col :span="6">
               <div  style="height: 50px;line-height: 50px;border-right: 1px solid #e5e9f2">
                 <div style="height: 50px;width: 50px;float: left;margin-left: 50px"><el-image src="../static/duo.jpg" style="height: 50px;width: 50px"></el-image></div>
-                <div style="height: 50px;width: 150px;font-weight: bolder;float: left">品类齐全，轻松购物</div>
+                <div style="height: 50px;width: 150px;font-weight: bolder;float: left"><a href="">品类齐全，轻松购物</a></div>
               </div>
             </el-col>
             <el-col :span="6">
@@ -333,7 +333,7 @@
                 <div style="height: 50px;width: 50px;float: left;margin-left: 50px">
                   <el-image src="../static/kuai.jpg" style="height: 50px;width: 50px"></el-image>
                 </div>
-                <div style="height: 50px;width: 150px;font-weight: bolder;float: left">多仓直发，极速配送</div>
+                <div style="height: 50px;width: 150px;font-weight: bolder;float: left"><a href="">多仓直发，极速配送</a></div>
               </div>
             </el-col>
             <el-col :span="6">
@@ -341,7 +341,7 @@
                 <div style="height: 50px;width: 50px;float: left;margin-left: 50px">
                   <el-image src="../static/hao.jpg" style="height: 50px;width: 50px"></el-image>
                 </div>
-                <div style="height: 50px;width: 150px;font-weight: bolder;float: left">正品行货，精致服务</div>
+                <div style="height: 50px;width: 150px;font-weight: bolder;float: left"><a href="">正品行货，精致服务</a></div>
               </div>
             </el-col>
             <el-col :span="6">
@@ -349,7 +349,7 @@
                 <div style="height: 50px;width: 50px;float: left;margin-left: 50px">
                   <el-image src="../static/sheng.jpg" style="height: 50px;width: 50px"></el-image>
                 </div>
-                <div style="height: 50px;width: 150px;font-weight: bolder;float: left">天天低价，畅选无忧</div>
+                <div style="height: 50px;width: 150px;font-weight: bolder;float: left"><a href="">天天低价，畅选无忧</a></div>
               </div>
             </el-col>
           </el-row>
@@ -409,7 +409,7 @@
                   周一至周日 8:00-18:00<br>
                   （仅收市话费）
                 </div>
-                <div><el-button type="danger" plain class="el-icon-s-comment">人工客服</el-button></div>
+                <div><a href=""><el-button type="danger" plain class="el-icon-s-comment">人工客服</el-button></a></div>
               </div>
             </el-col>
           </el-row>
