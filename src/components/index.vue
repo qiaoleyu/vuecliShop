@@ -23,7 +23,8 @@
                   <el-dropdown-item>杭州</el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
-              <router-link type="info" :to="{name:'userLogin'}" style="color:black"><a>请登录</a></router-link>
+              <router-link type="info" :to="{name:'userLogin'}" style="color:black"><a>Hi,请登录</a></router-link>
+              &nbsp;&nbsp;&nbsp;
               <router-link type="info" :to="{name:'userRegist'}" style="color:black"><a>免费注册</a></router-link>
 
             </div>
@@ -36,11 +37,11 @@
             <a>个人中心</a><i class="el-icon-arrow-down el-icon--left"></i>
           </span>
                 <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item>1</el-dropdown-item>
-                  <el-dropdown-item>2</el-dropdown-item>
-                  <el-dropdown-item>3</el-dropdown-item>
-                  <el-dropdown-item>4</el-dropdown-item>
-                  <el-dropdown-item>5</el-dropdown-item>
+                  <el-dropdown-item>完善信息</el-dropdown-item>
+                  <el-dropdown-item>修改信息</el-dropdown-item>
+                  <!--<el-dropdown-item>3</el-dropdown-item>-->
+                  <!--<el-dropdown-item>4</el-dropdown-item>-->
+                  <!--<el-dropdown-item>5</el-dropdown-item>-->
                 </el-dropdown-menu>
               </el-dropdown>
               <el-dropdown>
@@ -506,6 +507,9 @@
     line-height: 260px;
   }
   .el-dropdown-menu{
+    width: 120px;
+  }
+  .el-dropdown-item{
     width: 100px;
   }
   .router-link{
@@ -515,6 +519,7 @@
   .el-dropdown{
     color: black;
     font-size: 14px;
+    width: 100px;
     line-height: 60px;
   }
   /*.el-container:nth-child(7) .el-aside {*/
