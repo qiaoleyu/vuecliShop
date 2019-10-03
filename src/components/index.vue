@@ -357,49 +357,49 @@
             <el-col :span="3">
               <div class="bg-purple" style="height: 180px;line-height: 40px">
                 <div style="font-weight: bold">帮助中心</div>
-                <div style="font-size: 14px">账户管理</div>
-                <div style="font-size: 14px">购物指南</div>
-                <div style="font-size: 14px">订单操作</div>
+                <div style="font-size: 14px"><a href="">账户管理</a></div>
+                <div style="font-size: 14px"><a href="">购物指南</a></div>
+                <div style="font-size: 14px"><a href="">订单操作</a></div>
               </div>
             </el-col>
             <el-col :span="3">
               <div class="bg-purple" style="height: 180px;line-height: 40px">
                 <div style="font-weight: bold">服务支持</div>
-                <div style="font-size: 14px">售后政策</div>
-                <div style="font-size: 14px">自动服务</div>
-                <div style="font-size: 14px">相关下载</div>
+                <div style="font-size: 14px"><a href="">售后政策</a></div>
+                <div style="font-size: 14px"><a href="">自动服务</a></div>
+                <div style="font-size: 14px"><a href="">相关下载</a></div>
               </div>
             </el-col>
             <el-col :span="3">
               <div class="bg-purple" style="height:180px;line-height: 40px">
                 <div style="font-weight: bold">线下门店</div>
-                <div style="font-size: 14px">小米之家</div>
-                <div style="font-size: 14px">服务网点</div>
-                <div style="font-size: 14px">授权体验店</div>
+                <div style="font-size: 14px"><a href="">小米之家</a></div>
+                <div style="font-size: 14px"><a href="">服务网点</a></div>
+                <div style="font-size: 14px"><a href="">授权体验店</a></div>
               </div>
             </el-col>
             <el-col :span="3">
               <div class="bg-purple" style="height: 180px;line-height: 40px">
                 <div style="font-weight: bold">关于小米</div>
-                <div style="font-size: 14px">了解小米</div>
-                <div style="font-size: 14px">加入小米</div>
-                <div style="font-size: 14px">投资者关系</div>
+                <div style="font-size: 14px"><a href="">了解小米</a></div>
+                <div style="font-size: 14px"><a href="">加入小米</a></div>
+                <div style="font-size: 14px"><a href="">投资者关系</a></div>
               </div>
             </el-col>
             <el-col :span="3">
               <div class="bg-purple" style="height: 180px;line-height: 40px">
                 <div style="font-weight: bold">关于我们</div>
-                <div style="font-size: 14px">新浪微博</div>
-                <div style="font-size: 14px">官网微博</div>
-                <div style="font-size: 14px">联系我们</div>
+                <div style="font-size: 14px"><a href="">新浪微博</a></div>
+                <div style="font-size: 14px"><a href="">官网微博</a></div>
+                <div style="font-size: 14px"><a href="">联系我们</a></div>
               </div>
             </el-col>
             <el-col :span="3">
               <div class="bg-purple" style="height: 180px;line-height: 40px;border-right: 1px solid #898683">
                 <div style="font-weight: bold">特色服务</div>
-                <div style="font-size: 14px">F码通道</div>
-                <div style="font-size: 14px">礼物码</div>
-                <div style="font-size: 14px">防伪查验</div>
+                <div style="font-size: 14px"><a href="">F码通道</a></div>
+                <div style="font-size: 14px"><a href="">礼物码</a></div>
+                <div style="font-size: 14px"><a href="">防伪查验</a></div>
               </div>
             </el-col>
             <el-col :span="6">
@@ -423,19 +423,19 @@
               <div style="height: 120px;line-height: 20px;font-size: 13px;text-align: center">
                 <ul>
                   <li>
-                    小米商城 | MIUI | 米家 | 米聊 | 多看 | 游戏 |路由器 | 米粉卡 | 政企服务 | 小米天猫店 | 小米集团隐私政策 | 小米公司儿童信息保护规则 | 小米商城隐私政策 | 小米商城用户协议 | 问题反馈 | 廉正举报 | 诚信合规 | Select Location
+                    <a href="">小米商城 | MIUI | 米家 | 米聊 | 多看 | 游戏 |路由器 | 米粉卡 | 政企服务 | 小米天猫店 | 小米集团隐私政策 | 小米公司儿童信息保护规则 | 小米商城隐私政策 | 小米商城用户协议 | 问题反馈 | 廉正举报 | 诚信合规 | Select Location</a>
                   </li>
                   <li>
-                    © mi.com 京ICP证110507号 京ICP备10046444号 京公网安备11010802020134号 京网文[2017]1530-131号
+                    <a href="">© mi.com 京ICP证110507号 京ICP备10046444号 京公网安备11010802020134号 京网文[2017]1530-131号</a>
                   </li><br>
                   <li>
-                    （京）网械平台备字（2018）第00005号 互联网药品信息服务资格证 (京) -非经营性-2014-0090 营业执照 医疗器械公告
+                    <a href="">（京）网械平台备字（2018）第00005号 互联网药品信息服务资格证 (京) -非经营性-2014-0090 营业执照 医疗器械公告</a>
                   </li><br>
                   <li>
-                    增值电信业务许可证  网络食品经营备案（京）【2018】WLSPJYBAHF-12   食品经营许可证
+                    <a href="">增值电信业务许可证  网络食品经营备案（京）【2018】WLSPJYBAHF-12   食品经营许可证</a>
                   </li><br>
                   <li>
-                    违法和不良信息举报电话：185-0130-1238 知识产权侵权投诉 本网站所列数据，除特殊说明，所有数据均出自我司实验室测试
+                    <a href="">违法和不良信息举报电话：185-0130-1238 知识产权侵权投诉 本网站所列数据，除特殊说明，所有数据均出自我司实验室测试</a>
                   </li>
                 </ul>
               </div>
@@ -599,7 +599,11 @@ li {
   display: inline-block;
   margin: 0 10px;
 }
-a {
-  color: #42b983;
+a:link {
+  color: #000000;
+  text-decoration-line: none;
 }
+  a:hover{
+    color: red;
+  }
 </style>
