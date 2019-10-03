@@ -120,10 +120,10 @@
           <!--<hr color="pink">-->
           <!--一二级菜单、轮播图-->
           <el-row :gutter="10">
-            <el-col :span="6" >
+            <el-col :span="6">
               <div class="grid-content bg-purple-dark" style="height: 370px;line-height: 370px">
 
-
+                
                 一二级菜单
               </div>
             </el-col>
@@ -579,8 +579,9 @@ export default {
   name: 'index',
   data () {
     return {
-      input:'',
+      input: '',
       msg: 'Welcome to 小米 首页'
+
     }
   },methods:{
      login:function () {
