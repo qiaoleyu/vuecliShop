@@ -123,7 +123,7 @@
             <el-col :span="6">
               <div class="grid-content bg-purple-dark" style="height: 370px;line-height: 370px">
 
-                
+
                 一二级菜单
               </div>
             </el-col>
