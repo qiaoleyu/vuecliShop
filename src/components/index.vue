@@ -96,7 +96,9 @@
             </el-col>
             <el-col :span="12">
               <div class="grid-content bg-purple-light" style="height: 80px">
-                <el-input type="text" style="width: 80%;margin: auto;margin-top: 20px"></el-input>
+                <el-input type="text" style="width: 80%;margin: auto;margin-top: 20px" placeholder="请输入内容"
+                          v-model="input"
+                          clearable></el-input>
                 <el-button type="danger" icon="el-icon-search" plain @click="search()">查询</el-button>
               </div>
             </el-col>
@@ -575,6 +577,7 @@ export default {
   name: 'index',
   data () {
     return {
+      input:'',
       msg: 'Welcome to 小米 首页'
     }
   },methods:{

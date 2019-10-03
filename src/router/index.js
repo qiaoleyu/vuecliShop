@@ -5,6 +5,8 @@ import userLogin from '@/components/userLogin'
 import userRegist from '@/components/userRegist'
 import userCart from '@/components/userCart'
 import userOrder from '@/components/userOrder'
+import shopDetial from '@/components/shopDetial'
+
 Vue.use(Router)
 
 export default new Router({
@@ -33,6 +35,11 @@ export default new Router({
       path: '/userOrder',
       name: 'userOrder',
       component: userOrder
+    },
+    {
+      path: '/shopDetial',
+      name: 'shopDetial',
+      component: shopDetial
     }
   ]
 })

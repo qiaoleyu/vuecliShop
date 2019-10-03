@@ -22,7 +22,7 @@
       <el-form-item label="昵称" prop="uName" style="text-align: left;font-weight: bold">
         <el-input type="text" name="uName" v-model="users.uName" style="width: 340px" placeholder="请输入用户名"></el-input>
       </el-form-item><br>
-      <el-form-item label="密码" prop="uPassword" style="text-align: left;font-weight: bold">
+      <el-form-item label="密码" prop="uPassword" style="text-align: left;font-weight: bold" show-password>
         <el-input type="uPassword" password="uPassword" v-model="users.uPassword" style="width: 340px" placeholder="请输入密码"></el-input>
       </el-form-item><br>
       <el-row>
