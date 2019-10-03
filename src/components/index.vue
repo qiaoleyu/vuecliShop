@@ -13,7 +13,7 @@
             <div class="grid-content bg-purple" style="color: black;font-size: 14px;line-height: 30px">
               <el-dropdown>
           <span class="el-dropdown-link">
-            <a>地址</a><i class="el-icon-arrow-down el-icon--right"></i>
+            <a class="el-icon-location">地址</a><i class="el-icon-arrow-down el-icon--right"></i>
           </span>
                 <el-dropdown-menu slot="dropdown">
                   <el-dropdown-item >北京</el-dropdown-item>
