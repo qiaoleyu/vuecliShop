@@ -145,24 +145,28 @@
             <el-row :gutter="10">
               <el-col :span="10">
                 <div class=" bg-purple-dark" style="height: 400px">
-                  <el-image src="../static/logo1.jpg" style="height: 400px;width: 470px"></el-image>
+                  <el-image :src="shop.shopBigPic" style="height: 400px;width: 470px"></el-image>
                 </div>
               </el-col>
               <el-col :span="10">
                 <div class=" bg-purple-dark" style="height: 400px">
                   <div style="height: 60px;background-color: darkgrey">
                     <span style="line-height: 30px">商品名称以及商品描述：</span>
-                    <span></span>
+                    <span v-text="shop.shopName"></span>
                   </div>
                   <div style="height: 60px;background-color: #E5E9F2">
                     <span style="line-height: 30px">商品数量：</span>
-                    <span></span>
+                    <span v-text="shop.shopNumber" te></span>
                   </div>
                   <div style="height: 60px;background-color: darkgrey">
                     <span style="line-height: 30px">商品单价：</span>
-                    <span></span>
+                    <span v-text="shop.shopPrice"></span>
                   </div>
-                  <div style="height: 80px;background-color: #E5E9F2">
+                  <div style="height: 80px;background-color: darkgrey">
+                    <span style="line-height: 30px">商品描述：</span>
+                    <span v-text="shop.shopInfo"></span>
+                  </div>
+              <!--    <div style="height: 80px;background-color: #E5E9F2">
                     <div>
                       <span style="line-height: 30px">配送地址：</span>
                     </div>
@@ -180,14 +184,14 @@
                         </div>
                       </template>
                     </div>
-                  </div>
+                  </div>-->
                   <div style="height: 80px;background-color: darkgrey">
-                    <span style="line-height: 30px">商品属性：</span>
-                    <span></span>
+                    <span style="line-height: 30px">商品销量：</span>
+                    <span v-text="shop.shopRepertory"></span>
                   </div>
                   <div style="height: 60px;background-color: #E5E9F2">
                     <span style="line-height: 30px">总金额：</span>
-                    <span></span>
+                    <span v-text="total"></span>
                   </div>
                 </div>
               </el-col>
@@ -407,8 +411,10 @@
   import axios from 'axios'
   import ElMain from "../../node_modules/element-ui/packages/main/src/main";
   import ElButton from "../../node_modules/element-ui/packages/button/src/button";
+  import ElInput from "../../node_modules/element-ui/packages/input/src/input";
   export default{
     components: {
+      ElInput,
       ElButton,
       ElMain},
     data(){
@@ -416,11 +422,33 @@
             radio1: '上海',
             input:'',
             num: 1,
-            msg: 'Welcome to 商品详情页'
+            msg: 'Welcome to 商品详情页',
+            shop:{
+              shopPrice:''
+            },
+            total:''
       }
-    },methods:{
+    },mounted:function () {
+        var id=this.$route.params.shopId;
+        id=2;
+
+        axios.get("api/findById/"+id).then(res=>{
+            this.shop=res.data;
+            this.total=this.shop.shopPrice;
+        })
+    } ,methods:{
       handleChange(value) {
-        console.log(value);
+          this.total=value*this.shop.shopPrice;
+//        console.log(value);
+      },
+      addcart:function () {
+        axios.post("api/addCart",{num:this.num,shop:this.shop,total:this.total}).then(res=>{
+            if (res.data!=null){
+                alert("加入成功")
+            }else {
+                alert("加入失败")
+            }
+        })
       },
       show:function () {
         this.$router.push("/")

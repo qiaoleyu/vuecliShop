@@ -16,22 +16,24 @@
     </el-table-column>
     <el-table-column prop="shopName" label="商品信息" width="160" align="center" >
     </el-table-column>
-    <el-table-column prop="shopPic" label="图片" width="180" align="center" >
-      <el-image src="../static/logo1.jpg" style="height: 60px;width: 60px"></el-image>
+    <el-table-column label="图片" width="180" align="center" >
+      <template slot-scope="scope">
+      <el-image :src="scope.row.shopPic" style="height: 60px;width: 60px"></el-image>
+      </template>
     </el-table-column>
-    <el-table-column prop="shopInfo" label="商品属性" width="160" align="center" >
-    </el-table-column>
+    <!--<el-table-column prop="shopInfo" label="商品属性" width="160" align="center" >
+    </el-table-column>-->
     <el-table-column prop="shopPrice" label="单价(元)" width="160" align="center"  >
     </el-table-column>
     <el-table-column label="数量(件)" align="center" width="200">
       <template slot-scope="scope">
-        <el-input-number  v-model="scope.row.num" @change="handleChange" :min="1"  label="描述文字"></el-input-number>
+        <el-input-number  v-model="scope.row.shopCount" @change="handleChange" :min="1"  label="描述文字"></el-input-number>
       </template>
 
     </el-table-column>
     <el-table-column label="金额(元)" align="center" >
       <template slot-scope="scope">
-        <div>{{scope.row.shopPrice*scope.row.num}}</div>
+        <div>{{scope.row.shopTotal}}</div>
 
       </template>
     </el-table-column>
@@ -94,39 +96,17 @@
         };
         return {
             msg:'购物车',
-          list: [{
-            oId: 1,
-            shopName: "打火机",
-            shopInfo:'防风',
-            shopPrice: 3.00,
-            shopNumber: 4,
-            checked: false,
-            num: 1,
-            remove: false
-          },
+          list: [
             {
-              oId: 2,
-              shopName: "冰淇淋",
-              shopInfo:'果冻',
-              shopPrice: 10.00,
-              shopNumber: 3,
-              checked: false,
-              num: 1,
-              remove: false
-            },
-            {
-              oId: 3,
-              shopName: "三只松鼠",
-              shopInfo:'坚果零食',
-              shopPrice: 7.00,
-              shopNumber: 5,
-              checked: false,
-              num: 1,
-              remove: false
+              shopCount:'',
+              shopTotal:'',
+              shopPrice:''
             }
           ],
           count: 0,
           istrue: false,
+          total:'',
+          num:''
         }
       },
       computed: {
@@ -135,7 +115,7 @@
           for (let i = 0; i < this.list.length; i++) {
             if (this.list[i].checked == true) {
 
-              a += this.list[i].shopPrice * this.list[i].num
+              a += this.list[i].shopPrice * this.list[i].shopCount
             }
           }
           this.count = a;
@@ -155,8 +135,43 @@
           }
 
         }
-      },
+      },mounted:function () {
+        axios.get("api/findAllCart").then(res=>{
+          this.list=res.data;
+        })
+    },
       methods: {
+        on: {
+          change: (i) => {
+            self.istrue = i;
+          }
+        },
+        handleChange(value) {
+          for (let i = 0; i < this.list.length; i++) {
+            this.list[i].shopTotal = value * this.list[i].shopPrice;
+
+            this.list[i].shopCount=value;
+//          alert(this.shopCount)
+//          alert(this.list[0])
+            axios.post("api/updateCart",this.list[i]).then(res=>{
+            if (res.data!=null){
+              alert("加入成功")
+            }else {
+              alert("加入失败")
+            }
+          })
+          }
+
+      },
+        updateCart:function () {
+          axios.post("api/addCart",{num:this.num,shop:this.shop,total:this.total}).then(res=>{
+            if (res.data!=null){
+              alert("加入成功")
+            }else {
+              alert("加入失败")
+            }
+          })
+        },
         removeId(value) {
           var ids = value.oId
           for (var i = 0; i < this.list.length; i++) {
