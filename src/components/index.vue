@@ -127,7 +127,7 @@
           </div>
           <el-row :gutter="10">
             <el-col :span="6">
-              <div id="menu" class="grid-content bg-purple-dark" style="height: 370px;line-height: 370px">
+              <div id="menu" class="grid-content bg-purple-dark" style="height: 370px">
                 <!--一级菜单-->
                 <div v-for="(shop_kind,index) in shop_kinds">
                   <p style="height: 22px" @mouseover="show2(index+1)">{{shop_kind.skName}}</p>
@@ -470,7 +470,7 @@
     /*height: 370px;*/
     width: 1000px;
     left: 387px;
-    top:280px;
+    top:200px;
     background-color: yellow;
     z-index: 3;
     text-align: left;
@@ -597,7 +597,8 @@
   import ElImage from "../../node_modules/element-ui/packages/image/src/main";
   import ElInput from "../../node_modules/element-ui/packages/input/src/input";
   import ElButton from "../../node_modules/element-ui/packages/button/src/button";
-export default {
+  import axios from 'axios'
+  export default {
   components: {
     ElButton,
     ElInput,
@@ -607,7 +608,7 @@ export default {
   data () {
     return {
       input: '',
-      msg: 'Welcome to 小米 首页'
+      msg: 'Welcome to 小米 首页',
       shop_kinds:[],
       shops:[]
     }
