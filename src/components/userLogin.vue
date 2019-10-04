@@ -12,8 +12,8 @@
       </el-row>
 
     </div>
-
     <hr width="80%">
+
     <div style="width: 60%;margin: auto;height: 400px;margin-top: 20px;background-color: antiquewhite">
 
       <br>
