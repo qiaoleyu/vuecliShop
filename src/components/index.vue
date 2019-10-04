@@ -119,12 +119,21 @@
           </el-row>
           <!--<hr color="pink">-->
           <!--一二级菜单、轮播图-->
+          <!--二级菜单-->
+          <div id="second" >
+            <div   v-for="(shop,index) in shops">
+              <p style="height: 22px" ><img :src="shop.shopPic" >{{shop.shopName}}</p>
+            </div>
+          </div>
           <el-row :gutter="10">
             <el-col :span="6">
-              <div class="grid-content bg-purple-dark" style="height: 370px;line-height: 370px">
+              <div id="menu" class="grid-content bg-purple-dark" style="height: 370px;line-height: 370px">
+                <!--一级菜单-->
+                <div v-for="(shop_kind,index) in shop_kinds">
+                  <p style="height: 22px" @mouseover="show2(index+1)">{{shop_kind.skName}}</p>
+                </div>
 
 
-                一二级菜单
               </div>
             </el-col>
             <el-col :span="18">
@@ -455,6 +464,24 @@
 
 
 <style>
+  #second{
+    /*display: none;*/
+    position: absolute;
+    /*height: 370px;*/
+    width: 1000px;
+    left: 387px;
+    top:280px;
+    background-color: yellow;
+    z-index: 3;
+    text-align: left;
+    padding-left:20px;
+  }
+  #menu{
+    position: relative;
+    color: white;
+    font-weight: 500;
+    background-color: gray;
+  }
   .el-row {
     margin-bottom: 10px;
   &:last-child {
@@ -581,9 +608,18 @@ export default {
     return {
       input: '',
       msg: 'Welcome to 小米 首页'
-
+      shop_kinds:[],
+      shops:[]
     }
-  },methods:{
+  },
+  mounted(){
+    var url="api/show1"
+    axios.get(url).then(res=>{
+      //alert(res.data)
+      this.shop_kinds=res.data
+    })
+  },
+  methods:{
      login:function () {
        this.$router.push("/userLogin")
      },
@@ -592,6 +628,14 @@ export default {
     },
     logout:function () {
       this.$router.push("/userLogin")
+    },
+    show2:function (ids) {
+      var url="api/show2"+"/"+ids
+      //alert(ids)
+      axios.get(url).then(res=>{
+        console.log(res.data)
+        this.shops=res.data
+      })
     }
   }
 }
