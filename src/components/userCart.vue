@@ -27,7 +27,7 @@
     </el-table-column>
     <el-table-column label="数量(件)" align="center" width="200">
       <template slot-scope="scope">
-        <el-input-number  v-model="scope.row.shopCount" @change="handleChange" :min="1"  label="描述文字"></el-input-number>
+        <el-input-number  v-model="scope.row.shopCount" @change="handleChange($event,scope.$index)" :min="1"  label="描述文字"></el-input-number>
       </template>
 
     </el-table-column>
@@ -55,7 +55,7 @@
 
   <div style="background-color: aliceblue; height: 80px;margin: auto;margin-top: 20px">
     <div style="float: right;margin-top: 20px;margin-right: 30px"><el-button type="success" plain style="width: 120px" @click="submitForm()">立即购买</el-button></div>
-    <div style="float: right;margin-top: 20px;margin-right: 30px"><el-button type="primary" plain style="width: 120px" @click="index()">上一步</el-button></div>
+    <div style="float: right;margin-top: 20px;margin-right: 30px"><el-button type="primary" plain style="width: 120px" @click="back()">上一步</el-button></div>
     <div style="float: right;margin-top: 20px;color: red;line-height: 40px;margin-right: 60px">总金额：<span>{{countList}}元</span></div>
   </div>
 
@@ -75,7 +75,9 @@
   import axios from 'axios'
   import ElImage from "../../node_modules/element-ui/packages/image/src/main";
   export default{
-    components: {ElImage},
+    components: {
+        ElImage,
+    },
     el: "#app1",
       data() {
         var checkAge = (rule, value, callback) => {
@@ -98,15 +100,17 @@
             msg:'购物车',
           list: [
             {
+              cid:'',
+              uId:'',
+              shopName:'',
+              shopPrice:'',
+              shopPic:'',
               shopCount:'',
-              shopTotal:'',
-              shopPrice:''
+              shopTotal:''
             }
           ],
           count: 0,
-          istrue: false,
-          total:'',
-          num:''
+          istrue: false
         }
       },
       computed: {
@@ -135,51 +139,80 @@
           }
 
         }
-      },mounted:function () {
-        axios.get("api/findAllCart").then(res=>{
-          this.list=res.data;
-        })
+      },
+    mounted:function () {
+       this.query();
     },
       methods: {
-        on: {
-          change: (i) => {
-            self.istrue = i;
-          }
+        query:function () {
+          axios.get("api/findAllCart").then(res=>{
+            this.list=res.data;
+            //alert(this.list[1].cid)
+          })
         },
-        handleChange(value) {
-          for (let i = 0; i < this.list.length; i++) {
-            this.list[i].shopTotal = value * this.list[i].shopPrice;
+        removeId(row) {
+            console.log(row.cid)
+          /*var ids = row.cid
+          console.log(ids)*/
+          axios.get("api/deleteCart/"+row.cid).then(res=>{
+            if (res.data!=null){
+              this.query();
+            }else {
+              alert("加入失败")
+            }
+          });
+        },
+        delete:function (cId) {
+          alert(cId)
+          this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }).then(() => {
 
-            this.list[i].shopCount=value;
+            axios.get("api/deleteCart",cId).then(res=>{
+              if (res.data!=null){
+                this.query();
+              }else {
+                alert("加入失败")
+              }
+            });
+            this.$message({
+              type: 'success',
+              message: '删除成功!'
+            });
+          }).catch(() => {
+            this.$message({
+              type: 'info',
+              message: '已取消删除'
+            });
+          });
+        },
+        handleChange(event,index) {
+
+            this.list[index].shopTotal = event * this.list[index].shopPrice;
+
+            this.list[index].shopCount = event;
 //          alert(this.shopCount)
 //          alert(this.list[0])
-            axios.post("api/updateCart",this.list[i]).then(res=>{
-            if (res.data!=null){
-              alert("加入成功")
-            }else {
-              alert("加入失败")
-            }
-          })
-          }
-
+            axios.post("api/updateCart", this.list[index]).then(res => {
+              if (res.data != null) {
+                alert("加入成功")
+              } else {
+                alert("加入失败")
+              }
+            })
       },
-        updateCart:function () {
+       /* updateCart:function () {
           axios.post("api/addCart",{num:this.num,shop:this.shop,total:this.total}).then(res=>{
             if (res.data!=null){
-              alert("加入成功")
+              this.query();
             }else {
               alert("加入失败")
             }
           })
-        },
-        removeId(value) {
-          var ids = value.oId
-          for (var i = 0; i < this.list.length; i++) {
-            if (ids == this.list[i].oId) {
-              this.list.splice(i, 1)
-            }
-          }
-        },
+        },*/
+
         renderHeader: function (h, params) {//实现table表头添加
           var self = this;
           return h('div', [
@@ -193,7 +226,7 @@
           ]);
 
         },
-        index:function () {
+        back:function () {
           this.$router.push("/")
         },
         submitForm:function () {//点击提交生成订单

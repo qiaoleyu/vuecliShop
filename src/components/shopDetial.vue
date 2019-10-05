@@ -430,7 +430,7 @@
       }
     },mounted:function () {
         var id=this.$route.params.shopId;
-        id=2;
+        id=4;
 
         axios.get("api/findById/"+id).then(res=>{
             this.shop=res.data;
