@@ -120,17 +120,18 @@
           <!--<hr color="pink">-->
           <!--一二级菜单、轮播图-->
           <!--二级菜单-->
-          <div id="second" >
-            <div   v-for="(shop,index) in shops">
-              <p style="height: 22px" ><img :src="shop.shopPic" >{{shop.shopName}}</p>
+          <div id="second" v-show="second">
+            <div   v-for="(shop,index) in shops" style="float: left;width: 90px;height: 180px;margin-left: 20px">
+              <div style="width: 90px;height: 90px;margin-top: 30px"><img :src="shop.shopPic" style="width: 90px;height: 90px"></div>
+              <div style="width: 90px;height: 90px;line-height: 25px;text-align: center;font-size: 14px;font-weight: bold;margin-top: 10px">{{shop.shopName}}</div>
             </div>
           </div>
           <el-row :gutter="10">
             <el-col :span="6">
-              <div id="menu" class="grid-content bg-purple-dark" style="height: 370px">
+              <div id="menu" class="grid-content" style="height: 370px;text-align: left;padding-left: 60px;background-color: darkgrey">
                 <!--一级菜单-->
-                <div v-for="(shop_kind,index) in shop_kinds">
-                  <p style="height: 22px" @mouseover="show2(index+1)">{{shop_kind.skName}}</p>
+                <div v-for="(shop_kind,index) in shop_kinds" >
+                  <div id="demo" style="height: 30px;line-height: 30px;margin-top: 5px"  :style="active" @mouseover="show2(index+1)" @mouseleave="leave(index+1)">{{shop_kind.skName}}</div>
                 </div>
 
 
@@ -467,20 +468,20 @@
   #second{
     /*display: none;*/
     position: absolute;
-    /*height: 370px;*/
-    width: 1000px;
-    left: 387px;
-    top:200px;
+    /*height: 400px;*/
+    width: 940px;
+    left: 350px;
+    top:175px;
     background-color: yellow;
     z-index: 3;
     text-align: left;
     padding-left:20px;
   }
   #menu{
-    position: relative;
+    /*position: relative;*/
     color: white;
     font-weight: 500;
-    background-color: gray;
+    /*background-color: gray;*/
   }
   .el-row {
     margin-bottom: 10px;
@@ -593,12 +594,29 @@
 </style>
 
 <script>
+//  new Vue({
+//    el:'#demo',
+//    data(){
+//      return{
+//        active:'background-color:red'
+//      }
+//    },methods:{
+//      show2:function (ids){
+//        this.active='background-color:red'
+//      },leave(ids){
+//        this.active = '';
+//      }
+//    }
+//  })
   import ElFooter from "../../node_modules/element-ui/packages/footer/src/main";
   import ElImage from "../../node_modules/element-ui/packages/image/src/main";
   import ElInput from "../../node_modules/element-ui/packages/input/src/input";
   import ElButton from "../../node_modules/element-ui/packages/button/src/button";
-  import axios from 'axios'
-  export default {
+
+  import axios from 'axios';
+
+export default {
+
   components: {
     ElButton,
     ElInput,
@@ -610,7 +628,9 @@
       input: '',
       msg: 'Welcome to 小米 首页',
       shop_kinds:[],
-      shops:[]
+      shops:[],
+      second:true,
+//      active:''
     }
   },
   mounted(){
@@ -631,12 +651,18 @@
       this.$router.push("/userLogin")
     },
     show2:function (ids) {
+      this.second = true;
+//      this.active='background-color:red';
       var url="api/show2"+"/"+ids
       //alert(ids)
       axios.get(url).then(res=>{
         console.log(res.data)
         this.shops=res.data
+
       })
+    },leave(ids){
+      this.second = false;
+//      this.active = '';
     }
   }
 }
