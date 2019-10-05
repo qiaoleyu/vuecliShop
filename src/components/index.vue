@@ -130,8 +130,8 @@
             <el-col :span="6">
               <div id="menu" class="grid-content" style="height: 370px;text-align: left;padding-left: 60px;background-color: darkgrey">
                 <!--一级菜单-->
-                <div v-for="(shop_kind,index) in shop_kinds">
-                  <div id="type" style="height: 35px;line-height: 35px" :style="active" @mouseover="show2(index+1)" @mouseleave="leave(index+1)">{{shop_kind.skName}}</div>
+                <div v-for="(shop_kind,index) in shop_kinds" >
+                  <div id="demo" style="height: 30px;line-height: 30px;margin-top: 5px"  :style="active" @mouseover="show2(index+1)" @mouseleave="leave(index+1)">{{shop_kind.skName}}</div>
                 </div>
 
 
@@ -594,12 +594,27 @@
 </style>
 
 <script>
+//  new Vue({
+//    el:'#demo',
+//    data(){
+//      return{
+//        active:'background-color:red'
+//      }
+//    },methods:{
+//      show2:function (ids){
+//        this.active='background-color:red'
+//      },leave(ids){
+//        this.active = '';
+//      }
+//    }
+//  })
   import ElFooter from "../../node_modules/element-ui/packages/footer/src/main";
   import ElImage from "../../node_modules/element-ui/packages/image/src/main";
   import ElInput from "../../node_modules/element-ui/packages/input/src/input";
   import ElButton from "../../node_modules/element-ui/packages/button/src/button";
 
   import axios from 'axios';
+
 export default {
 
   components: {
@@ -615,6 +630,7 @@ export default {
       shop_kinds:[],
       shops:[],
       second:true,
+//      active:''
     }
   },
   mounted(){
@@ -636,14 +652,17 @@ export default {
     },
     show2:function (ids) {
       this.second = true;
+//      this.active='background-color:red';
       var url="api/show2"+"/"+ids
       //alert(ids)
       axios.get(url).then(res=>{
         console.log(res.data)
         this.shops=res.data
+
       })
     },leave(ids){
       this.second = false;
+//      this.active = '';
     }
   }
 }
