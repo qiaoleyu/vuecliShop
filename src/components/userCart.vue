@@ -151,41 +151,13 @@
           })
         },
         removeId(row) {
-            console.log(row.cid)
-          /*var ids = row.cid
-          console.log(ids)*/
+//        console.log(row.cid)
           axios.get("api/deleteCart/"+row.cid).then(res=>{
             if (res.data!=null){
               this.query();
             }else {
-              alert("加入失败")
+              alert("删除失败")
             }
-          });
-        },
-        delete:function (cId) {
-          alert(cId)
-          this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
-            confirmButtonText: '确定',
-            cancelButtonText: '取消',
-            type: 'warning'
-          }).then(() => {
-
-            axios.get("api/deleteCart",cId).then(res=>{
-              if (res.data!=null){
-                this.query();
-              }else {
-                alert("加入失败")
-              }
-            });
-            this.$message({
-              type: 'success',
-              message: '删除成功!'
-            });
-          }).catch(() => {
-            this.$message({
-              type: 'info',
-              message: '已取消删除'
-            });
           });
         },
         handleChange(event,index) {
@@ -203,16 +175,6 @@
               }
             })
       },
-       /* updateCart:function () {
-          axios.post("api/addCart",{num:this.num,shop:this.shop,total:this.total}).then(res=>{
-            if (res.data!=null){
-              this.query();
-            }else {
-              alert("加入失败")
-            }
-          })
-        },*/
-
         renderHeader: function (h, params) {//实现table表头添加
           var self = this;
           return h('div', [
