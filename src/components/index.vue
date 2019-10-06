@@ -120,15 +120,15 @@
           <!--<hr color="pink">-->
           <!--一二级菜单、轮播图-->
           <!--二级菜单-->
-          <div id="second" v-show="second">
-            <div   v-for="(shop,index) in shops" style="float: left;width: 90px;height: 180px;margin-left: 20px">
-              <div style="width: 90px;height: 90px;margin-top: 30px"><img :src="shop.shopPic" style="width: 90px;height: 90px"></div>
+          <div id="second" v-show="second" @mouseover="show2(index+1)" @mouseleave="leave(index+1)">
+            <div   v-for="(shop,index) in shops" style="float: left;width: 90px;height: 180px;margin-left: 20px" :style="active" >
+              <div style="width: 90px;height: 90px;margin-top: 30px" ><img :src="shop.shopPic" style="width: 90px;height: 90px"></div>
               <div style="width: 90px;height: 90px;line-height: 25px;text-align: center;font-size: 14px;font-weight: bold;margin-top: 10px">{{shop.shopName}}</div>
             </div>
           </div>
           <el-row :gutter="10">
             <el-col :span="6">
-              <div id="menu" class="grid-content" style="height: 370px;text-align: left;padding-left: 60px;background-color: darkgrey">
+              <div id="menu" class="grid-content" style="height: 370px;text-align:center;background-color: darkgrey">
                 <!--一级菜单-->
                 <div v-for="(shop_kind,index) in shop_kinds">
                   <div id="type" style="height: 35px;line-height: 35px" :style="active" @mouseover="show2(index+1)" @mouseleave="leave(index+1)">{{shop_kind.skName}}</div>
@@ -470,9 +470,9 @@
     position: absolute;
     /*height: 400px;*/
     width: 940px;
-    left: 350px;
-    top:175px;
-    background-color: yellow;
+    left: 385px;
+    top:185px;
+    background-color: white;
     z-index: 3;
     text-align: left;
     padding-left:20px;
