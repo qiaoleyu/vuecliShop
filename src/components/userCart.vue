@@ -16,22 +16,24 @@
     </el-table-column>
     <el-table-column prop="shopName" label="商品信息" width="160" align="center" >
     </el-table-column>
-    <el-table-column prop="shopPic" label="图片" width="180" align="center" >
-      <el-image src="../static/logo1.jpg" style="height: 60px;width: 60px"></el-image>
+    <el-table-column label="图片" width="180" align="center" >
+      <template slot-scope="scope">
+      <el-image :src="scope.row.shopPic" style="height: 60px;width: 60px"></el-image>
+      </template>
     </el-table-column>
-    <el-table-column prop="shopInfo" label="商品属性" width="160" align="center" >
-    </el-table-column>
+    <!--<el-table-column prop="shopInfo" label="商品属性" width="160" align="center" >
+    </el-table-column>-->
     <el-table-column prop="shopPrice" label="单价(元)" width="160" align="center"  >
     </el-table-column>
     <el-table-column label="数量(件)" align="center" width="200">
       <template slot-scope="scope">
-        <el-input-number  v-model="scope.row.num" @change="handleChange" :min="1"  label="描述文字"></el-input-number>
+        <el-input-number  v-model="scope.row.shopCount" @change="handleChange($event,scope.$index)" :min="1"  label="描述文字"></el-input-number>
       </template>
 
     </el-table-column>
     <el-table-column label="金额(元)" align="center" >
       <template slot-scope="scope">
-        <div>{{scope.row.shopPrice*scope.row.num}}</div>
+        <div>{{scope.row.shopTotal}}</div>
 
       </template>
     </el-table-column>
@@ -53,7 +55,7 @@
 
   <div style="background-color: aliceblue; height: 80px;margin: auto;margin-top: 20px">
     <div style="float: right;margin-top: 20px;margin-right: 30px"><el-button type="success" plain style="width: 120px" @click="submitForm()">立即购买</el-button></div>
-    <div style="float: right;margin-top: 20px;margin-right: 30px"><el-button type="primary" plain style="width: 120px" @click="index()">上一步</el-button></div>
+    <div style="float: right;margin-top: 20px;margin-right: 30px"><el-button type="primary" plain style="width: 120px" @click="back()">上一步</el-button></div>
     <div style="float: right;margin-top: 20px;color: red;line-height: 40px;margin-right: 60px">总金额：<span>{{countList}}元</span></div>
   </div>
 
@@ -73,7 +75,9 @@
   import axios from 'axios'
   import ElImage from "../../node_modules/element-ui/packages/image/src/main";
   export default{
-    components: {ElImage},
+    components: {
+        ElImage,
+    },
     el: "#app1",
       data() {
         var checkAge = (rule, value, callback) => {
@@ -94,39 +98,19 @@
         };
         return {
             msg:'购物车',
-          list: [{
-            oId: 1,
-            shopName: "打火机",
-            shopInfo:'防风',
-            shopPrice: 3.00,
-            shopNumber: 4,
-            checked: false,
-            num: 1,
-            remove: false
-          },
+          list: [
             {
-              oId: 2,
-              shopName: "冰淇淋",
-              shopInfo:'果冻',
-              shopPrice: 10.00,
-              shopNumber: 3,
-              checked: false,
-              num: 1,
-              remove: false
-            },
-            {
-              oId: 3,
-              shopName: "三只松鼠",
-              shopInfo:'坚果零食',
-              shopPrice: 7.00,
-              shopNumber: 5,
-              checked: false,
-              num: 1,
-              remove: false
+              cid:'',
+              uId:'',
+              shopName:'',
+              shopPrice:'',
+              shopPic:'',
+              shopCount:'',
+              shopTotal:''
             }
           ],
           count: 0,
-          istrue: false,
+          istrue: false
         }
       },
       computed: {
@@ -135,7 +119,7 @@
           for (let i = 0; i < this.list.length; i++) {
             if (this.list[i].checked == true) {
 
-              a += this.list[i].shopPrice * this.list[i].num
+              a += this.list[i].shopPrice * this.list[i].shopCount
             }
           }
           this.count = a;
@@ -156,15 +140,41 @@
 
         }
       },
+    mounted:function () {
+       this.query();
+    },
       methods: {
-        removeId(value) {
-          var ids = value.oId
-          for (var i = 0; i < this.list.length; i++) {
-            if (ids == this.list[i].oId) {
-              this.list.splice(i, 1)
-            }
-          }
+        query:function () {
+          axios.get("api/findAllCart").then(res=>{
+            this.list=res.data;
+            //alert(this.list[1].cid)
+          })
         },
+        removeId(row) {
+//        console.log(row.cid)
+          axios.get("api/deleteCart/"+row.cid).then(res=>{
+            if (res.data!=null){
+              this.query();
+            }else {
+              alert("删除失败")
+            }
+          });
+        },
+        handleChange(event,index) {
+
+            this.list[index].shopTotal = event * this.list[index].shopPrice;
+
+            this.list[index].shopCount = event;
+//          alert(this.shopCount)
+//          alert(this.list[0])
+            axios.post("api/updateCart", this.list[index]).then(res => {
+              if (res.data != null) {
+                alert("加入成功")
+              } else {
+                alert("加入失败")
+              }
+            })
+      },
         renderHeader: function (h, params) {//实现table表头添加
           var self = this;
           return h('div', [
@@ -178,7 +188,7 @@
           ]);
 
         },
-        index:function () {
+        back:function () {
           this.$router.push("/")
         },
         submitForm:function () {//点击提交生成订单
