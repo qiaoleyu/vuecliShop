@@ -145,7 +145,7 @@
             <el-row :gutter="10">
               <el-col :span="10">
                 <div class=" bg-purple-dark" style="height: 400px">
-                  <el-image :src="shop.shopBigPic" style="height: 400px;width: 470px"></el-image>
+                  <img :src="shop.shopBigPic" style="height: 400px;width: 545px">
                 </div>
               </el-col>
               <el-col :span="10">
