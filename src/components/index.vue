@@ -1,5 +1,5 @@
 <template>
-  <div class="hello" style="width: 100%;margin: auto">
+  <div class="hello" style="width: 100%;margin: auto;background-color: aliceblue">
     <!--<el-button type="primary" plain @click="login()">登录</el-button>-->
     <!--<el-button type="primary" plain @click="regist()">注册</el-button>-->
     <!--<el-button type="primary" plain @click="logout()">退出登录</el-button>-->
@@ -90,8 +90,8 @@
           <!--logo、搜索框、购物车-->
           <el-row :gutter="10">
             <el-col :span="6">
-              <div class="grid-content" style="height: 80px;line-height: 80px;background-color: #F37A21">
-                <el-image src="../static/logo1.jpg" style="height: 80px;border-radius: 3px"></el-image>
+              <div class="grid-content" style="float:left;height: 80px;line-height: 80px;">
+                <el-image src="../static/logo1.jpg" style="height: 80px;width:80px;border-radius: 3px"></el-image>
               </div>
             </el-col>
             <el-col :span="12">
@@ -121,17 +121,17 @@
           <!--一二级菜单、轮播图-->
           <!--二级菜单-->
           <div id="second" v-show="second" @mouseover="show2(index+1)" @mouseleave="leave(index+1)">
-            <div   v-for="(shop,index) in shops" style="float: left;width: 90px;height: 180px;margin-left: 20px" >
+            <div   v-for="(shop,index) in shops" style="float:left;width: 90px;height: 180px;margin-left: 20px" >
               <div style="width: 90px;height: 45px;margin-top: 30px; text-align:center" ><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}"><img :src="shop.shopPic" style="width: 45px;height: 45px" ></router-link></div>
               <div style="width: 90px;height: 90px;line-height: 25px;text-align: center;font-size: 14px;font-weight: bold;margin-top: 10px" ><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}">{{shop.shopName}}</router-link></div>
             </div>
           </div>
           <el-row :gutter="10">
-            <el-col :span="6">
-              <div id="menu" class="grid-content" style="height: 370px;text-align:center;background-color: darkgrey">
+            <el-col :span="4">
+              <div id="menu" class="grid-content" style="height: 496px;width:242px;text-align:center;background-color: black;padding-top: 5px">
                 <!--一级菜单-->
                 <div v-for="(shop_kind,index) in shop_kinds" >
-                  <div id="demo" style="height: 30px;line-height: 30px;margin-top: 5px"   @mouseover="show2(index+1)" @mouseleave="leave(index+1)">{{shop_kind.skName}}</div>
+                  <div id="demo" style="height: 45px;line-height: 30px;margin-top: 5px"   @mouseover="show2(index+1)" @mouseleave="leave(index+1)">{{shop_kind.skName}}</div>
                 </div>
 
 
@@ -140,10 +140,10 @@
 
                 <template>
                   <div class="block">
-                       <el-carousel height="370px">
+                       <el-carousel height="500px">
                       <el-carousel-item  v-for="(shop,index) in shop1" >
 
-                        <router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}"><img :src="shop.shopLun" style="height: 370px;width: 1200px"></router-link>
+                        <router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}"><img :src="shop.shopLun" style="height: 500px;width: 1400px"></router-link>
 
                       </el-carousel-item>
                     </el-carousel>
@@ -170,30 +170,16 @@
           <!--热卖中四个模块-->
           <el-row :gutter="10">
             <el-col :span="6">
-              <div class="grid-content bg-purple" style="height: 200px">
-                <el-image src="../static/logo1.jpg" style="height: 160px">商品1</el-image>
-                <div><span>商品1</span></div>
+              <div  style="height: 400px;width: 1600px" >
+                <div v-for="(shop,index) in shop2" style="float: left;width: 350px;height: 400px;margin-left: 17px">
+                  <div style="height: 310px;width: 350px"><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}"><img :src="shop.shopBigPic" style="width:350px;height: 310px"></router-link></div>
+                  <div style="width: 350px;height: 30px;font-weight: 600;line-height: 30px;background-color: white"><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}">{{shop.shopName}}</router-link></div>
+                  <div style="width: 350px;height: 30px;line-height: 30px;background-color: white">{{shop.shopInfo}}</div>
+                  <div style="width: 350px;height: 30px;color: red;line-height: 30px;background-color: white">{{shop.shopPrice}}</div>
+                </div>
               </div>
             </el-col>
-            <el-col :span="6">
-              <div class="grid-content bg-purple" style="height: 200px">
-                <el-image src="../static/logo1.jpg" style="height: 160px">商品2</el-image>
-                <div><span>商品2</span></div>
-              </div>
-            </el-col>
-            <el-col :span="6">
-              <div class="grid-content bg-purple" style="height: 200px">
-                <el-image src="../static/logo1.jpg" style="height: 160px">商品3</el-image>
-                <div><span>商品3</span></div>
-              </div>
-            </el-col>
-            <el-col :span="6">
-              <div class="grid-content bg-purple" style="height: 200px">
-                <div><el-image src="../static/logo1.jpg" style="height: 160px">商品4</el-image></div>
-                <div><span>商品4</span></div>
 
-              </div>
-            </el-col>
           </el-row>
           <!--新品上市-->
           <el-row :gutter="10">
@@ -468,10 +454,10 @@
   #second{
     /*display: none;*/
     position: absolute;
-    /*height: 400px;*/
-    width: 940px;
-    left: 340px;
-    top:185px;
+    height: 500px;
+    width: 700px;
+    left: 269px;
+    top:178px;
     background-color: white;
     z-index: 3;
     text-align: left;
@@ -630,6 +616,7 @@ export default {
       shop_kinds:[],
       shops:[],
       shop1:[],
+      shop2:[],
       second:true,
 //      active:''
     }
@@ -644,7 +631,10 @@ export default {
     axios.get(url).then(res=>{
       this.shop1=res.data
     })
-
+    var url="api/showRM"
+    axios.get(url).then(res=>{
+      this.shop2=res.data
+    })
 
    },
 
