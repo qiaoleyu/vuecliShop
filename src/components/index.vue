@@ -121,9 +121,9 @@
           <!--一二级菜单、轮播图-->
           <!--二级菜单-->
           <div id="second" v-show="second" @mouseover="show2(index+1)" @mouseleave="leave(index+1)">
-            <div   v-for="(shop,index) in shops" style="float: left;width: 90px;height: 180px;margin-left: 20px" :style="active" >
-              <div style="width: 90px;height: 90px;margin-top: 30px" ><img :src="shop.shopPic" style="width: 90px;height: 90px"></div>
-              <div style="width: 90px;height: 90px;line-height: 25px;text-align: center;font-size: 14px;font-weight: bold;margin-top: 10px">{{shop.shopName}}</div>
+            <div   v-for="(shop,index) in shops" style="float: left;width: 90px;height: 135px;margin-left: 20px" :style="active" >
+              <div style="width: 90px;height: 45px;margin-top: 30px; text-align:center" ><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}"><img :src="shop.shopPic" style="width: 45px;height: 45px" ></router-link></div>
+              <div style="width: 90px;height: 90px;line-height: 25px;text-align: center;font-size: 14px;font-weight: bold;margin-top: 10px" ><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}">{{shop.shopName}}</router-link></div>
             </div>
           </div>
           <el-row :gutter="10">
@@ -660,7 +660,8 @@ export default {
         this.shops=res.data
 
       })
-    },leave(ids){
+    },
+    leave(ids){
       this.second = false;
 //      this.active = '';
     }

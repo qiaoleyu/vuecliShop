@@ -428,9 +428,8 @@
             },
             total:''
       }
-    },mounted:function () {
+    },mounted () {
         var id=this.$route.params.shopId;
-        id=4;
 
         axios.get("api/findById/"+id).then(res=>{
             this.shop=res.data;
