@@ -470,7 +470,7 @@
     position: absolute;
     /*height: 400px;*/
     width: 940px;
-    left: 385px;
+    left: 340px;
     top:185px;
     background-color: white;
     z-index: 3;

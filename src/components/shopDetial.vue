@@ -429,9 +429,9 @@
             total:''
       }
     },mounted () {
-        var id=this.$route.params.shopId;
+        var shopId=this.$route.params.shopId;
 
-        axios.get("api/findById/"+id).then(res=>{
+        axios.get("api/findById/"+shopId).then(res=>{
             this.shop=res.data;
             this.total=this.shop.shopPrice;
         })
