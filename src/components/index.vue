@@ -121,7 +121,7 @@
           <!--一二级菜单、轮播图-->
           <!--二级菜单-->
           <div id="second" v-show="second" @mouseover="show2(index+1)" @mouseleave="leave(index+1)">
-            <div   v-for="(shop,index) in shops" style="float: left;width: 90px;height: 135px;margin-left: 20px" >
+            <div   v-for="(shop,index) in shops" style="float: left;width: 90px;height: 180px;margin-left: 20px" >
               <div style="width: 90px;height: 45px;margin-top: 30px; text-align:center" ><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}"><img :src="shop.shopPic" style="width: 45px;height: 45px" ></router-link></div>
               <div style="width: 90px;height: 90px;line-height: 25px;text-align: center;font-size: 14px;font-weight: bold;margin-top: 10px" ><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}">{{shop.shopName}}</router-link></div>
             </div>
@@ -137,19 +137,19 @@
 
               </div>
             </el-col>
-            <el-col :span="18">
-              <div class="grid-content bg-purple-light" style="height: 370px">
-                <template>
-                  <el-carousel :interval="4000" type="card" height="350px">
-                    <el-carousel-item v-for="item in 6" :key="item">
 
-                      <el-image src="../static/logo1.jpg"></el-image>
-                      <h3 class="medium">图{{ item }}</h3>
-                    </el-carousel-item>
-                  </el-carousel>
+                <template>
+                  <div class="block">
+                       <el-carousel height="370px">
+                      <el-carousel-item  v-for="(shop,index) in shop1" >
+
+                        <router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}"><img :src="shop.shopLun" style="height: 370px;width: 1200px"></router-link>
+
+                      </el-carousel-item>
+                    </el-carousel>
+                  </div>
                 </template>
-              </div>
-            </el-col>
+
           </el-row>
           <!--热卖中-->
           <el-row :gutter="10">
@@ -629,17 +629,26 @@ export default {
       msg: 'Welcome to 小米 首页',
       shop_kinds:[],
       shops:[],
+      shop1:[],
       second:true,
 //      active:''
     }
   },
   mounted(){
-    var url="api/show1"
+     var url="api/show1"
+     axios.get(url).then(res=>{
+     //alert(res.data)
+     this.shop_kinds=res.data
+     })
+    var url="api/showlbt"
     axios.get(url).then(res=>{
-      //alert(res.data)
-      this.shop_kinds=res.data
+      this.shop1=res.data
     })
-  },
+
+
+   },
+
+
   methods:{
      login:function () {
        this.$router.push("/userLogin")
