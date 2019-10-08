@@ -174,9 +174,9 @@
             <!--<div  style="height: 400px;width: 1600px" >-->
               <!--<div v-for="(shop,index) in shop2" style="float: left;width: 350px;height: 400px">-->
                 <div style="height: 25%;width: 100%"><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}"><img :src="shop.shopBigPic" style="width:310px;height: 310px"></router-link></div>
-                <div style="width: 100%;height: 30px;font-weight: 600;line-height: 30px;background-color: white"><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}">{{shop.shopName}}</router-link></div>
-                <div style="width: 100%;height: 30px;line-height: 30px;background-color: white">{{shop.shopInfo}}</div>
-                <div style="width: 100%;height: 30px;color: red;line-height: 30px;background-color: white">{{shop.shopPrice}}</div>
+                <div style="width: 98%;margin-left:1%;height: 30px;font-weight: 600;line-height: 30px;background-color: white"><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}">{{shop.shopName}}</router-link></div>
+                <div style="width: 98%;margin-left:1%;height: 30px;line-height: 30px;background-color: white">{{shop.shopInfo}}</div>
+                <div style="width: 98%;margin-left:1%;height: 30px;color: red;line-height: 30px;background-color: white">{{shop.shopPrice}}</div>
               <!--</div>-->
             <!--</div>-->
           </el-col>
