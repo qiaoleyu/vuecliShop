@@ -1,11 +1,31 @@
 <template>
   <div style="width: 90%;margin: auto">
     <h1>{{msg}}</h1>
-    <el-row :gutter="10">
-      <el-col :span="6" style="height: 40px">
-        <div class="grid-content" style="line-height: 40px;font-weight: bolder;text-align: left">全部订单</div>
-      </el-col>
-    </el-row>
+    <div style="height: 50px">
+      <el-row :gutter="10">
+        <el-col :span="4" :offset="1">
+          <div class="grid-content" style="font-weight: bolder;text-align: left">
+            <a href="">全部订单</a>
+          </div>
+        </el-col>
+        <el-col :span="4">
+          <div class="grid-content" style="font-weight: bolder;text-align: left">
+            <a href="">待支付</a>
+          </div>
+        </el-col>
+        <el-col :span="4">
+          <div class="grid-content" style="font-weight: bolder;text-align: left">
+            <a href="">待发货</a>
+          </div>
+        </el-col>
+        <!--<el-col :span="3" style="height: 40px">-->
+        <!--<div class="grid-content" style="line-height: 40px;font-weight: bolder;text-align: left">-->
+        <!--<el-button plain>已发货</el-button>-->
+        <!--</div>-->
+        <!--</el-col>-->
+      </el-row>
+    </div>
+
     <!--<hr>
     <el-row :gutter="10">
       <el-col :span="6" style="height: 40px">
@@ -30,7 +50,7 @@
         align="center"
         prop="shopName"
         label="商品名称"
-        width="170">
+        width="100">
       </el-table-column>
 
       <el-table-column
@@ -45,51 +65,57 @@
         align="center"
         prop="shopFactory"
         label="店铺"
-        width="170">
+        width="100">
       </el-table-column>
 
       <el-table-column
         align="center"
         prop="shopNumber"
         label="商品数量"
-        width="170">
+        width="100">
       </el-table-column>
 
       <el-table-column
         align="center"
         prop="shopPrice"
-        label="商品单价"
-        width="170">
+        label="单价"
+        width="50">
       </el-table-column>
 
       <el-table-column
         align="center"
         prop="shopCount"
-        label="商品总金额"
-        width="170">
+        label="总金额"
+        width="100">
       </el-table-column>
 
       <el-table-column
         align="center"
         prop="userAddress"
         label="配送地址"
-        width="170">
+        width="100">
       </el-table-column>
 
       <el-table-column
         align="center"
         prop="userName"
         label="收件人"
-        width="170">
+        width="100">
       </el-table-column>
 
       <el-table-column
         align="center"
         prop="userTell"
         label="联系方式"
-        width="170">
+        width="100">
       </el-table-column>
 
+      <el-table-column
+        align="center"
+        prop="oStatue"
+        label="支付状态"
+        width="100">
+      </el-table-column>
 
       <el-table-column label="操作" width="180"  align="center">
         <template slot-scope="user">
@@ -188,3 +214,13 @@
   }
 
 </script>
+<style>
+  a:link{
+    color: #000000;
+    text-decoration-line: none;
+  }
+  a:hover{
+    color: red;
+  }
+
+</style>
