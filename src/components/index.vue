@@ -674,7 +674,7 @@
         var url="api/show2"+"/"+ids
         //alert(ids)
         axios.get(url).then(res=>{
-          console.log(res.data)
+//          console.log(res.data)
           this.shops=res.data
 
         })

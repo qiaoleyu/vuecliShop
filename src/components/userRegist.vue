@@ -13,8 +13,8 @@
              style="width: 40%;margin: auto" class="demo-ruleForm"
              >
       <!--Content-Type="multipart/form-data"-->
-      <el-form-item label="用户名" prop="uName" style="text-align: left" >
-        <el-input type="text" v-model="users.uName" placeholder="请填写邮箱地址"></el-input>
+      <el-form-item label="用户名" prop="uemail" style="text-align: left" >
+        <el-input type="text" v-model="users.uemail" placeholder="请填写邮箱地址"></el-input>
       </el-form-item>
       <!--<el-form-item label="头像"  style="text-align: left">-->
         <!--&lt;!&ndash;<el-input type="file" v-model="file" name="file"></el-input>&ndash;&gt;-->
@@ -57,21 +57,16 @@
           <el-button type="primary" plain @click="sendMail()">发送</el-button>
         <!--</el-container>-->
       </el-form-item>
-      <el-form-item label="密码" prop="uPassword" style="text-align: left">
-        <el-input type="password" v-model="users.uPassword"  autocomplete="off" placeholder="请设置密码"></el-input>
+      <el-form-item label="密码" prop="upassword" style="text-align: left">
+        <el-input type="password" v-model="users.upassword"  autocomplete="off" placeholder="请设置密码"></el-input>
       </el-form-item>
       <el-form-item label="确认密码" prop="checkPass" style="text-align: left">
         <el-input type="password" v-model="users.checkPass" autocomplete="off"  placeholder="请输入确认密码"></el-input>
       </el-form-item>
-      <el-form-item label="注册时间" prop="createTime" style="text-align: left" >
-        <el-input type="date" v-model="users.createTime"></el-input>
+      <el-form-item label="联系方式" prop="utell" style="text-align: left" >
+        <el-input type="text" v-model="users.utell" placeholder="请填写联系方式"></el-input>
       </el-form-item>
-      <el-form-item label="联系方式" prop="uTell" style="text-align: left" >
-        <el-input type="text" v-model="users.uTell" placeholder="请填写联系方式"></el-input>
-      </el-form-item>
-      <el-form-item label="家庭住址" prop="uAddress" style="text-align: left" >
-        <el-input type="text" v-model="users.uAddress" placeholder="请填写家庭住址"></el-input>
-      </el-form-item>
+
 
       <el-form-item>
         <el-button type="primary" plain @click="add()">注册</el-button>
@@ -137,47 +132,7 @@
   }
 </style>
 <script>
-//  new Vue({
-//    el:'#app',
-//    data:{
-//      buttonName: "发送短信",
-//        isDisabled: false,
-//        time: 60
-//    },
-//    methods:{
-//      sendMail:function () {
-//        alert(this.users.uName);
-////        this.$refs['code'].validate((valid) => {
-////          if(valid){
-//        axios.post("api/sendMail",this.users).then(res=>{
-//
-//          if(res.data==true){
-//            alert("发送成功！");
-//          }else{
-//            alert("发送失败！");
-//            let me = this;
-//            me.isDisabled = true;
-//            let interval = window.setInterval(function() {
-//              me.buttonName = '（' + me.time + '秒）后重新发送';
-//              --me.time;
-//              if(me.time < 0) {
-//                me.buttonName = "重新发送";
-//                me.time = 60;
-//                me.isDisabled = false;
-//                window.clearInterval(interval);
-//              }
-//            }, 1000);
-//
-//          }
-//        })
-////          }else{
-////            console.log('error submit!!');
-////            return false;
-////          }
-////        })
-//      },
-//    }
-//  });
+
   import axios from 'axios'
   import ElRadio from "../../node_modules/element-ui/packages/radio/src/radio";
 import ElFooter from "../../node_modules/element-ui/packages/footer/src/main";
@@ -209,7 +164,7 @@ import ElContainer from "../../node_modules/element-ui/packages/container/src/ma
       var validatePass2 = (rule, value, callback) => {
         if (value === '') {
           callback(new Error('请再次输入密码'));
-        } else if (value !== this.users.password) {
+        } else if (value !== this.users.upassword) {
           callback(new Error('两次输入密码不一致!'));
         } else {
           callback();
@@ -234,59 +189,61 @@ import ElContainer from "../../node_modules/element-ui/packages/container/src/ma
           return callback();
         }
       };
-//      var checkCode = (rule, value, callback) => {
-//        if (!value) {
-//          return callback(new Error('验证码不能为空'));
-//        }else{
-//          return callback();
-//        }
-//      };
+      var checkCode = (rule, value, callback) => {
+        if (!value) {
+          return callback(new Error('验证码不能为空'));
+        }else{
+          return callback();
+        }
+      };
       return{
         msg: '注册',
         code:'',
         file:'',
         users:{
-            uId:1,
-            uName:'',
-            uPassword:'',
-            checkPass:'',
-            pic:'',
-            state:'',
-            createTime:'',
-            uAddress:'',
-            uTell:''
+            uid:'',
+            uemail:'',
+            upassword:'',
+           checkPass:'',
+            utell:''
           },
           rules: {
-          uName: [{ validator: checkName, trigger: 'blur' }],
-          uPassword: [{ validator: validatePass, trigger: 'blur' }],
+            uemail: [{ validator: checkName, trigger: 'blur' }],
+          upassword: [{ validator: validatePass, trigger: 'blur' }],
           checkPass: [{ validator: validatePass2, trigger: 'blur' }],
 //          pic: [{ validator: checkPic, trigger: 'blur' }],
-          uAddress: [{ validator: checkUaddress, trigger: 'blur' }],
-          uTell: [{ validator: checkUtell, trigger: 'blur' }],
-//            code:[{validator:checkCode,trigger:'blur'}]
+//          uAddress: [{ validator: checkUaddress, trigger: 'blur' }],
+          utell: [{ validator: checkUtell, trigger: 'blur' }],
+//         code:[{validator:checkCode,trigger:'blur'}]
 
         }
       };
     },
     methods:{
+      sendMail:function () {
+        console.log(this.users);
+        axios.post("/api/sendEmail",this.users).then(res=>{
+          console.log(res.data);
+          if(res.data!=null){
+
+            alert(res.data);
+          }else{
+            alert("发送失败！");
+          }
+        })
+      },
         back:function(){
             this.$router.push("/");
         },
 
         add:function(){
-//          const formData = new FormData();
-//          Object.keys(this.user).forEach((ele) => {
-//            formData.append(ele, this.user[ele]);
-//          });
-//          formData.append('file', this.files);
           this.$refs['users'].validate((valid) => {
             if(valid){
-             axios.post("api/add",{users:this.users,code:this.code}).then(res=>{
-               if(res.data==true){
-                   alert("注册成功！");
-                 this.$router.push("/")
+             axios.post("api/userRegister",{users:this.users,code:this.code}).then(res=>{
+               if(res.data=="success"){
+                 this.$router.push("/userLogin")
                }else{
-                 alert("注册失败！")
+                 alert(res.data)
                }
              })
             }else{
@@ -295,37 +252,7 @@ import ElContainer from "../../node_modules/element-ui/packages/container/src/ma
             }
           })
         },
-      sendMail:function () {
-        alert(this.users.uName);
-//        this.$refs['code'].validate((valid) => {
-//          if(valid){
-        axios.post("api/sendMail",this.users).then(res=>{
 
-          if(res.data==true){
-            alert("发送成功！");
-          }else{
-            alert("发送失败！");
-          }
-        })
-//          }else{
-//            console.log('error submit!!');
-//            return false;
-//          }
-//        })
-      },
-//        add:function(){
-//
-////          var url="api/add"
-//          var url="http://localhost/add"
-//          axios.post(url,this.user).then(res=>{
-//            if (res.data != null) {
-//              alert("添加成功！")
-//              this.$router.push({name: "userlist"})
-//            } else {
-//              alert("添加失败！")
-//            }
-//          })
-//        },
       resetForm() {
         this.$refs['users'].resetFields();
       },

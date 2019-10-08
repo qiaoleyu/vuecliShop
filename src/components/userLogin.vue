@@ -19,11 +19,11 @@
       <br>
       <h1 style="font-weight: bold">{{ msg }}</h1>
     <el-form :model="users" status-icon :rules="rules" ref="users" label-width="40px" style="width: 50%;margin: auto" >
-      <el-form-item label="昵称" prop="uName" style="text-align: left;font-weight: bold">
-        <el-input type="text" name="uName" v-model="users.uName" style="width: 340px" placeholder="请输入用户名"></el-input>
+      <el-form-item label="昵称" prop="uuemail" style="text-align: left;font-weight: bold">
+        <el-input type="text" name="uuemail" v-model="users.uemail" style="width: 340px" placeholder="请输入用户名"></el-input>
       </el-form-item><br>
-      <el-form-item label="密码" prop="uPassword" style="text-align: left;font-weight: bold" show-password>
-        <el-input type="password" password="uPassword" v-model="users.uPassword" style="width: 340px" placeholder="请输入密码"></el-input>
+      <el-form-item label="密码" prop="upassword" style="text-align: left;font-weight: bold" show-password>
+        <el-input type="Password" password="upassword" v-model="users.upassword" style="width: 340px" placeholder="请输入密码"></el-input>
       </el-form-item><br>
       <el-row>
         <el-button type="primary" plain @click="login()">确认</el-button>
@@ -84,7 +84,7 @@
       if (value === '') {
         callback(new Error('请输入密码'));
       } else {
-        if (this.users.uPassword !== '') {
+        if (this.users.upassword !== '') {
           this.$refs.users.validateField('uPassword');
         }
         callback();
@@ -93,13 +93,13 @@
     return {
       msg: '登录',
       users:{
-          uId:'',
-        uName:'',
-        uPassword:''
+          uid:'',
+        uemail:'',
+        upassword:''
       },
       rules: {
-        uName: [{ validator: checkName, trigger: 'blur' }],
-        uPassword: [{ validator: validatePass, trigger: 'blur' }],
+        uname: [{ validator: checkName, trigger: 'blur' }],
+        upassword: [{ validator: validatePass, trigger: 'blur' }],
       }
     }
   },
@@ -114,12 +114,12 @@
                 //发送请求 把参数发给后端（把用户名和密码发给后端 验证是否存在这个账号）
                 axios.post("api/userLogin", this.users).then(res=>{
                     //接收后端返回来的数据
-                  if(res.data!=null&&res.data!=''){
-                      alert("登录成功！");
-                      this.$router.push("/index");
+                  if(res.data=="success"){
+//                      alert("登录成功！");
+                      this.$router.push("/");
                   }else{
                       alert("登录失败");
-                      this.$router.push("/");
+//                      this.$router.push("/");
                   }
                 })
               }else{
