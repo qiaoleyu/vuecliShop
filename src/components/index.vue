@@ -121,14 +121,14 @@
         <!--一二级菜单、轮播图-->
         <!--二级菜单-->
         <div id="second" v-show="second" @mouseover="show2(index+1)" @mouseleave="leave(index+1)">
-          <div   v-for="(shop,index) in shops" style="float:left;width: 90px;height: 180px;margin-left: 20px" >
-            <div style="width: 90px;height: 45px;margin-top: 30px; text-align:center" ><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}"><img :src="shop.shopPic" style="width: 45px;height: 45px" ></router-link></div>
-            <div style="width: 90px;height: 90px;line-height: 25px;text-align: center;font-size: 14px;font-weight: bold;margin-top: 10px" ><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}">{{shop.shopName}}</router-link></div>
+          <div   v-for="(shop,index) in shops" style="float:left;width: 230px;height: 80px;margin-left: 20px" >
+            <div style="width: 60px;height: 80px;float:left;margin-top: 20px; text-align:center" ><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}"><img :src="shop.shopPic" style="width: 60px;height: 60px" ></router-link></div>
+            <div style="width: 170px;height: 80px;float:left;text-align:left;line-height: 80px;font-size: 14px;font-weight: bold;margin-top: 10px" ><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}">{{shop.shopName}}</router-link></div>
           </div>
         </div>
         <el-row :gutter="10">
           <el-col :span="4">
-            <div id="menu" class="grid-content" style="height: 496px;width:242px;text-align:center;background-color: black;padding-top: 5px">
+            <div id="menu" class="grid-content" style="height: 100%;width:100%;text-align:center;background-color: black;padding-top: 5px">
               <!--一级菜单-->
               <div v-for="(shop_kind,index) in shop_kinds" >
                 <div id="demo" style="height: 45px;line-height: 30px;margin-top: 5px"   @mouseover="show2(index+1)" @mouseleave="leave(index+1)">{{shop_kind.skName}}</div>
@@ -137,24 +137,25 @@
 
             </div>
           </el-col>
-
+          <el-col :span="20">
           <template>
             <div class="block">
               <el-carousel height="500px">
                 <el-carousel-item  v-for="(shop,index) in shop1" >
 
-                  <router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}"><img :src="shop.shopLun" style="height: 500px;width: 1400px"></router-link>
+                  <router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}"><img :src="shop.shopLun" style="height: 100%;width: 100%"></router-link>
 
                 </el-carousel-item>
               </el-carousel>
             </div>
           </template>
+          </el-col>
 
         </el-row>
         <!--热卖中-->
         <el-row :gutter="10">
           <el-col :span="6">
-            <div class="grid-content bg-purple" style="line-height: 60px;font-weight: bolder">热卖中</div>
+            <div class="grid-content bg-purple" style="line-height: 60px"><h3>热卖中</h3></div>
           </el-col>
           <el-col :span="6" :offset="12">
             <div class="grid-content" style="line-height: 60px;float: right">
@@ -169,15 +170,19 @@
         </el-row>
         <!--热卖中四个模块-->
         <el-row :gutter="10">
-          <el-col :span="6">
-            <div  style="height: 400px;width: 1600px" >
-              <div v-for="(shop,index) in shop2" style="float: left;width: 350px;height: 400px;margin-left: 17px">
-                <div style="height: 310px;width: 350px"><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}"><img :src="shop.shopBigPic" style="width:350px;height: 310px"></router-link></div>
-                <div style="width: 350px;height: 30px;font-weight: 600;line-height: 30px;background-color: white"><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}">{{shop.shopName}}</router-link></div>
-                <div style="width: 350px;height: 30px;line-height: 30px;background-color: white">{{shop.shopInfo}}</div>
-                <div style="width: 350px;height: 30px;color: red;line-height: 30px;background-color: white">{{shop.shopPrice}}</div>
-              </div>
-            </div>
+          <el-col :span="6" v-for="(shop,index) in shop2">
+            <!--<div  style="height: 400px;width: 1600px" >-->
+              <!--<div v-for="(shop,index) in shop2" style="float: left;width: 350px;height: 400px">-->
+                <div style="height: 400px;width: 310px">
+                  <div style="height: 310px;width: 310px"><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}"><img :src="shop.shopBigPic" style="width:310px;height: 310px"></router-link></div>
+                  <div style="width: 310px;height: 30px;font-weight: 600;line-height: 30px;background-color: white"><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}">{{shop.shopName}}</router-link></div>
+                  <div style="width: 310px;height: 30px;line-height: 30px;background-color: white">{{shop.shopInfo}}</div>
+                  <div style="width: 310px;height: 30px;color: red;line-height: 30px;background-color: white">{{shop.shopPrice}}</div>
+
+                </div>
+
+              <!--</div>-->
+            <!--</div>-->
           </el-col>
 
         </el-row>
@@ -455,9 +460,10 @@
     /*display: none;*/
     position: absolute;
     height: 500px;
-    width: 700px;
-    left: 269px;
+    width: 76%;
+    left: 235px;
     top:178px;
+    overflow: hidden;
     background-color: white;
     z-index: 3;
     text-align: left;
@@ -617,7 +623,7 @@
         shops:[],
         shop1:[],
         shop2:[],
-        second:true,
+        second:false,
         total:16,
         params:{
           size:4,
