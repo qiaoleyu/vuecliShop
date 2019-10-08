@@ -149,24 +149,24 @@
                 </div>
               </el-col>
               <el-col :span="10">
-                <div class=" bg-purple-dark" style="height: 400px">
-                  <div style="height: 60px;background-color: darkgrey">
-                    <span style="line-height: 30px">商品名称以及商品描述：</span>
+                <div  style="height: 400px;background-color: darkgrey;text-align: left;padding-left: 40px">
+                  <div style="height: 60px;background-color: darkgrey;padding-top: 40px">
+                    <span style="line-height: 30px">商品名称：</span>
                     <span v-text="shop.shopName"></span>
                   </div>
-                  <div style="height: 60px;background-color: #E5E9F2">
-                    <span style="line-height: 30px">商品数量：</span>
+                  <div style="height: 40px;background-color: darkgrey">
+                    <span style="line-height: 40px">商品数量：</span>
                     <span v-text="shop.shopNumber" te></span>
                   </div>
-                  <div style="height: 60px;background-color: darkgrey">
-                    <span style="line-height: 30px">商品单价：</span>
+                  <div style="height: 40px;background-color: darkgrey">
+                    <span style="line-height: 40px">商品单价：</span>
                     <span v-text="shop.shopPrice"></span>
                   </div>
-                  <div style="height: 60px;background-color: darkgrey">
-                    <span style="line-height: 30px">生产厂家：</span>
+                  <div style="height: 40px;background-color: darkgrey">
+                    <span style="line-height: 40px">生产厂家：</span>
                     <span v-text="shop.factory"></span>
                   </div>
-                  <div style="height: 80px;background-color: darkgrey">
+                  <div style="height: 60px;background-color: darkgrey">
                     <span style="line-height: 30px">商品描述：</span>
                     <span v-text="shop.shopInfo"></span>
                   </div>
@@ -189,12 +189,12 @@
                       </template>
                     </div>
                   </div>-->
-                  <div style="height: 80px;background-color: darkgrey">
-                    <span style="line-height: 30px">商品销量：</span>
+                  <div style="height: 40px;background-color: darkgrey">
+                    <span style="line-height: 40px">商品销量：</span>
                     <span v-text="shop.shopRepertory"></span>
                   </div>
-                  <div style="height: 60px;background-color: #E5E9F2">
-                    <span style="line-height: 30px">总金额：</span>
+                  <div style="height: 40px;background-color: darkgrey">
+                    <span style="line-height: 40px">总金额：</span>
                     <span v-text="total"></span>
                   </div>
                 </div>

@@ -5,17 +5,17 @@
       <el-row :gutter="10">
         <el-col :span="4" :offset="1">
           <div class="grid-content" style="font-weight: bolder;text-align: left">
-            <a href="">全部订单</a>
+            <a @click="orderFindAll()">全部订单</a>
           </div>
         </el-col>
         <el-col :span="4">
           <div class="grid-content" style="font-weight: bolder;text-align: left">
-            <a href="">待支付</a>
+            <a @click="orderStatue1()">待支付</a>
           </div>
         </el-col>
         <el-col :span="4">
           <div class="grid-content" style="font-weight: bolder;text-align: left">
-            <a href="">待发货</a>
+            <a @click="orderStatue2()">待发货</a>
           </div>
         </el-col>
         <!--<el-col :span="3" style="height: 40px">-->
@@ -208,6 +208,21 @@
             if(res.data.code==1){
                 this.$router.push("/userCart");
             }
+        })
+      },
+      orderFindAll:function(){
+        axios.post("api/orderFindAll").then(res=>{
+
+        })
+      },
+      orderStatue1:function(){
+        axios.post("api/orderStatue1",{oStatue:0}).then(res=>{
+
+        })
+      },
+      orderStatue2:function(){
+        axios.post("api/orderStatue2",{oStatue:1}).then(res=>{
+
         })
       }
     }

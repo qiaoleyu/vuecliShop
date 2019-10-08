@@ -38,7 +38,7 @@
           </span>
                 <el-dropdown-menu slot="dropdown">
                   <el-dropdown-item>完善信息</el-dropdown-item>
-                  <el-dropdown-item>修改信息</el-dropdown-item>
+                  <!--<el-dropdown-item>修改信息</el-dropdown-item>-->
                   <!--<el-dropdown-item>3</el-dropdown-item>-->
                   <!--<el-dropdown-item>4</el-dropdown-item>-->
                   <!--<el-dropdown-item>5</el-dropdown-item>-->
