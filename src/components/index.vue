@@ -91,7 +91,7 @@
           <el-row :gutter="10">
             <el-col :span="6">
               <div class="grid-content" style="float:left;height: 80px;line-height: 80px;">
-                <el-image src="../static/logo1.jpg" style="height: 80px;width:80px;border-radius: 3px"></el-image>
+                <router-link :to="{name:'index'}"><el-image src="../static/logo1.jpg" style="height: 80px;width:80px;border-radius: 3px"></el-image></router-link>
               </div>
             </el-col>
             <el-col :span="12">
@@ -121,9 +121,9 @@
           <!--一二级菜单、轮播图-->
           <!--二级菜单-->
           <div id="second" v-show="second" @mouseover="show2(index+1)" @mouseleave="leave(index+1)">
-            <div   v-for="(shop,index) in shops" style="float:left;width: 90px;height: 180px;margin-left: 20px" >
-              <div style="width: 90px;height: 45px;margin-top: 30px; text-align:center" ><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}"><img :src="shop.shopPic" style="width: 45px;height: 45px" ></router-link></div>
-              <div style="width: 90px;height: 90px;line-height: 25px;text-align: center;font-size: 14px;font-weight: bold;margin-top: 10px" ><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}">{{shop.shopName}}</router-link></div>
+            <div   v-for="(shop,index) in shops" style="float:left;width: 230px;height: 90px;margin-left: 20px" >
+              <div style="width: 70px;height: 70px;margin-top: 30px; text-align:center;float: left" ><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}"><img :src="shop.shopPic" style="width: 70px;height: 70px" ></router-link></div>
+              <div style="float: left;width: 160px;height: 80px;line-height: 100px;text-align: left;font-size: 14px;font-weight: bold;margin-top: 10px" ><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}">{{shop.shopName}}</router-link></div>
             </div>
           </div>
           <el-row :gutter="10">
@@ -137,18 +137,31 @@
 
               </div>
             </el-col>
+            <el-col :span="19" :offset="1">
+              <!--<div class="grid-content bg-purple" style="height: 500px"></div>-->
+              <!--<template>-->
+                <!--<el-carousel :interval="4000" type="card" height="450px" width="500px">-->
+                  <!--<el-carousel-item v-for="item in 6" :key="item">-->
+                    <!--<el-image src="../static/logo1.jpg" style="height: 350px;width: 500px"></el-image>-->
+                    <!--<h3 class="medium">图{{ item }}</h3>-->
+                  <!--</el-carousel-item>-->
+                <!--</el-carousel>-->
+              <!--</template>-->
 
-                <template>
-                  <div class="block">
-                       <el-carousel height="500px">
-                      <el-carousel-item  v-for="(shop,index) in shop1" >
+              <template>
+                <div class="block">
+                  <el-carousel height="500px">
+                  <el-carousel-item  v-for="(shop,index) in shop1" >
 
-                        <router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}"><img :src="shop.shopLun" style="height: 500px;width: 1400px"></router-link>
+                  <router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}"><img :src="shop.shopLun" style="height: 500px;width: 1400px"></router-link>
 
-                      </el-carousel-item>
-                    </el-carousel>
-                  </div>
-                </template>
+                  </el-carousel-item>
+                 </el-carousel>
+                </div>
+              </template>
+            </el-col>
+
+
 
           </el-row>
           <!--热卖中-->
@@ -455,7 +468,7 @@
     /*display: none;*/
     position: absolute;
     height: 500px;
-    width: 700px;
+    width: 1030px;
     left: 269px;
     top:178px;
     background-color: white;
@@ -512,6 +525,7 @@
   .el-main {
     /*background-color: #E9EEF3;*/
     /*color: #333;*/
+    overflow: hidden;
     /*text-align: center;*/
     /*line-height: 160px;*/
   }
@@ -617,7 +631,7 @@ export default {
       shops:[],
       shop1:[],
       shop2:[],
-      second:true,
+      second:false,
 //      active:''
     }
   },

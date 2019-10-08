@@ -23,7 +23,7 @@
         <el-input type="text" name="uName" v-model="users.uName" style="width: 340px" placeholder="请输入用户名"></el-input>
       </el-form-item><br>
       <el-form-item label="密码" prop="uPassword" style="text-align: left;font-weight: bold" show-password>
-        <el-input type="uPassword" password="uPassword" v-model="users.uPassword" style="width: 340px" placeholder="请输入密码"></el-input>
+        <el-input type="password" password="uPassword" v-model="users.uPassword" style="width: 340px" placeholder="请输入密码"></el-input>
       </el-form-item><br>
       <el-row>
         <el-button type="primary" plain @click="login()">确认</el-button>

@@ -93,7 +93,7 @@
         <el-row :gutter="10">
           <el-col :span="6">
             <div class="grid-content" style="height: 80px;line-height: 80px;background-color: #F37A21">
-              <el-image src="../static/logo1.jpg" style="height: 80px;border-radius: 3px"></el-image>
+              <router-link :to="{name:'index'}"><el-image src="../static/logo1.jpg" style="height: 80px;border-radius: 3px"></el-image></router-link>
             </div>
           </el-col>
           <el-col :span="12">
@@ -144,8 +144,8 @@
           <div>
             <el-row :gutter="10">
               <el-col :span="10">
-                <div class=" bg-purple-dark" style="height: 400px">
-                  <img :src="shop.shopBigPic" style="height: 400px;width: 545px">
+                <div class=" bg-purple-dark" style="height: 400px;width: 450px">
+                  <img :src="shop.shopBigPic" style="height: 400px;width: 450px">
                 </div>
               </el-col>
               <el-col :span="10">
