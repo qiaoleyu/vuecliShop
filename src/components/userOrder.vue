@@ -35,7 +35,7 @@
     <hr>-->
     <el-table
       align="center"
-      :data="orders"
+      :data="order"
       stripe
       style="width: 100%">
 
@@ -43,21 +43,21 @@
         align="center"
         prop="onumber"
         label="订单编号"
-        width="100">
+        width="160">
       </el-table-column>
 
       <el-table-column
         align="center"
         prop="shopName"
         label="商品名称"
-        width="100">
+        width="140">
       </el-table-column>
 
       <el-table-column
         label="商品图片"
-        width="100" >
-        <template slot-scope="user">
-          <img :src="ordes.row.shopPic" width="60" height="60" class="pic"/>
+        width="90" >
+        <template slot-scope="order">
+          <img :src="order.row.shopPic" width="60" height="60" class="pic"/>
         </template>
       </el-table-column>
 
@@ -72,35 +72,35 @@
         align="center"
         prop="shopNumber"
         label="商品数量"
-        width="100">
+        width="80">
       </el-table-column>
 
       <el-table-column
         align="center"
         prop="shopPrice"
-        label="单价"
-        width="50">
+        label="商品单价"
+        width="80">
       </el-table-column>
 
       <el-table-column
         align="center"
         prop="shopCount"
         label="总金额"
-        width="100">
+        width="80">
       </el-table-column>
 
       <el-table-column
         align="center"
         prop="userAddress"
         label="配送地址"
-        width="100">
+        width="180">
       </el-table-column>
 
       <el-table-column
         align="center"
         prop="userName"
         label="收件人"
-        width="100">
+        width="80">
       </el-table-column>
 
       <el-table-column
@@ -110,19 +110,10 @@
         width="100">
       </el-table-column>
 
-      <el-table-column
-        align="center"
-        prop="oStatue"
-        label="支付状态"
-        width="100">
-      </el-table-column>
-
-      <el-table-column label="操作" width="180"  align="center">
-        <template slot-scope="user">
-          <el-button type="primary" size="small" plain @click="modify()">修改</el-button>
+      <el-table-column label="操作" width="140"  align="center">
+        <template slot-scope="order">
           <el-button type="danger" size="small" plain @click="del()">删除</el-button>
         </template>
-
       </el-table-column>
     </el-table>
     <div style="background-color: aliceblue; height: 80px;margin: auto;margin-top: 20px">
@@ -146,8 +137,8 @@
     data () {
       return{
         msg:'订单详情页',
-        orders:{
-          oNumber:"",
+        order:{
+          onumber:"",
           shopName:"",
           shopPic:"",
           shopFactory:"",
@@ -166,19 +157,9 @@
     methods:{
       query:function () {
         axios.get("api/findAllOrder").then(res=>{
-          this.orders=res.data;
+          this.order=res.data;
         })
       },
-        modify:function () {
-          axios.post("api/modifyOrder",this.orders).then(res=>{
-              if(res.data.code==1){
-                  alert("修改成功！")
-                this.$router.push("/userOrder")
-              }else{
-                  alert("修改失败")
-              }
-          })
-        },
       del:function () {
         axios.post("api/delOrder",this.orders).then(res=>{
           if(res.data.code==1){

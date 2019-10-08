@@ -206,8 +206,10 @@
         },
         submitForm:function () {
           var a = 0;
-          for (let i = 0; i < this.list1.length; i++) {
-            if (this.list1[i].checked == true) {
+          for (let i = 0; i < this.list.length; i++) {
+            if (this.list[i].checked == true) {
+              this.list1[a]=this.list[i];
+              //console.log(this.list1[a])
               a++;
             }
           }
