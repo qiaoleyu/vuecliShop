@@ -269,19 +269,26 @@ import ElContainer from "../../node_modules/element-ui/packages/container/src/ma
       };
     },
     methods:{
+      sendMail:function () {
+        console.log(this.users)
+        axios.post("api/sendEmail",this.users).then(res=>{
+
+          if(res.data!=null){
+            console.log(res.data)
+            alert("发送成功！");
+          }else{
+            alert("发送失败！");
+          }
+        })
+      },
         back:function(){
             this.$router.push("/");
         },
 
         add:function(){
-//          const formData = new FormData();
-//          Object.keys(this.user).forEach((ele) => {
-//            formData.append(ele, this.user[ele]);
-//          });
-//          formData.append('file', this.files);
           this.$refs['users'].validate((valid) => {
             if(valid){
-             axios.post("api/add",{users:this.users,code:this.code}).then(res=>{
+             axios.post("api/userRegister",{users:this.users,code:this.code}).then(res=>{
                if(res.data==true){
                    alert("注册成功！");
                  this.$router.push("/")
@@ -295,24 +302,7 @@ import ElContainer from "../../node_modules/element-ui/packages/container/src/ma
             }
           })
         },
-      sendMail:function () {
-        alert(this.users.uName);
-//        this.$refs['code'].validate((valid) => {
-//          if(valid){
-        axios.post("api/sendMail",this.users).then(res=>{
 
-          if(res.data==true){
-            alert("发送成功！");
-          }else{
-            alert("发送失败！");
-          }
-        })
-//          }else{
-//            console.log('error submit!!');
-//            return false;
-//          }
-//        })
-      },
 //        add:function(){
 //
 ////          var url="api/add"
