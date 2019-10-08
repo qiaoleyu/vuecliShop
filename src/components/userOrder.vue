@@ -6,43 +6,99 @@
         <div class="grid-content" style="line-height: 40px;font-weight: bolder;text-align: left">全部订单</div>
       </el-col>
     </el-row>
-    <hr>
+    <!--<hr>
     <el-row :gutter="10">
       <el-col :span="6" style="height: 40px">
         <div class="grid-content" style="line-height: 40px;font-weight: bolder;text-align: left">店铺：</div>
       </el-col>
     </el-row>
-    <hr>
-    <table style="width: 100%" border="1">
-      <tr>
-        <td>订单编号</td>
-        <td>商品名称</td>
-        <td>商品图片</td>
-        <td>商品数量</td>
-        <td>商品单价</td>
-        <td>商品总金额</td>
-        <td>配送地址</td>
-        <td>发货地址</td>
-        <td>联系方式</td>
-        <td>操作</td>
-      </tr>
-      <tr>
-        <td>0</td>
-        <td>1</td>
-        <td>2</td>
-        <td>3</td>
-        <td>4</td>
-        <td>5</td>
-        <td>6</td>
-        <td>7</td>
-        <td>8</td>
-        <td>
+    <hr>-->
+    <el-table
+      align="center"
+      :data="orders"
+      stripe
+      style="width: 100%">
+
+      <el-table-column
+        align="center"
+        prop="onumber"
+        label="订单编号"
+        width="100">
+      </el-table-column>
+
+      <el-table-column
+        align="center"
+        prop="shopName"
+        label="商品名称"
+        width="170">
+      </el-table-column>
+
+      <el-table-column
+        label="商品图片"
+        width="100" >
+        <template slot-scope="user">
+          <img :src="ordes.row.shopPic" width="60" height="60" class="pic"/>
+        </template>
+      </el-table-column>
+
+      <el-table-column
+        align="center"
+        prop="shopFactory"
+        label="店铺"
+        width="170">
+      </el-table-column>
+
+      <el-table-column
+        align="center"
+        prop="shopNumber"
+        label="商品数量"
+        width="170">
+      </el-table-column>
+
+      <el-table-column
+        align="center"
+        prop="shopPrice"
+        label="商品单价"
+        width="170">
+      </el-table-column>
+
+      <el-table-column
+        align="center"
+        prop="shopCount"
+        label="商品总金额"
+        width="170">
+      </el-table-column>
+
+      <el-table-column
+        align="center"
+        prop="userAddress"
+        label="配送地址"
+        width="170">
+      </el-table-column>
+
+      <el-table-column
+        align="center"
+        prop="userName"
+        label="收件人"
+        width="170">
+      </el-table-column>
+
+      <el-table-column
+        align="center"
+        prop="userTell"
+        label="联系方式"
+        width="170">
+      </el-table-column>
+
+
+      <el-table-column label="操作" width="180"  align="center">
+        <template slot-scope="user">
           <el-button type="primary" size="small" plain @click="modify()">修改</el-button>
           <el-button type="danger" size="small" plain @click="del()">删除</el-button>
-        </td>
-      </tr>
-    </table>
+        </template>
 
+      </el-table-column>
+    </el-table>
     <div style="background-color: aliceblue; height: 80px;margin: auto;margin-top: 20px">
 
       <div style="float: right;margin-top: 20px;margin-right: 60px"><el-button type="warning" plain style="width: 100px" @click="reback()">取消</el-button></div>
@@ -63,10 +119,30 @@
     components: {ElButton},
     data () {
       return{
-          msg:'订单详情页'
-
+        msg:'订单详情页',
+        orders:{
+          oNumber:"",
+          shopName:"",
+          shopPic:"",
+          shopFactory:"",
+          shopNumber:"",
+          shopPrice:"",
+          shopCount:"",
+          userAddress:"",
+          userName:"",
+          userTell:""
+        }
       }
-    },methods:{
+    },
+    mounted:function () {
+      this.query();
+    },
+    methods:{
+      query:function () {
+        axios.get("api/findAllOrder").then(res=>{
+          this.orders=res.data;
+        })
+      },
         modify:function () {
           axios.post("api/modifyOrder",this.orders).then(res=>{
               if(res.data.code==1){

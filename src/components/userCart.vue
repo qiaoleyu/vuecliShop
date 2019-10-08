@@ -21,8 +21,8 @@
       <el-image :src="scope.row.shopPic" style="height: 60px;width: 60px"></el-image>
       </template>
     </el-table-column>
-    <!--<el-table-column prop="shopInfo" label="商品属性" width="160" align="center" >
-    </el-table-column>-->
+    <el-table-column prop="shopFactory" label="生产厂家" width="160" align="center" >
+    </el-table-column>
     <el-table-column prop="shopPrice" label="单价(元)" width="160" align="center"  >
     </el-table-column>
     <el-table-column label="数量(件)" align="center" width="200">
@@ -106,11 +106,24 @@
               shopPrice:'',
               shopPic:'',
               shopCount:'',
-              shopTotal:''
+              shopTotal:'',
+              shopFactory:""
             }
           ],
           count: 0,
-          istrue: false
+          istrue: false,
+          list1:[
+            {
+              cid:'',
+              uId:'',
+              shopName:'',
+              shopPrice:'',
+              shopPic:'',
+              shopCount:'',
+              shopTotal:'',
+              shopFactory:""
+            }
+          ]
         }
       },
       computed: {
@@ -191,22 +204,23 @@
         back:function () {
           this.$router.push("/")
         },
-        submitForm:function () {//点击提交生成订单
-          alert("ok");
-          this.$router.push("/userOrder")
-//          axios.post("api/userOrder", this.list).then(res=>{
-//            //接收后端返回来的数据
-//            if(res.data!=null&&res.data!=''){
-//              alert("生成订单！");
-//              this.$router.push("/userOrder");
-//            }else{
-//              alert("订单生成失败");
-//              this.$router.push("/userCart");
-//            }
-//          })
+        submitForm:function () {
+          var a = 0;
+          for (let i = 0; i < this.list1.length; i++) {
+            if (this.list1[i].checked == true) {
+              a++;
+            }
+          }
+          axios.post("api/userOrder2", this.list1).then(res=>{
+            if(res.data!=null){
+              this.$router.push("/userOrder");
+            }else{
+              alert("订单生成失败");
+              this.$router.push("/userCart");
+            }
+          })
         }
 
       }
   }
-
 </script>

@@ -162,6 +162,10 @@
                     <span style="line-height: 30px">商品单价：</span>
                     <span v-text="shop.shopPrice"></span>
                   </div>
+                  <div style="height: 60px;background-color: darkgrey">
+                    <span style="line-height: 30px">生产厂家：</span>
+                    <span v-text="shop.factory"></span>
+                  </div>
                   <div style="height: 80px;background-color: darkgrey">
                     <span style="line-height: 30px">商品描述：</span>
                     <span v-text="shop.shopInfo"></span>
@@ -447,6 +451,15 @@
             }else {
                 alert("加入失败")
             }
+        })
+      },
+      submitForm:function () {
+        axios.post("api/userOrder1",this.shop).then(res=>{
+          if (res.data!=null){
+            this.$router.push("/userOrder")
+          }else {
+            alert("生成订单失败")
+          }
         })
       },
       show:function () {
