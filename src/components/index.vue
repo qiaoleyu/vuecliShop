@@ -159,10 +159,10 @@
             <el-col :span="6" :offset="12">
               <div class="grid-content" style="line-height: 60px;float: right">
                 <el-tooltip content="上一页" placement="bottom" effect="light">
-                  <el-button class="el-icon-arrow-left" plain @click=""></el-button>
+                  <el-button class="el-icon-arrow-left" plain @click="pre()"></el-button>
                 </el-tooltip>
                 <el-tooltip content="下一页" placement="bottom" effect="light">
-                  <el-button class="el-icon-arrow-right" plain @click=""></el-button>
+                  <el-button class="el-icon-arrow-right" plain @click="next()"></el-button>
                 </el-tooltip>
               </div>
             </el-col>
@@ -178,7 +178,7 @@
                   <div style="width: 350px;height: 30px;color: red;line-height: 30px;background-color: white">{{shop.shopPrice}}</div>
                 </div>
               </div>
-            </el-col>
+           </el-col>
 
           </el-row>
           <!--新品上市-->
@@ -618,7 +618,11 @@ export default {
       shop1:[],
       shop2:[],
       second:true,
-//      active:''
+      total:16,
+      params:{
+          size:4,
+        page:1
+      }
     }
   },
   mounted(){
@@ -631,15 +635,24 @@ export default {
     axios.get(url).then(res=>{
       this.shop1=res.data
     })
-    var url="api/showRM"
-    axios.get(url).then(res=>{
-      this.shop2=res.data
-    })
+   this.query()
 
    },
 
 
   methods:{
+      query:function () {
+        var url="api/showRM/"+this.params.page+"/"+this.params.size
+        axios.get(url).then(res=>{
+          this.shop2=res.data.list
+          this.total=16
+        })
+      },
+    changePage:function (page) {
+      // alert(page)
+      this.params.page=page;
+      this.query();
+    },
      login:function () {
        this.$router.push("/userLogin")
      },
@@ -660,9 +673,21 @@ export default {
 
       })
     },
-    leave(ids){
+    leave:function(ids){
       this.second = false;
 //      this.active = '';
+    },
+    next:function () {
+        if(this.params.page<=3){
+          this.params.page=this.params.page+1
+          this.query()
+        }
+      },
+    pre:function () {
+      if(this.params.page>=2){
+        this.params.page=this.params.page-1
+        this.query()
+      }
     }
   }
 }
