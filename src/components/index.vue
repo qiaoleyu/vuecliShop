@@ -118,7 +118,7 @@
           </el-col>
         </el-row>
         <!--<hr color="pink">-->
-        <!--一二级菜单、轮播图-->
+
         <!--二级菜单-->
         <div id="second" v-show="second" @mouseover="show2(index+1)" @mouseleave="leave(index+1)">
           <div   v-for="(shop,index) in shops" style="float:left;width: 230px;height: 80px;margin-left: 20px" >
@@ -133,11 +133,10 @@
               <div v-for="(shop_kind,index) in shop_kinds" >
                 <div id="demo" style="height: 45px;line-height: 30px;margin-top: 5px"   @mouseover="show2(index+1)" @mouseleave="leave(index+1)">{{shop_kind.skName}}</div>
               </div>
-
-
             </div>
           </el-col>
           <el-col :span="20">
+            <!--轮播图-->
           <template>
             <div class="block">
               <el-carousel height="500px">
@@ -210,7 +209,7 @@
                 <!--<div><span>商品2</span></div>-->
               <!--</div>-->
             <!--</el-col>-->
-            <el-col :span="6" v-for="(shop,index) in shop2">
+            <el-col :span="6" v-for="(shop,index) in shop3">
               <div style="height: 400px;width: 310px">
                 <div style="height: 310px;width: 310px"><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}"><img :src="shop.shopBigPic" style="width:310px;height: 310px"></router-link></div>
                 <div style="width: 310px;height: 30px;font-weight: 600;line-height: 30px;background-color: white"><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}">{{shop.shopName}}</router-link></div>
@@ -583,6 +582,7 @@
         shops:[],
         shop1:[],
         shop2:[],
+        shop3:[],
         second:false,
         total:16,
         params:{
@@ -600,6 +600,10 @@
       var url="api/showlbt"
       axios.get(url).then(res=>{
         this.shop1=res.data
+      })
+      var url="api/showPhone"
+      axios.get(url).then(res=>{
+        this.shop3=res.data
       })
       this.query()
 
