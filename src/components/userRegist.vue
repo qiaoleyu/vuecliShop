@@ -13,8 +13,11 @@
              style="width: 40%;margin: auto" class="demo-ruleForm"
              >
       <!--Content-Type="multipart/form-data"-->
-      <el-form-item label="用户名" prop="uemail" style="text-align: left" >
+      <el-form-item label="邮箱" prop="uemail" style="text-align: left" >
         <el-input type="text" v-model="users.uemail" placeholder="请填写邮箱地址"></el-input>
+      </el-form-item>
+      <el-form-item label="用户名" prop="uname" style="text-align: left">
+        <el-input type="text" v-model="users.uname" placeholder="请输入确认密码"></el-input>
       </el-form-item>
       <!--<el-form-item label="头像"  style="text-align: left">-->
         <!--&lt;!&ndash;<el-input type="file" v-model="file" name="file"></el-input>&ndash;&gt;-->
@@ -63,6 +66,7 @@
       <el-form-item label="确认密码" prop="checkPass" style="text-align: left">
         <el-input type="password" v-model="users.checkPass" autocomplete="off"  placeholder="请输入确认密码"></el-input>
       </el-form-item>
+
       <el-form-item label="联系方式" prop="utell" style="text-align: left" >
         <el-input type="text" v-model="users.utell" placeholder="请填写联系方式"></el-input>
       </el-form-item>
@@ -146,9 +150,16 @@ import ElContainer from "../../node_modules/element-ui/packages/container/src/ma
     data(){
       var checkName = (rule, value, callback) => {
         if (!value) {
-          return callback(new Error('用户名不能为空'));
+          return callback(new Error('邮箱不能为空'));
         }else{
             return callback();
+        }
+      }
+      var checkUname = (rule, value, callback) => {
+        if (!value) {
+          return callback(new Error('用户名不能为空'));
+        }else{
+          return callback();
         }
       }
       var validatePass = (rule, value, callback) => {
@@ -170,18 +181,18 @@ import ElContainer from "../../node_modules/element-ui/packages/container/src/ma
           callback();
         }
       };
-      var checkPic = (rule, value, callback) => {
-        if (!this.$refs.users) {
-          return callback(new Error('用户名不能为空'));
-        }
-      };
-      var checkUaddress = (rule, value, callback) => {
-        if (!value) {
-          return callback(new Error('家庭住址不能为空'));
-        }else{
-            return callback();
-        }
-      };
+//      var checkPic = (rule, value, callback) => {
+//        if (!this.$refs.users) {
+//          return callback(new Error('用户名不能为空'));
+//        }
+//      };
+//      var checkUaddress = (rule, value, callback) => {
+//        if (!value) {
+//          return callback(new Error('家庭住址不能为空'));
+//        }else{
+//            return callback();
+//        }
+//      };
       var checkUtell = (rule, value, callback) => {
         if (!value) {
           return callback(new Error('联系方式不能为空'));
@@ -205,10 +216,12 @@ import ElContainer from "../../node_modules/element-ui/packages/container/src/ma
             uemail:'',
             upassword:'',
            checkPass:'',
-            utell:''
+            utell:'',
+            uname:''
           },
           rules: {
             uemail: [{ validator: checkName, trigger: 'blur' }],
+            uname:[{ validator: checkUname, trigger: 'blur' }],
           upassword: [{ validator: validatePass, trigger: 'blur' }],
           checkPass: [{ validator: validatePass2, trigger: 'blur' }],
 //          pic: [{ validator: checkPic, trigger: 'blur' }],
