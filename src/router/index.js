@@ -49,7 +49,7 @@ export default new Router({
       component: userDetial
     },
     {
-      path: '/shops',
+      path: '/shops/:searchName',
       name: 'shops',
       component: shops
     }

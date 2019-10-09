@@ -96,9 +96,9 @@
           </el-col>
           <el-col :span="12">
             <div class="grid-content" style="height: 80px;width:100%;">
-              <el-input type="text" style="width: 80%;margin: auto;margin-top: 20px" placeholder="请输入内容"
+              <el-input ref="searchName" type="text" style="width: 80%;margin: auto;margin-top: 20px" placeholder="请输入内容"
                         v-model="input"
-                        clearable></el-input>
+                        ></el-input>
               <el-button type="danger" icon="el-icon-search" plain @click="search()">查询</el-button>
             </div>
           </el-col>
@@ -658,7 +658,13 @@
           this.params.page=this.params.page-1
           this.query()
         }
+      },
+      search:function () {
+          var searchName=this.$refs.searchName.value
+          //alert(searchName)
+      this.$router.push('/shops/'+searchName)
       }
+
     }
   }
 </script>
