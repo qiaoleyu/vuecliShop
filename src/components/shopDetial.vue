@@ -93,8 +93,8 @@
         <el-row :gutter="10">
           <el-col :span="6">
             <router-link :to="{name:'index'}">
-              <div class="grid-content" style="float:left;width:205px;height: 70px;line-height: 70px;margin-top:10px;background-color:#F37A21 ">
-                <el-image src="../static/logo1.jpg" style="height: 70px;width:70px;border-radius: 3px"></el-image>
+              <div class="grid-content" style="float:left;width:205px;height: 70px;line-height: 70px;margin-top:10px; ">
+                <el-image src="http://pxx4c7852.bkt.clouddn.com/Logo.jpg" style="height: 70px;width:70px;border-radius: 3px"></el-image>
               </div>
             </router-link>
           </el-col>
