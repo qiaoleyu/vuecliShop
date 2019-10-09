@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 90%;margin: auto">
+  <div style="width: 95%;margin: auto">
     <h1>{{msg}}</h1>
     <div style="height: 50px">
       <el-row :gutter="10">
@@ -43,7 +43,7 @@
         align="center"
         prop="onumber"
         label="订单编号"
-        width="160">
+        width="180">
       </el-table-column>
 
       <el-table-column
@@ -107,7 +107,7 @@
         align="center"
         prop="userTell"
         label="联系方式"
-        width="100">
+        width="120">
       </el-table-column>
 
       <el-table-column label="操作" width="140"  align="center">
