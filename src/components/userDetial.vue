@@ -130,8 +130,9 @@
                  <span v-model="users.uMoney" name="uMoney">
                  </span>
               </el-form-item>
-              <div style="width: 100px;margin: auto;height: 40px">
+              <div style="width: 200px;margin: auto;height: 40px;margin-left: 200px">
                 <el-button type="primary" style="height: 40px" plain @click="updateUsers()">确认</el-button>
+                <el-button type="primary" style="height: 40px" plain @click="backIndex()">返回</el-button>
               </div>
             </el-form>
 
@@ -182,7 +183,9 @@
             uSex1:''
           }
       },methods:{
-
+        backIndex:function () {
+          this.$router.push("/")
+        }
     }
   }
 </script>
@@ -255,6 +258,9 @@
 
   body > .el-container {
     /*margin-bottom: 40px;*/
+  }
+  .el-main{
+    font-weight: bolder;
   }
 
   .el-container:nth-child(5) .el-aside,
