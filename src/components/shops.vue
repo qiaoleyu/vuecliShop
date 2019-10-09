@@ -83,9 +83,14 @@
             </div>
           </el-col>
         </el-row>
-
+        <!--"http://pxx4c7852.bkt.clouddn.com/666.gif"-->
       </el-header>
       <el-main>
+        <div v-if="img==''"></div>
+        <div v-else-if="img!=''">
+          <el-image :src="img" style="width: 30% ;margin: auto;margin-top: 60px"></el-image>
+        </div>
+        <h1>{{this.msg}}</h1>
         <el-row :gutter="10">
         <!--模糊查询-->
           <el-col :span="6" v-for="(shop,index) in shop4">
@@ -245,14 +250,26 @@
     name: 'shops',
     data () {
       return {
-        input: '',
+        msg: '',
+        img:'http://pxx4c7852.bkt.clouddn.com/666.gif',
         shop_kinds:[],
         shops:[],
         shop4:[],
       }
     },
     mounted(){
+      //alert(this.$route.params.searchName)
+      var name=this.$route.params.searchName
+      var url="api/vague/"+name
+      axios.get(url).then(res=>{
+          if(res.data!=''){
+            this.shop4=res.data
+            this.img=''
+          }else{
+            this.msg='不好意思，没有该类商品!'
 
+          }
+      })
     },
 
     methods:{
