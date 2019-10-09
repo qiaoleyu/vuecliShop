@@ -5,8 +5,8 @@
     <!--<el-button type="primary" plain @click="logout()">退出登录</el-button>-->
 
     <el-container>
-      <el-header>
 
+      <el-header>
         <!--导航栏-->
         <el-row>
           <el-col :span="10">
@@ -176,7 +176,7 @@
                   <div style="height: 310px;width: 310px"><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}"><img :src="shop.shopBigPic" style="width:310px;height: 310px"></router-link></div>
                   <div style="width: 310px;height: 30px;font-weight: 600;line-height: 30px;background-color: white"><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}">{{shop.shopName}}</router-link></div>
                   <div style="width: 310px;height: 30px;line-height: 30px;background-color: white">{{shop.shopInfo}}</div>
-                  <div style="width: 310px;height: 30px;color: red;line-height: 30px;background-color: white">{{shop.shopPrice}}</div>
+                  <div style="width: 310px;height: 30px;color: red;line-height: 30px;background-color: white">￥:{{shop.shopPrice}}元</div>
 
                 </div>
 
@@ -188,7 +188,7 @@
         <!--手机专场-->
         <el-row :gutter="10">
           <el-col :span="6">
-            <div class="grid-content bg-purple" style="line-height: 60px;font-weight: bolder">手机专场</div>
+            <div class="grid-content bg-purple" style="line-height: 60px;font-weight: bolder"><h3>手机专场</h3></div>
           </el-col>
           <!--<el-col :span="6" :offset="12">-->
             <!--<div class="grid-content" style="line-height: 60px;float: right">-->
@@ -214,7 +214,7 @@
                 <div style="height: 310px;width: 310px"><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}"><img :src="shop.shopBigPic" style="width:310px;height: 310px"></router-link></div>
                 <div style="width: 310px;height: 30px;font-weight: 600;line-height: 30px;background-color: white"><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}">{{shop.shopName}}</router-link></div>
                 <div style="width: 310px;height: 30px;line-height: 30px;background-color: white">{{shop.shopInfo}}</div>
-                <div style="width: 310px;height: 30px;color: red;line-height: 30px;background-color: white">{{shop.shopPrice}}</div>
+                <div style="width: 310px;height: 30px;color: red;line-height: 30px;background-color: white">￥:{{shop.shopPrice}}元</div>
 
               </div>
             </el-col>

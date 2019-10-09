@@ -1,21 +1,21 @@
 <template>
-  <div style="width: 90%;margin: auto">
+  <div style="width: 95%;margin: auto">
     <h1>{{msg}}</h1>
     <div style="height: 50px">
       <el-row :gutter="10">
         <el-col :span="4" :offset="1">
           <div class="grid-content" style="font-weight: bolder;text-align: left">
-            <a @click="orderFindAll()">全部订单</a>
+            <el-button type="warning" @click="orderFindAll()">全部订单</el-button>
           </div>
         </el-col>
         <el-col :span="4">
           <div class="grid-content" style="font-weight: bolder;text-align: left">
-            <a @click="orderStatue1()">待支付</a>
+            <el-button type="warning" @click="orderStatue1()">待支付</el-button>
           </div>
         </el-col>
         <el-col :span="4">
           <div class="grid-content" style="font-weight: bolder;text-align: left">
-            <a @click="orderStatue2()">待发货</a>
+            <el-button type="warning" @click="orderStatue2()">待发货</el-button>
           </div>
         </el-col>
         <!--<el-col :span="3" style="height: 40px">-->
@@ -43,7 +43,7 @@
         align="center"
         prop="onumber"
         label="订单编号"
-        width="160">
+        width="180">
       </el-table-column>
 
       <el-table-column
@@ -107,12 +107,12 @@
         align="center"
         prop="userTell"
         label="联系方式"
-        width="100">
+        width="120">
       </el-table-column>
 
       <el-table-column label="操作" width="140"  align="center">
         <template slot-scope="order">
-          <el-button type="danger" size="small" plain @click="del()">删除</el-button>
+          <el-button type="danger" size="small" plain @click="operation()">{{msg1}}</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -137,6 +137,7 @@
     data () {
       return{
         msg:'订单详情页',
+        msg1:'',
         order:{
           onumber:"",
           shopName:"",
@@ -153,15 +154,41 @@
     },
     mounted:function () {
       this.query();
+      this.msg1="删除"
     },
     methods:{
       query:function () {
         axios.get("api/findAllOrder").then(res=>{
+            this.order=res.data;
+            for(var i=0;i<res.data.length;i++){
+                if(res.data[i].oStatue==0){
+                  this.msg1="删除"
+                }
+              else if(res.data[i].oStatue==1){
+                this.msg1="去支付"
+              }
+            }
+        })
+      },
+      orderFindAll:function () {
+        this.query();
+      },
+      orderStatue1:function () {
+        this.msg1="去支付"
+        var url="api/findNotPayOrders"
+        axios.get(url).then(res=>{
+            this.order=res.data;
+        })
+      },
+      orderStatue2:function () {
+        this.msg1="删除订单"
+        var url="api/findAlreadyPayOrders"
+        axios.get(url).then(res=>{
           this.order=res.data;
         })
       },
-      del:function () {
-        axios.post("api/delOrder",this.orders).then(res=>{
+      operation:function () {
+        axios.post("api/delOrder",this.order).then(res=>{
           if(res.data.code==1){
             alert("删除订单成功！")
             this.$router.push("/userCart")
@@ -174,38 +201,18 @@
         this.$router.push("/userCart")
       },
       pay:function () {
-        axios.post("api/payOrder",this.orders).then(res=>{
-            if(res.data.code==1){
-                alert("支付成功，等待返回购物车页面")
-                this.$router.push("/userCart")
-            }else{
-                alert("支付失败，请重选择支付")
-                this.$router.push("/userOrder")
-            }
+        axios.post("api/pay").then(res => {
+           this.$router.replace({path:'/applyText',query:{htmls:res.data}})
+
         })
       },
       reback:function () {
-        axios.post("api/delOrder",this.orders).then(res=>{
+        axios.post("api/delOrder",this.order).then(res=>{
             if(res.data.code==1){
                 this.$router.push("/userCart");
             }
         })
       },
-      orderFindAll:function(){
-        axios.post("api/orderFindAll").then(res=>{
-
-        })
-      },
-      orderStatue1:function(){
-        axios.post("api/orderStatue1",{oStatue:0}).then(res=>{
-
-        })
-      },
-      orderStatue2:function(){
-        axios.post("api/orderStatue2",{oStatue:1}).then(res=>{
-
-        })
-      }
     }
   }
 

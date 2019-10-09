@@ -38,8 +38,9 @@
             <a>个人中心</a><i class="el-icon-arrow-down el-icon--left"></i>
           </span>
                 <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item>完善信息</el-dropdown-item>
-                  <el-dropdown-item>修改信息</el-dropdown-item>
+                  <el-dropdown-item><router-link :to="{name:'userDetial'}">完善信息</router-link></el-dropdown-item>
+                  <!--<el-dropdown-item>完善信息</el-dropdown-item>-->
+                  <!--<el-dropdown-item>修改信息</el-dropdown-item>-->
                   <!--<el-dropdown-item>3</el-dropdown-item>-->
                   <!--<el-dropdown-item>4</el-dropdown-item>-->
                   <!--<el-dropdown-item>5</el-dropdown-item>-->
@@ -152,8 +153,8 @@
               </el-col>
               <el-col :span="10">
                 <div  style="height: 400px;background-color: darkgrey;text-align: left;padding-left: 40px">
-                  <div style="height: 60px;background-color: darkgrey;padding-top: 40px">
-                    <span style="line-height: 30px">商品名称：</span>
+                  <div style="height: 40px;background-color: darkgrey;padding-top: 40px">
+                    <span style="line-height: 40px">商品名称：</span>
                     <span v-text="shop.shopName"></span>
                   </div>
                   <div style="height: 40px;background-color: darkgrey">
@@ -168,9 +169,24 @@
                     <span style="line-height: 40px">生产厂家：</span>
                     <span v-text="shop.factory"></span>
                   </div>
-                  <div style="height: 60px;background-color: darkgrey">
-                    <span style="line-height: 30px">商品描述：</span>
+                  <div style="height:40px;background-color: darkgrey">
+                    <span style="line-height: 40px">商品描述：</span>
                     <span v-text="shop.shopInfo"></span>
+                  </div>
+                  <div style="background-color: darkgrey">
+                    <span style="line-height: 40px">配送地址：</span>
+                    <template>
+                      <el-select v-model="value" placeholder="请选择">
+                        <el-option
+                          v-for="item in options"
+                          :key="item.value"
+                          :label="item.label"
+                          :value="item.value"
+                          width="100px"
+                        >
+                        </el-option>
+                      </el-select>
+                    </template>
                   </div>
               <!--    <div style="height: 80px;background-color: #E5E9F2">
                     <div>
@@ -433,7 +449,24 @@
             shop:{
               shopPrice:''
             },
-            total:''
+            total:'',
+            options: [{
+              value: 'adress1',
+              label: '北京'
+            }, {
+              value: 'address2',
+              label: '上海'
+            }, {
+              value: 'address3',
+              label: '广州'
+            }, {
+              value: 'address4',
+              label: '天津'
+            }, {
+              value: 'address5',
+              label: '杭州'
+            }],
+            value: ''
       }
     },mounted () {
         var shopId=this.$route.params.shopId;
