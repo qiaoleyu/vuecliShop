@@ -152,28 +152,28 @@
                 </div>
               </el-col>
               <el-col :span="10">
-                <div  style="height: 400px;background-color: darkgrey;text-align: left;padding-left: 40px">
-                  <div style="height: 40px;background-color: darkgrey;padding-top: 40px">
+                <div  style="height: 400px;background-color: aliceblue;text-align: left;padding-left: 40px">
+                  <div style="height: 40px;background-color: aliceblue;padding-top: 40px">
                     <span style="line-height: 40px">商品名称：</span>
                     <span v-text="shop.shopName"></span>
                   </div>
-                  <div style="height: 40px;background-color: darkgrey">
+                  <div style="height: 40px;background-color: aliceblue">
                     <span style="line-height: 40px">商品数量：</span>
                     <span v-text="shop.shopNumber" te></span>
                   </div>
-                  <div style="height: 40px;background-color: darkgrey">
+                  <div style="height: 40px;background-color: aliceblue">
                     <span style="line-height: 40px">商品单价：</span>
                     <span v-text="shop.shopPrice"></span>
                   </div>
-                  <div style="height: 40px;background-color: darkgrey">
+                  <div style="height: 40px;background-color: aliceblue">
                     <span style="line-height: 40px">生产厂家：</span>
                     <span v-text="shop.factory"></span>
                   </div>
-                  <div style="height:40px;background-color: darkgrey">
+                  <div style="height:40px;background-color: aliceblue">
                     <span style="line-height: 40px">商品描述：</span>
                     <span v-text="shop.shopInfo"></span>
                   </div>
-                  <div style="background-color: darkgrey">
+                  <div style="background-color: aliceblue">
                     <span style="line-height: 40px">配送地址：</span>
                     <template>
                       <el-select v-model="value" placeholder="请选择">
@@ -207,11 +207,11 @@
                       </template>
                     </div>
                   </div>-->
-                  <div style="height: 40px;background-color: darkgrey">
+                  <div style="height: 40px;background-color: aliceblue">
                     <span style="line-height: 40px">商品销量：</span>
                     <span v-text="shop.shopRepertory"></span>
                   </div>
-                  <div style="height: 40px;background-color: darkgrey">
+                  <div style="height: 40px;background-color: aliceblue">
                     <span style="line-height: 40px">总金额：</span>
                     <span style="line-height: 40px;color: red" v-text="total"></span>
                     <span style="line-height: 40px;color: red" >元</span>
