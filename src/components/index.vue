@@ -5,8 +5,8 @@
     <!--<el-button type="primary" plain @click="logout()">退出登录</el-button>-->
 
     <el-container>
-      <el-header>
 
+      <el-header>
         <!--导航栏-->
         <el-row>
           <el-col :span="10">
@@ -188,7 +188,7 @@
         <!--手机专场-->
         <el-row :gutter="10">
           <el-col :span="6">
-            <div class="grid-content bg-purple" style="line-height: 60px;font-weight: bolder">手机专场</div>
+            <div class="grid-content bg-purple" style="line-height: 60px;font-weight: bolder"><h3>手机专场</h3></div>
           </el-col>
           <!--<el-col :span="6" :offset="12">-->
             <!--<div class="grid-content" style="line-height: 60px;float: right">-->
