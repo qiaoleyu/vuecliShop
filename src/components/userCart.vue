@@ -209,7 +209,6 @@
           for (let i = 0; i < this.list.length; i++) {
             if (this.list[i].checked == true) {
               this.list1[a]=this.list[i];
-              //console.log(this.list1[a])
               a++;
             }
           }

@@ -8,6 +8,7 @@ import userOrder from '@/components/userOrder'
 import shopDetial from '@/components/shopDetial'
 import userDetial from '@/components/userDetial'
 import shops from '@/components/shops'
+import applyText from '@/components/applyText'
 
 Vue.use(Router)
 
@@ -52,6 +53,11 @@ export default new Router({
       path: '/shops',
       name: 'shops',
       component: shops
+    },
+    {
+      path: '/applyText',
+      name: 'applyText',
+      component: applyText
     }
   ]
 })
