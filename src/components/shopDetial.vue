@@ -92,20 +92,22 @@
         <!--logo、搜索框、购物车-->
         <el-row :gutter="10">
           <el-col :span="6">
-            <div class="grid-content" style="height: 80px;line-height: 80px;background-color: #F37A21">
-              <router-link :to="{name:'index'}"><el-image src="../static/logo1.jpg" style="height: 80px;border-radius: 3px"></el-image></router-link>
-            </div>
+            <router-link :to="{name:'index'}">
+              <div class="grid-content" style="float:left;width:205px;height: 70px;line-height: 70px;margin-top:10px;background-color:#F37A21 ">
+                <el-image src="../static/logo1.jpg" style="height: 70px;width:70px;border-radius: 3px"></el-image>
+              </div>
+            </router-link>
           </el-col>
           <el-col :span="12">
-            <div class="grid-content bg-purple-light" style="height: 80px">
-              <el-input type="text" style="width: 80%;margin: auto;margin-top: 20px"placeholder="请输入内容"
+            <div class="grid-content " style="height: 80px;width:100%;">
+              <el-input type="text" style="width: 80%;margin: auto;margin-top: 20px"  placeholder="请输入内容"
                         v-model="input"
                         clearable></el-input>
               <el-button type="danger" icon="el-icon-search" plain @click="search()">查询</el-button>
             </div>
           </el-col>
           <el-col :span="6">
-            <div class="grid-content bg-purple" style="height: 80px;line-height: 80px">
+            <div class="grid-content " style="height: 80px;line-height: 80px">
               <el-badge :value="100" :max="10" class="item">
                 <el-tooltip content="购物车" placement="bottom" effect="light">
                   <el-button size="" plain style="width: 180px;height: 60px">
@@ -125,21 +127,21 @@
         <!--</el-row>-->
         <div style="width: 90%;margin: auto">
           <!--上（top）-->
-          <div>
-            <el-row>
-              <el-col :span="24">
-                <div class=" bg-purple-dark" style="height: 40px">
-                  <el-row>
-                    <el-col :span="10">
-                      <div class="bg-purple" plain style="color: black;font-size: 14px;float: left;margin-left: 40px">
-                        <el-button @click="show()">首页
-                        </el-button>
-                      </div>
-                    </el-col>
-                  </el-row>
-                </div></el-col>
-            </el-row>
-          </div>
+          <!--<div>-->
+            <!--<el-row>-->
+              <!--<el-col :span="24">-->
+                <!--<div class=" bg-purple-dark" style="height: 40px">-->
+                  <!--<el-row>-->
+                    <!--<el-col :span="10">-->
+                      <!--<div class="bg-purple" plain style="color: black;font-size: 14px;float: left;margin-left: 40px">-->
+                        <!--<el-button @click="show()">首页-->
+                        <!--</el-button>-->
+                      <!--</div>-->
+                    <!--</el-col>-->
+                  <!--</el-row>-->
+                <!--</div></el-col>-->
+            <!--</el-row>-->
+          <!--</div>-->
           <!--中（middle）-->
           <div>
             <el-row :gutter="10">
@@ -195,7 +197,8 @@
                   </div>
                   <div style="height: 40px;background-color: darkgrey">
                     <span style="line-height: 40px">总金额：</span>
-                    <span v-text="total"></span>
+                    <span style="line-height: 40px;color: red" v-text="total"></span>
+                    <span style="line-height: 40px;color: red" >元</span>
                   </div>
                 </div>
               </el-col>
@@ -267,37 +270,37 @@
             </el-row>
           </div>
           <!--下（bottom）-->
-          <div>
-            <el-row :gutter="10">
-              <el-col :span="2"><el-button class=" el-icon-arrow-left" type="warning" plain style="height: 120px"></el-button></el-col>
-              <el-col :span="4">
-                <div class=" bg-purple-dark" style="height: 120px">
-                  <el-image src="../static/logo1.jpg" style="height: 100px;width: 140px"></el-image>
+          <!--<div>-->
+            <!--<el-row :gutter="10">-->
+              <!--<el-col :span="2"><el-button class=" el-icon-arrow-left" type="warning" plain style="height: 120px"></el-button></el-col>-->
+              <!--<el-col :span="4">-->
+                <!--<div class=" bg-purple-dark" style="height: 120px">-->
+                  <!--<el-image src="../static/logo1.jpg" style="height: 100px;width: 140px"></el-image>-->
 
-                </div></el-col>
-              <el-col :span="4">
-                <div class=" bg-purple-dark" style="height: 120px">
-                  <el-image src="../static/logo1.jpg" style="height: 100px;width: 140px"></el-image>
+                <!--</div></el-col>-->
+              <!--<el-col :span="4">-->
+                <!--<div class=" bg-purple-dark" style="height: 120px">-->
+                  <!--<el-image src="../static/logo1.jpg" style="height: 100px;width: 140px"></el-image>-->
 
-                </div></el-col>
-              <el-col :span="4">
-                <div class=" bg-purple-dark" style="height: 120px">
-                  <el-image src="../static/logo1.jpg" style="height: 100px;width: 140px"></el-image>
+                <!--</div></el-col>-->
+              <!--<el-col :span="4">-->
+                <!--<div class=" bg-purple-dark" style="height: 120px">-->
+                  <!--<el-image src="../static/logo1.jpg" style="height: 100px;width: 140px"></el-image>-->
 
-                </div></el-col>
-              <el-col :span="4">
-                <div class=" bg-purple-dark" style="height: 120px">
-                  <el-image src="../static/logo1.jpg" style="height: 100px;width: 140px"></el-image>
+                <!--</div></el-col>-->
+              <!--<el-col :span="4">-->
+                <!--<div class=" bg-purple-dark" style="height: 120px">-->
+                  <!--<el-image src="../static/logo1.jpg" style="height: 100px;width: 140px"></el-image>-->
 
-                </div></el-col>
-              <el-col :span="4">
-                <div class=" bg-purple-dark" style="height: 120px">
-                  <el-image src="../static/logo1.jpg" style="height: 100px;width: 140px"></el-image>
+                <!--</div></el-col>-->
+              <!--<el-col :span="4">-->
+                <!--<div class=" bg-purple-dark" style="height: 120px">-->
+                  <!--<el-image src="../static/logo1.jpg" style="height: 100px;width: 140px"></el-image>-->
 
-                </div></el-col>
-              <el-col :span="2"><el-button class=" el-icon-arrow-right" type="warning" plain style="height: 120px" @click=""></el-button></el-col>
-            </el-row>
-          </div>
+                <!--</div></el-col>-->
+              <!--<el-col :span="2"><el-button class=" el-icon-arrow-right" type="warning" plain style="height: 120px" @click=""></el-button></el-col>-->
+            <!--</el-row>-->
+          <!--</div>-->
         </div>
 
       </el-main>

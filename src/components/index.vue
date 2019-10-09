@@ -1,5 +1,5 @@
 <template>
-  <div class="hello" style="width: 100%;margin: auto;background-color: aliceblue">
+  <div class="hello" style="width: 100%;margin: auto">
     <!--<el-button type="primary" plain @click="login()">登录</el-button>-->
     <!--<el-button type="primary" plain @click="regist()">注册</el-button>-->
     <!--<el-button type="primary" plain @click="logout()">退出登录</el-button>-->
@@ -90,12 +90,12 @@
         <!--logo、搜索框、购物车-->
         <el-row :gutter="10">
           <el-col :span="6">
-            <div class="grid-content" style="float:left;height: 80px;line-height: 80px;">
-              <el-image src="../static/logo1.jpg" style="height: 80px;width:80px;border-radius: 3px"></el-image>
+            <div class="grid-content" style="float:left;width:205px;height: 70px;line-height: 70px;margin-top:10px;background-color:#F37A21 ">
+              <el-image src="../static/logo1.jpg" style="height: 70px;width:70px;border-radius: 3px"></el-image>
             </div>
           </el-col>
           <el-col :span="12">
-            <div class="grid-content bg-purple-light" style="height: 80px">
+            <div class="grid-content" style="height: 80px;width:100%;">
               <el-input type="text" style="width: 80%;margin: auto;margin-top: 20px" placeholder="请输入内容"
                         v-model="input"
                         clearable></el-input>
@@ -103,7 +103,7 @@
             </div>
           </el-col>
           <el-col :span="6">
-            <div class="grid-content bg-purple" style="height: 80px;line-height: 80px">
+            <div class="grid-content" style="height: 80px;line-height: 80px">
               <el-badge :value="100" :max="10" class="item">
                 <el-tooltip content="购物车" placement="bottom" effect="light">
                   <el-button size="" plain style="width: 180px;height: 60px">
@@ -186,10 +186,10 @@
           </el-col>
 
         </el-row>
-        <!--新品上市-->
+        <!--手机专场-->
         <el-row :gutter="10">
           <el-col :span="6">
-            <div class="grid-content bg-purple" style="line-height: 60px;font-weight: bolder">新品上市</div>
+            <div class="grid-content bg-purple" style="line-height: 60px;font-weight: bolder">手机专场</div>
           </el-col>
           <el-col :span="6" :offset="12">
             <div class="grid-content" style="line-height: 60px;float: right">
@@ -275,57 +275,57 @@
         <!--<el-col :span="5"><div class="grid-content bg-purple"></div></el-col>-->
         <!--</el-row>-->
 
-        <!--促销-->
-        <el-row :gutter="10">
-          <el-col :span="6">
-            <div class="grid-content bg-purple" style="line-height: 60px;font-weight: bolder">促销</div>
-          </el-col>
-          <el-col :span="6" :offset="12">
-            <div class="grid-content" style="line-height: 60px;float: right">
-              <el-tooltip content="上一页" placement="bottom" effect="light">
-                <el-button class="el-icon-arrow-left" plain @click=""></el-button>
-              </el-tooltip>
-              <el-tooltip content="下一页" placement="bottom" effect="light">
-                <el-button class="el-icon-arrow-right" plain @click=""></el-button>
-              </el-tooltip>
-            </div>
-          </el-col>
-        </el-row>
-        <!--倒计时栏-->
-        <el-row :gutter="10">
-          <el-col :span="4">
-            <div class="grid-content bg-purple" style="height: 250px;line-height: 250px">
-              倒计时
-            </div>
-          </el-col>
-          <el-col :span="5">
-            <div class="grid-content bg-purple" style="height: 250px;line-height: 250px">
-              促销商品1
-            </div>
-          </el-col>
-          <el-col :span="5">
-            <div class="grid-content bg-purple" style="height: 250px;line-height: 250px">
-              促销商品2
-            </div>
-          </el-col>
-          <el-col :span="5">
-            <div class="grid-content bg-purple" style="height: 250px;line-height: 250px">
-              促销商品3
-            </div>
-          </el-col>
-          <el-col :span="5">
-            <div class="grid-content bg-purple" style="height: 250px">
-              <template>
-                <el-carousel height="250px" direction="vertical" :autoplay="false">
-                  <el-carousel-item v-for="item2 in 3" :key="item2">
-                    <el-image src="../static/logo1.jpg" style="height: 250px"></el-image>
-                    <!--<h3 class="medium">{{ item2 }}</h3>-->
-                  </el-carousel-item>
-                </el-carousel>
-              </template>
-            </div>
-          </el-col>
-        </el-row>
+        <!--&lt;!&ndash;促销&ndash;&gt;-->
+        <!--<el-row :gutter="10">-->
+          <!--<el-col :span="6">-->
+            <!--<div class="grid-content bg-purple" style="line-height: 60px;font-weight: bolder">促销</div>-->
+          <!--</el-col>-->
+          <!--<el-col :span="6" :offset="12">-->
+            <!--<div class="grid-content" style="line-height: 60px;float: right">-->
+              <!--<el-tooltip content="上一页" placement="bottom" effect="light">-->
+                <!--<el-button class="el-icon-arrow-left" plain @click=""></el-button>-->
+              <!--</el-tooltip>-->
+              <!--<el-tooltip content="下一页" placement="bottom" effect="light">-->
+                <!--<el-button class="el-icon-arrow-right" plain @click=""></el-button>-->
+              <!--</el-tooltip>-->
+            <!--</div>-->
+          <!--</el-col>-->
+        <!--</el-row>-->
+        <!--&lt;!&ndash;倒计时栏&ndash;&gt;-->
+        <!--<el-row :gutter="10">-->
+          <!--<el-col :span="4">-->
+            <!--<div class="grid-content bg-purple" style="height: 250px;line-height: 250px">-->
+              <!--倒计时-->
+            <!--</div>-->
+          <!--</el-col>-->
+          <!--<el-col :span="5">-->
+            <!--<div class="grid-content bg-purple" style="height: 250px;line-height: 250px">-->
+              <!--促销商品1-->
+            <!--</div>-->
+          <!--</el-col>-->
+          <!--<el-col :span="5">-->
+            <!--<div class="grid-content bg-purple" style="height: 250px;line-height: 250px">-->
+              <!--促销商品2-->
+            <!--</div>-->
+          <!--</el-col>-->
+          <!--<el-col :span="5">-->
+            <!--<div class="grid-content bg-purple" style="height: 250px;line-height: 250px">-->
+              <!--促销商品3-->
+            <!--</div>-->
+          <!--</el-col>-->
+          <!--<el-col :span="5">-->
+            <!--<div class="grid-content bg-purple" style="height: 250px">-->
+              <!--<template>-->
+                <!--<el-carousel height="250px" direction="vertical" :autoplay="false">-->
+                  <!--<el-carousel-item v-for="item2 in 3" :key="item2">-->
+                    <!--<el-image src="../static/logo1.jpg" style="height: 250px"></el-image>-->
+                    <!--&lt;!&ndash;<h3 class="medium">{{ item2 }}</h3>&ndash;&gt;-->
+                  <!--</el-carousel-item>-->
+                <!--</el-carousel>-->
+              <!--</template>-->
+            <!--</div>-->
+          <!--</el-col>-->
+        <!--</el-row>-->
         <!--多、快、好、省-->
         <el-row :gutter="10">
           <el-col :span="6">
@@ -361,7 +361,7 @@
         </el-row>
         <el-row>
           <el-col :span="3">
-            <div class="bg-purple" style="height: 180px;line-height: 40px">
+            <div class="" style="height: 180px;line-height: 40px">
               <div style="font-weight: bold">帮助中心</div>
               <div style="font-size: 14px"><a href="">账户管理</a></div>
               <div style="font-size: 14px"><a href="">购物指南</a></div>
@@ -369,7 +369,7 @@
             </div>
           </el-col>
           <el-col :span="3">
-            <div class="bg-purple" style="height: 180px;line-height: 40px">
+            <div class="" style="height: 180px;line-height: 40px">
               <div style="font-weight: bold">服务支持</div>
               <div style="font-size: 14px"><a href="">售后政策</a></div>
               <div style="font-size: 14px"><a href="">自动服务</a></div>
@@ -377,7 +377,7 @@
             </div>
           </el-col>
           <el-col :span="3">
-            <div class="bg-purple" style="height:180px;line-height: 40px">
+            <div class="" style="height:180px;line-height: 40px">
               <div style="font-weight: bold">线下门店</div>
               <div style="font-size: 14px"><a href="">小米之家</a></div>
               <div style="font-size: 14px"><a href="">服务网点</a></div>
@@ -385,7 +385,7 @@
             </div>
           </el-col>
           <el-col :span="3">
-            <div class="bg-purple" style="height: 180px;line-height: 40px">
+            <div class="" style="height: 180px;line-height: 40px">
               <div style="font-weight: bold">关于小米</div>
               <div style="font-size: 14px"><a href="">了解小米</a></div>
               <div style="font-size: 14px"><a href="">加入小米</a></div>
@@ -393,7 +393,8 @@
             </div>
           </el-col>
           <el-col :span="3">
-            <div class="bg-purple" style="height: 180px;line-height: 40px">
+            <!--bg-purple-->
+            <div class="" style="height: 180px;line-height: 40px">
               <div style="font-weight: bold">关于我们</div>
               <div style="font-size: 14px"><a href="">新浪微博</a></div>
               <div style="font-size: 14px"><a href="">官网微博</a></div>
@@ -401,7 +402,7 @@
             </div>
           </el-col>
           <el-col :span="3">
-            <div class="bg-purple" style="height: 180px;line-height: 40px;border-right: 1px solid #898683">
+            <div class="" style="height: 180px;line-height: 40px;border-right: 1px solid #898683">
               <div style="font-weight: bold">特色服务</div>
               <div style="font-size: 14px"><a href="">F码通道</a></div>
               <div style="font-size: 14px"><a href="">礼物码</a></div>
@@ -409,7 +410,7 @@
             </div>
           </el-col>
           <el-col :span="6">
-            <div class="grid-content bg-purple" style="height: 180px;line-height: 60px">
+            <div class="grid-content" style="height: 180px;line-height: 60px">
               <div style="height:90px;line-height: 30px;padding-top: 20px;color: orangered">
                 400-100-5678<br>
                 周一至周日 8:00-18:00<br>
