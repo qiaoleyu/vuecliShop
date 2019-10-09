@@ -107,8 +107,8 @@
                 <el-input name="uPassword" v-model="users.uPassword"></el-input>
               </el-form-item>
               <el-form-item label="性别:">
-                <el-radio v-model="users.uSex" name="uSex1" value="男">男</el-radio>
-                <el-radio v-model="users.uSex" name="uSex2" value="女">女</el-radio>
+                <el-radio v-model="uSex" label="1" value="男">男</el-radio>
+                <el-radio v-model="uSex" label="2" value="女">女</el-radio>
               </el-form-item>
               <el-form-item label="注册时间:">
                 <el-date-picker name="createTime" v-model="users.createTime" type="date" placeholder="选择日期" style="width: 400px"></el-date-picker>
@@ -180,7 +180,7 @@
             users:{
 
             },
-            uSex1:''
+            uSex:'1'
           }
       },methods:{
         backIndex:function () {
