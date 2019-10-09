@@ -18,12 +18,12 @@
 
       <br>
       <h1 style="font-weight: bold">{{ msg }}</h1>
-    <el-form :model="users" status-icon :rules="rules" ref="users" label-width="40px" style="width: 50%;margin: auto" >
-      <el-form-item label="昵称" prop="uuemail" style="text-align: left;font-weight: bold">
-        <el-input type="text" name="uuemail" v-model="users.uemail" style="width: 340px" placeholder="请输入用户名"></el-input>
+    <el-form status-icon :rules="rules" ref="users" label-width="40px" style="width: 50%;margin: auto" >
+      <el-form-item label="昵称" prop="loginName" style="text-align: left;font-weight: bold">
+        <el-input type="text" name="loginName" v-model="loginName" style="width: 340px" placeholder="请输入用户名"></el-input>
       </el-form-item><br>
-      <el-form-item label="密码" prop="upassword" style="text-align: left;font-weight: bold" show-password>
-        <el-input type="Password" password="upassword" v-model="users.upassword" style="width: 340px" placeholder="请输入密码"></el-input>
+      <el-form-item label="密码" prop="password" style="text-align: left;font-weight: bold" show-password>
+        <el-input type="Password" name="password" v-model="password" style="width: 340px" placeholder="请输入密码"></el-input>
       </el-form-item><br>
       <el-row>
         <el-button type="primary" plain @click="login()">确认</el-button>
@@ -97,6 +97,8 @@
         uemail:'',
         upassword:''
       },
+      password:'',
+      loginName:'',
       rules: {
         uname: [{ validator: checkName, trigger: 'blur' }],
         upassword: [{ validator: validatePass, trigger: 'blur' }],
@@ -105,16 +107,16 @@
   },
     methods: {
       login:function () {
-          this.$refs['users'].validate((valid)=>{
-              if(valid){
+         /* this.$refs['users'].validate((valid)=>{
+              if(valid){*/
 //                  alert("submit");
                   //获得用户的数据
                 //console.log(this.user.name, this.user.password )
 
                 //发送请求 把参数发给后端（把用户名和密码发给后端 验证是否存在这个账号）
-                axios.post("api/userLogin", this.users).then(res=>{
+                axios.post("api/userLogin", {loginName:this.loginName,password:this.password}).then(res=>{
                     //接收后端返回来的数据
-                  if(res.data=="success"){
+                  if(res.data!=null){
 //                      alert("登录成功！");
                       this.$router.push("/");
                   }else{
@@ -122,10 +124,10 @@
 //                      this.$router.push("/");
                   }
                 })
-              }else{
+             /* }else{
                 return false;
               }
-          })
+          })*/
 //        axios.post('http://localhost/login',{name:this.user.name,password:this.user.password}).then(res => {
 //          if (res.data!= null) {
 //            this.$router.push({name:"userlist"})
