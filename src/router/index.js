@@ -6,6 +6,7 @@ import userRegist from '@/components/userRegist'
 import userCart from '@/components/userCart'
 import userOrder from '@/components/userOrder'
 import shopDetial from '@/components/shopDetial'
+import userDetial from '@/components/userDetial'
 
 Vue.use(Router)
 
@@ -40,6 +41,11 @@ export default new Router({
       path: '/shopDetial',
       name: 'shopDetial',
       component: shopDetial
+    },
+    {
+      path: '/userDetial',
+      name: 'userDetial',
+      component: userDetial
     }
   ]
 })

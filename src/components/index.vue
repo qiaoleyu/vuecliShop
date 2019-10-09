@@ -37,7 +37,7 @@
             <a>个人中心</a><i class="el-icon-arrow-down el-icon--left"></i>
           </span>
                 <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item>完善信息</el-dropdown-item>
+                  <el-dropdown-item><router-link :to="{name:'userDetial'}">完善信息</router-link></el-dropdown-item>
                   <!--<el-dropdown-item>修改信息</el-dropdown-item>-->
                   <!--<el-dropdown-item>3</el-dropdown-item>-->
                   <!--<el-dropdown-item>4</el-dropdown-item>-->
@@ -158,7 +158,7 @@
             <div class="grid-content bg-purple" style="line-height: 60px"><h3>热卖中</h3></div>
           </el-col>
           <el-col :span="6" :offset="12">
-            <div class="grid-content" style="line-height: 60px;float: right">
+            <div class="grid-content" style="line-height: 60px;float: right;margin-top: 20px">
               <el-tooltip content="上一页" placement="bottom" effect="light">
                 <el-button class="el-icon-arrow-left" plain @click="pre()"></el-button>
               </el-tooltip>
@@ -191,76 +191,35 @@
           <el-col :span="6">
             <div class="grid-content bg-purple" style="line-height: 60px;font-weight: bolder">手机专场</div>
           </el-col>
-          <el-col :span="6" :offset="12">
-            <div class="grid-content" style="line-height: 60px;float: right">
-              <el-tooltip content="上一页" placement="bottom" effect="light">
-                <el-button class="el-icon-arrow-left" plain @click=""></el-button>
-              </el-tooltip>
-              <el-tooltip content="下一页" placement="bottom" effect="light">
-                <el-button class="el-icon-arrow-right" plain @click=""></el-button>
-              </el-tooltip>
-            </div>
-          </el-col>
+          <!--<el-col :span="6" :offset="12">-->
+            <!--<div class="grid-content" style="line-height: 60px;float: right">-->
+              <!--<el-tooltip content="上一页" placement="bottom" effect="light">-->
+                <!--<el-button class="el-icon-arrow-left" plain @click=""></el-button>-->
+              <!--</el-tooltip>-->
+              <!--<el-tooltip content="下一页" placement="bottom" effect="light">-->
+                <!--<el-button class="el-icon-arrow-right" plain @click=""></el-button>-->
+              <!--</el-tooltip>-->
+            <!--</div>-->
+          <!--</el-col>-->
         </el-row>
         <!--新品五个模块-->
         <el-row :gutter="10">
-          <el-col :span="4">
-            <div class="grid-content bg-purple" style="height: 410px;line-height: 410px">
-              <el-image src="../static/logo1.jpg">商品类别</el-image>
-            </div>
-          </el-col>
-          <el-col :span="20">
-            <el-col :span="6">
-              <div class="grid-content bg-purple" style="height: 200px">
-                <el-image src="../static/logo1.jpg">商品1</el-image>
-                <div><span>商品1</span></div>
+            <!--<el-col :span="6">-->
+              <!--<div class="grid-content bg-purple" style="height: 240px">-->
+                <!--<el-image src="../static/logo1.jpg">商品2</el-image>-->
+                <!--<div><span>商品2</span></div>-->
+              <!--</div>-->
+            <!--</el-col>-->
+            <el-col :span="6" v-for="(shop,index) in shop2">
+              <div style="height: 400px;width: 310px">
+                <div style="height: 310px;width: 310px"><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}"><img :src="shop.shopBigPic" style="width:310px;height: 310px"></router-link></div>
+                <div style="width: 310px;height: 30px;font-weight: 600;line-height: 30px;background-color: white"><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}">{{shop.shopName}}</router-link></div>
+                <div style="width: 310px;height: 30px;line-height: 30px;background-color: white">{{shop.shopInfo}}</div>
+                <div style="width: 310px;height: 30px;color: red;line-height: 30px;background-color: white">{{shop.shopPrice}}</div>
+
               </div>
             </el-col>
-            <el-col :span="6">
-              <div class="grid-content bg-purple" style="height: 200px">
-                <el-image src="../static/logo1.jpg">商品2</el-image>
-                <div><span>商品2</span></div>
-              </div>
-            </el-col>
-            <el-col :span="6">
-              <div class="grid-content bg-purple" style="height: 200px">
-                <el-image src="../static/logo1.jpg">商品3</el-image>
-                <div><span>商品3</span></div>
-              </div>
-            </el-col>
-            <el-col :span="6">
-              <div class="grid-content bg-purple" style="height: 200px">
-                <el-image src="../static/logo1.jpg">商品4</el-image>
-                <div><span>商品4</span></div>
-              </div>
-            </el-col>
-          </el-col>
-          <el-col :span="20" style="margin-top: 10px">
-            <el-col :span="6">
-              <div class="grid-content bg-purple" style="height: 200px">
-                <el-image src="../static/logo1.jpg">商品5</el-image>
-                <div><span>商品5</span></div>
-              </div>
-            </el-col>
-            <el-col :span="6">
-              <div class="grid-content bg-purple" style="height: 200px">
-                <el-image src="../static/logo1.jpg">商品6</el-image>
-                <div><span>商品6</span></div>
-              </div>
-            </el-col>
-            <el-col :span="6">
-              <div class="grid-content bg-purple" style="height: 200px">
-                <el-image src="../static/logo1.jpg">商品7</el-image>
-                <div><span>商品7</span></div>
-              </div>
-            </el-col>
-            <el-col :span="6">
-              <div class="grid-content bg-purple" style="height: 200px">
-                <div><el-image src="../static/logo1.jpg">商品8</el-image></div>
-                <div><span>商品8</span></div>
-              </div>
-            </el-col>
-          </el-col>
+
         </el-row>
         <!--&lt;!&ndash;促销模块&ndash;&gt;-->
         <!--<el-row :gutter="10">-->
@@ -327,7 +286,7 @@
           <!--</el-col>-->
         <!--</el-row>-->
         <!--多、快、好、省-->
-        <el-row :gutter="10">
+        <el-row :gutter="10" style="margin-top: 20px">
           <el-col :span="6">
             <div  style="height: 50px;line-height: 50px;border-right: 1px solid #e5e9f2">
               <div style="height: 50px;width: 50px;float: left;margin-left: 50px"><el-image src="../static/duo.jpg" style="height: 50px;width: 50px"></el-image></div>
@@ -359,7 +318,7 @@
             </div>
           </el-col>
         </el-row>
-        <el-row>
+        <el-row style="margin-top: 20px">
           <el-col :span="3">
             <div class="" style="height: 180px;line-height: 40px">
               <div style="font-weight: bold">帮助中心</div>
