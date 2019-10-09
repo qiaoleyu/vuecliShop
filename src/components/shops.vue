@@ -86,10 +86,10 @@
         <!--"http://pxx4c7852.bkt.clouddn.com/666.gif"-->
       </el-header>
 
-      <div v-if="img==''">
+      <div v-if="img==''" style="margin-top: 80px">
       </div>
       <div v-else-if="img!=''">
-        <el-image :src="img" style="width: 30% ;margin: auto" ></el-image>
+        <el-image :src="img" style="width: 30% ;margin: auto;margin-top: 80px"></el-image>
 
       </div>
         <h1>{{this.msg}}</h1>
