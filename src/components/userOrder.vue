@@ -156,8 +156,7 @@
     mounted:function () {
         var id=Cookies.get("uid")
         console.log(id)
-     /* Cookies.remove('uid'); // fail!
-      Cookies.remove('uid', { path: '/' });*/
+     /**/
       this.query();
       this.msg1="删除"
     },

@@ -24,9 +24,11 @@
                   <el-dropdown-item>杭州</el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
-              <router-link type="info" :to="{name:'userLogin'}" style="color:black"><a>Hi,请登录</a></router-link>
+              <router-link type="info" :to="{name:'userLogin'}" style="color:black"><a>{{users.uname}}</a></router-link>
               &nbsp;&nbsp;&nbsp;
               <router-link type="info" :to="{name:'userRegist'}" style="color:black"><a>免费注册</a></router-link>
+              &nbsp;&nbsp;&nbsp;
+              <a type="info" style="color:black"><a @click="logout()">退出</a></a>
 
               .0
             </div>
@@ -451,6 +453,10 @@
             msg: 'Welcome to 商品详情页',
             shop:{
               shopPrice:''
+            },users:{
+              uid:'',
+              uname:'Hi,请登录'
+
             },
             total:'',
             options: [{
@@ -473,8 +479,12 @@
       }
     },mounted () {
 
-        var id=Cookies.get("uid");
-        console.log(id)
+      var uid=Cookies.get("uid");
+      if (uid!=null){
+        axios.get("api/findUserByUid/"+uid).then(res=>{
+          this.users=res.data;
+        })
+      }
         var shopId=this.$route.params.shopId;
 
         axios.get("api/findById/"+shopId).then(res=>{
@@ -514,6 +524,10 @@
         this.$router.push("/userRegist")
       },
       logout:function () {
+          alert("hello")
+        Cookies.remove('uid'); // fail!
+        Cookies.remove('uid', { path: '/' });
+        this.users.uname='Hi,请登录'
         this.$router.push("/userLogin")
       }
     }
