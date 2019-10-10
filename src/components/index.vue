@@ -121,7 +121,7 @@
 
         <!--二级菜单-->
         <div id="second" v-show="second" @mouseover="show2(index+1)" @mouseleave="leave(index+1)">
-          <div   v-for="(shop,index) in shops" style="float:left;width: 230px;height: 80px;margin-left: 20px" >
+          <div   v-for="(shop,index) in shops" v-bind:key="shop.shopId" style="float:left;width: 230px;height: 80px;margin-left: 20px" >
             <div style="width: 60px;height: 80px;float:left;margin-top: 20px; text-align:center" ><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}"><img :src="shop.shopPic" style="width: 60px;height: 60px" ></router-link></div>
             <div style="width: 170px;height: 80px;float:left;text-align:left;line-height: 80px;font-size: 14px;font-weight: bold;margin-top: 10px" ><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}">{{shop.shopName}}</router-link></div>
           </div>
@@ -130,7 +130,7 @@
           <el-col :span="4">
             <div id="menu" class="grid-content" style="height: 100%;width:100%;text-align:center;background-color: black;padding-top: 5px">
               <!--一级菜单-->
-              <div v-for="(shop_kind,index) in shop_kinds" >
+              <div v-for="(shop_kind,index) in shop_kinds" v-bind:key="shop_kind.skId">
                 <div id="demo" style="height: 45px;line-height: 30px;margin-top: 5px"   @mouseover="show2(index+1)" @mouseleave="leave(index+1)">{{shop_kind.skName}}</div>
               </div>
             </div>
@@ -140,7 +140,7 @@
           <template>
             <div class="block">
               <el-carousel height="500px">
-                <el-carousel-item  v-for="(shop,index) in shop1" >
+                <el-carousel-item  v-for="(shop,index) in shop1" v-bind:key="shop.shopId">
 
                   <router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}"><img :src="shop.shopLun" style="height: 100%;width: 100%"></router-link>
 
@@ -169,7 +169,7 @@
         </el-row>
         <!--热卖中四个模块-->
         <el-row :gutter="10">
-          <el-col :span="6" v-for="(shop,index) in shop2">
+          <el-col :span="6" v-for="(shop,index) in shop2" v-bind:key="shop.shopId">
             <!--<div  style="height: 400px;width: 1600px" >-->
               <!--<div v-for="(shop,index) in shop2" style="float: left;width: 350px;height: 400px">-->
                 <div style="height: 400px;width: 310px">
@@ -209,7 +209,7 @@
                 <!--<div><span>商品2</span></div>-->
               <!--</div>-->
             <!--</el-col>-->
-            <el-col :span="6" v-for="(shop,index) in shop3">
+            <el-col :span="6" v-for="(shop,index) in shop3" v-bind:key="shop.shopId">
               <div style="height: 400px;width: 310px">
                 <div style="height: 310px;width: 310px"><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}"><img :src="shop.shopBigPic" style="width:310px;height: 310px"></router-link></div>
                 <div style="width: 310px;height: 30px;font-weight: 600;line-height: 30px;background-color: white"><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}">{{shop.shopName}}</router-link></div>
