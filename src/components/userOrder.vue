@@ -188,13 +188,9 @@
         })
       },
       operation:function () {
-        axios.post("api/delOrder",this.order).then(res=>{
-          if(res.data.code==1){
-            alert("删除订单成功！")
-            this.$router.push("/userCart")
-          }else{
-            alert("删除失败")
-          }
+        axios.post("api/pay",this.order).then(res => {
+          this.$router.replace({path:'/applyText',query:{htmls:res.data}})
+
         })
       },
       cart:function () {
