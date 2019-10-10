@@ -23,7 +23,7 @@
     </el-table-column>
     <el-table-column prop="shopFactory" label="生产厂家" width="160" align="center" >
     </el-table-column>
-    <el-table-column prop="shopPrice" label="单价(元)" width="160" align="center"  >
+    <el-table-column type="BigDecimal" prop="shopPrice" label="单价(元)" width="160" align="center"  >
     </el-table-column>
     <el-table-column label="数量(件)" align="center" width="200">
       <template slot-scope="scope">

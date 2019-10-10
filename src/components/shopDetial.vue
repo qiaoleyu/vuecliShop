@@ -497,6 +497,7 @@
       },
       addcart:function () {
         axios.post("api/addCart",{num:this.num,shop:this.shop,total:this.total}).then(res=>{
+            alert(this.total)
             if (res.data!=null){
                 alert("加入成功")
             }else {
