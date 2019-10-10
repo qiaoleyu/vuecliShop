@@ -160,12 +160,15 @@
                     <span v-text="shop.shopName"></span>
                   </div>
                   <div style="height: 40px;background-color: aliceblue">
-                    <span style="line-height: 40px">商品数量：</span>
-                    <span v-text="shop.shopNumber" te></span>
+                    <span style="line-height: 40px">库存数量：</span>
+                    <span v-text="shop.shopNumber"></span>
+                    <span>件</span>
                   </div>
                   <div style="height: 40px;background-color: aliceblue">
                     <span style="line-height: 40px">商品单价：</span>
-                    <span v-text="shop.shopPrice"></span>
+                    <span style="line-height: 40px;color: red">￥：</span>
+                    <span v-text="shop.shopPrice" style="color: red"></span>
+                    <span style="color: red">元</span>
                   </div>
                   <div style="height: 40px;background-color: aliceblue">
                     <span style="line-height: 40px">生产厂家：</span>
@@ -212,6 +215,12 @@
                   <div style="height: 40px;background-color: aliceblue">
                     <span style="line-height: 40px">商品销量：</span>
                     <span v-text="shop.shopRepertory"></span>
+                    <span>件</span>
+                  </div>
+                  <div style="height: 40px;background-color: aliceblue">
+                    <span style="line-height: 40px">购买数量：</span>
+                    <span v-text="num" style="color: red"></span>
+                    <span style="color: red">件</span>
                   </div>
                   <div style="height: 40px;background-color: aliceblue">
                     <span style="line-height: 40px">总金额：</span>
