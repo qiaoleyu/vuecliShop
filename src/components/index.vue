@@ -26,7 +26,8 @@
               <router-link type="info" :to="{name:'userLogin'}" style="color:black"><a>{{users.uname}}</a></router-link>
               &nbsp;&nbsp;&nbsp;
               <router-link type="info" :to="{name:'userRegist'}" style="color:black"><a>免费注册</a></router-link>
-
+              &nbsp;&nbsp;&nbsp;
+              <a type="info" @clinck="logout()" style="color:black"><a>退出</a></a>
             </div>
           </el-col>
           <el-col :span="14">
