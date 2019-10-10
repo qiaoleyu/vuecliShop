@@ -28,6 +28,7 @@
               &nbsp;&nbsp;&nbsp;
               <router-link type="info" :to="{name:'userRegist'}" style="color:black"><a>免费注册</a></router-link>
 
+              .0
             </div>
           </el-col>
           <el-col :span="14">
@@ -95,7 +96,7 @@
           <el-col :span="6">
             <router-link :to="{name:'index'}">
               <div class="grid-content" style="float:left;width:205px;height: 70px;line-height: 70px;margin-top:10px; ">
-                <el-image src="http://pxx4c7852.bkt.clouddn.com/Logo.jpg" style="height: 70px;width:70px;border-radius: 3px"></el-image>
+                <el-image src="../static/logo2.jpg" style="height: 70px;width:200px;border-radius: 3px"></el-image>
               </div>
             </router-link>
           </el-col>
@@ -213,6 +214,7 @@
                   </div>
                   <div style="height: 40px;background-color: aliceblue">
                     <span style="line-height: 40px">总金额：</span>
+                    <span style="line-height: 40px;color: red" >￥：</span>
                     <span style="line-height: 40px;color: red" v-text="total"></span>
                     <span style="line-height: 40px;color: red" >元</span>
                   </div>

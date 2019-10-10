@@ -92,7 +92,7 @@
         <el-row :gutter="10">
           <el-col :span="6">
             <div class="grid-content" style="float:left;width:205px;height: 70px;line-height: 70px;margin-top:10px;background-color: azure ">
-              <el-image src="../static/1Logo.jpg" style="height: 70px;width:70px;border-radius: 3px"></el-image>
+              <el-image src="../static/logo2.jpg" style="height: 70px;width:200px;border-radius: 3px"></el-image>
             </div>
           </el-col>
           <el-col :span="12">
@@ -177,7 +177,7 @@
                   <div style="height: 310px;width: 310px"><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}"><img :src="shop.shopBigPic" style="width:310px;height: 310px"></router-link></div>
                   <div style="width: 310px;height: 30px;font-weight: 600;line-height: 30px;background-color: white"><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}">{{shop.shopName}}</router-link></div>
                   <div style="width: 310px;height: 30px;line-height: 30px;background-color: white">{{shop.shopInfo}}</div>
-                  <div style="width: 310px;height: 30px;color: red;line-height: 30px;background-color: white">￥:{{shop.shopPrice}}元</div>
+                  <div style="width: 310px;height: 30px;color: red;line-height: 30px;background-color: white">￥：{{shop.shopPrice}}元</div>
 
                 </div>
 
@@ -215,7 +215,7 @@
                 <div style="height: 310px;width: 310px"><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}"><img :src="shop.shopBigPic" style="width:310px;height: 310px"></router-link></div>
                 <div style="width: 310px;height: 30px;font-weight: 600;line-height: 30px;background-color: white"><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}">{{shop.shopName}}</router-link></div>
                 <div style="width: 310px;height: 30px;line-height: 30px;background-color: white">{{shop.shopInfo}}</div>
-                <div style="width: 310px;height: 30px;color: red;line-height: 30px;background-color: white">￥:{{shop.shopPrice}}元</div>
+                <div style="width: 310px;height: 30px;color: red;line-height: 30px;background-color: white">￥：{{shop.shopPrice}}元</div>
 
               </div>
             </el-col>
