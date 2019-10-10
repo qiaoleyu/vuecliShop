@@ -54,10 +54,11 @@
         <!--&lt;!&ndash;<div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>&ndash;&gt;-->
       <!--</el-upload>-->
       <el-form-item label="验证码" prop="code" style="text-align: left">
-        <el-input type="text" v-model="code" placeholder="请输入验证码" style="width: 350px"></el-input>
+        <el-input type="text" v-model="code" placeholder="请输入验证码" style="width: 280px"></el-input>
         <!--<el-container id='app'>-->
         <!-- :disabled="isDisabled"-->
-          <el-button type="primary" plain @click="sendMail()">发送</el-button>
+        <el-button round type="primary" plain :class="{disabled: !this.canClick}" @click="sendMail()">{{content}}</el-button>
+          <!--<el-button type="primary" plain @click="sendMail()">发送</el-button>-->
         <!--</el-container>-->
       </el-form-item>
       <el-form-item label="密码" prop="upassword" style="text-align: left">
@@ -209,7 +210,6 @@ import ElContainer from "../../node_modules/element-ui/packages/container/src/ma
       };
       return{
         msg: '注册',
-        code:'',
         file:'',
         users:{
             uid:'',
@@ -229,21 +229,55 @@ import ElContainer from "../../node_modules/element-ui/packages/container/src/ma
           utell: [{ validator: checkUtell, trigger: 'blur' }],
 //         code:[{validator:checkCode,trigger:'blur'}]
 
-        }
+        },
+//        验证码失效时间控制
+        code:'',
+        content:'发送验证码',
+        totalTime:60,
+        canClick:true
       };
     },
     methods:{
       sendMail:function () {
-        console.log(this.users);
+
+        if (!this.canClick) return  //改动的是这两行代码
+        this.canClick = false
+        this.content = this.totalTime + 's后重新发送'
+        let clock = window.setInterval(() => {
+          this.totalTime--
+          this.content = this.totalTime + 's后重新发送'
+          if (this.totalTime < 0) {
+            window.clearInterval(clock)
+            this.content = '重新发送'
+            this.totalTime = 60
+            this.canClick = true  //这里重新开启
+          }
+        },1000)
         axios.post("/api/sendEmail",this.users).then(res=>{
           console.log(res.data);
           if(res.data!=null){
-
-            alert(res.data);
+              alert(res.data)
+//            this.$message({
+//              message: '邮件发送成功，请输入验证码!',
+//              type: 'success'
+//            })
           }else{
-            alert("发送失败！");
+              alert("发送失败！")
           }
         })
+
+
+
+//        console.log(this.users);
+//        axios.post("/api/sendEmail",this.users).then(res=>{
+//          console.log(res.data);
+//          if(res.data!=null){
+//
+//            alert(res.data);
+//          }else{
+//            alert("发送失败！");
+//          }
+//        })
       },
         back:function(){
             this.$router.push("/");
@@ -254,6 +288,7 @@ import ElContainer from "../../node_modules/element-ui/packages/container/src/ma
             if(valid){
              axios.post("api/userRegister",{users:this.users,code:this.code}).then(res=>{
                if(res.data=="success"){
+                   alert("注册成功，欢迎进行登录")
                  this.$router.push("/userLogin")
                }else{
                  alert(res.data)

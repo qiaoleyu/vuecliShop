@@ -29,7 +29,7 @@
               &nbsp;&nbsp;&nbsp;
               <router-link type="info" :to="{name:'userRegist'}" style="color:black"><a>免费注册</a></router-link>
               &nbsp;&nbsp;&nbsp;
-              <span type="info" style="color:black;cursor: pointer"><a @click="logout()">退出</a></span>
+              <span type="info" style="color:black;cursor: pointer"><a @click="logout()">退出登录</a></span>
             </div>
           </el-col>
           <el-col :span="14">
