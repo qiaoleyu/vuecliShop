@@ -23,7 +23,7 @@
                   <el-dropdown-item>杭州</el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
-              <router-link type="info" :to="{name:'userLogin'}" style="color:black"><a>Hi,请登录</a></router-link>
+              <router-link type="info" :to="{name:'userLogin'}" style="color:black"><a>{{users.uname}}</a></router-link>
               &nbsp;&nbsp;&nbsp;
               <router-link type="info" :to="{name:'userRegist'}" style="color:black"><a>免费注册</a></router-link>
 
@@ -563,6 +563,7 @@
   import ElImage from "../../node_modules/element-ui/packages/image/src/main";
   import ElInput from "../../node_modules/element-ui/packages/input/src/input";
   import ElButton from "../../node_modules/element-ui/packages/button/src/button";
+  import Cookies from 'js-cookie'
 
   import axios from 'axios';
 
@@ -583,6 +584,12 @@
         shop1:[],
         shop2:[],
         shop3:[],
+        users:{
+            uid:'',
+            uname:'Hi,请登录'
+
+        },
+
         second:false,
         total:16,
         params:{
@@ -592,6 +599,14 @@
       }
     },
     mounted(){
+
+     var uid=Cookies.get("uid");
+      if (uid!=null){
+        axios.get("api/findUserByUid/"+uid).then(res=>{
+          this.users=res.data;
+        })
+      }
+
       var url="api/show1"
       axios.get(url).then(res=>{
         //alert(res.data)

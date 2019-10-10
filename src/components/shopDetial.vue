@@ -435,6 +435,7 @@
   import ElMain from "../../node_modules/element-ui/packages/main/src/main";
   import ElButton from "../../node_modules/element-ui/packages/button/src/button";
   import ElInput from "../../node_modules/element-ui/packages/input/src/input";
+  import Cookies from 'js-cookie'
   export default{
     components: {
       ElInput,
@@ -469,6 +470,9 @@
             value: ''
       }
     },mounted () {
+
+        var id=Cookies.get("uid");
+        console.log(id)
         var shopId=this.$route.params.shopId;
 
         axios.get("api/findById/"+shopId).then(res=>{
