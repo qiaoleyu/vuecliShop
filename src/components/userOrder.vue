@@ -136,25 +136,30 @@
       }
     },
     mounted:function () {
-        var id=Cookies.get("uid")
-        console.log(id)
-     /**/
-      this.query();
+        var uid=Cookies.get("uid")
+        console.log(uid)
+
+      this.query(uid);
       this.msg1="删除"
     },
     methods:{
-      query:function () {
-        axios.get("api/findAllOrder").then(res=>{
-            this.order=res.data;
-            for(var i=0;i<res.data.length;i++){
-                if(res.data[i].oStatue==0){
-                  this.msg1="删除"
+      query:function (uid) {
+        if (uid!=null){
+          axios.get("api/findAllOrder/"+uid).then(res=>{
+              this.order=res.data;
+              for(var i=0;i<res.data.length;i++){
+                  if(res.data[i].oStatue==0){
+                    this.msg1="删除"
+                  }
+                else if(res.data[i].oStatue==1){
+                  this.msg1="去支付"
                 }
-              else if(res.data[i].oStatue==1){
-                this.msg1="去支付"
               }
-            }
-        })
+          })
+        }else {
+          alert("请登录")
+          this.$router.push('/')
+        }
       },
       renderHeader: function (h, params) {//实现table表头添加
         var self = this;

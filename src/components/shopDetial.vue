@@ -497,7 +497,7 @@
       },
       addcart:function () {
         axios.post("api/addCart",{num:this.num,shop:this.shop,total:this.total}).then(res=>{
-            alert(this.total)
+//            alert(this.total)
             if (res.data!=null){
                 alert("加入成功")
             }else {
@@ -506,7 +506,8 @@
         })
       },
       submitForm:function () {
-        axios.post("api/userOrder1",this.shop).then(res=>{
+        var uid=Cookies.get("uid");
+        axios.post("api/userOrder1/"+uid,this.shop).then(res=>{
           if (res.data!=null){
             this.$router.push("/userOrder")
           }else {
