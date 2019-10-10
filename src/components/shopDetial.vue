@@ -245,11 +245,11 @@
 
 
               <el-col :span="10">
-                <div class="" style="height: 120px">
-                <template>
+                <div class="" style="height: 120px;background-color: white">
+                <template >
                   <el-carousel :interval="4000" type="card" height="120px">
-                    <el-carousel-item v-for="item in 3" :key="item">
-                      <img :src="shop.shopBigPic" style="height: 100%;width: 100%">
+                    <el-carousel-item v-for="item in 3" :key="item" style=";background-color: white">
+                      <img :src="shop.shopBigPic" style="height: 100%;width: 180px">
                     </el-carousel-item>
                   </el-carousel>
                 </template>
