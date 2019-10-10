@@ -112,9 +112,10 @@
 
       <el-table-column label="操作" width="140"  align="center">
         <template slot-scope="order">
-          <el-button type="danger" size="small" plain @click="operation()">{{msg1}}</el-button>
+          <el-button type="danger" size="small" plain @click="operation(order.row.oid)">删除</el-button>
         </template>
       </el-table-column>
+
     </el-table>
     <div style="background-color: aliceblue; height: 80px;margin: auto;margin-top: 20px">
 
@@ -138,8 +139,8 @@
     data () {
       return{
         msg:'订单详情页',
-        msg1:'',
         order:{
+          oid:"",
           onumber:"",
           shopName:"",
           shopPic:"",
@@ -154,48 +155,36 @@
       }
     },
     mounted:function () {
-        var id=Cookies.get("uid")
-        console.log(id)
-     /**/
+      var id=Cookies.get("uid")
       this.query();
-      this.msg1="删除"
     },
     methods:{
       query:function () {
         axios.get("api/findAllOrder").then(res=>{
             this.order=res.data;
-            for(var i=0;i<res.data.length;i++){
-                if(res.data[i].oStatue==0){
-                  this.msg1="删除"
-                }
-              else if(res.data[i].oStatue==1){
-                this.msg1="去支付"
-              }
-            }
+            console.log(this.order)
         })
       },
       orderFindAll:function () {
         this.query();
       },
       orderStatue1:function () {
-        this.msg1="去支付"
         var url="api/findNotPayOrders"
         axios.get(url).then(res=>{
             this.order=res.data;
         })
       },
       orderStatue2:function () {
-        this.msg1="删除订单"
         var url="api/findAlreadyPayOrders"
         axios.get(url).then(res=>{
           this.order=res.data;
         })
       },
-      operation:function () {
-        axios.post("api/pay",this.order).then(res => {
-          this.$router.replace({path:'/applyText',query:{htmls:res.data}})
-
-        })
+      operation:function (oid) {
+          var url="api/deleteOrders/"+oid
+          axios.post(url).then(res=>{
+              this.query();
+          })
       },
       cart:function () {
         this.$router.push("/userCart")
@@ -203,7 +192,6 @@
       pay:function () {
         axios.post("api/pay").then(res => {
            this.$router.replace({path:'/applyText',query:{htmls:res.data}})
-
         })
       },
       reback:function () {
