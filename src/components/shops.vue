@@ -26,7 +26,8 @@
               <router-link type="info" :to="{name:'userLogin'}" style="color:black"><a>Hi,请登录</a></router-link>
               &nbsp;&nbsp;&nbsp;
               <router-link type="info" :to="{name:'userRegist'}" style="color:black"><a>免费注册</a></router-link>
-
+              &nbsp;&nbsp;&nbsp;
+              <span type="info" style="color:black;cursor: pointer"><a @click="logout()">退出登录</a></span>
             </div>
           </el-col>
           <el-col :span="14">
@@ -93,7 +94,7 @@
         <h1>{{this.msg}}</h1>
         <el-row :gutter="10">
         <!--模糊查询-->
-          <el-col :span="6" v-for="(shop,index) in shop4">
+          <el-col :span="6" v-for="(shop,index) in shop4" v-bind:key="shop.shopId">
             <div style="height: 400px;width: 310px">
               <div style="height: 310px;width: 310px"><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}"><img :src="shop.shopBigPic" style="width:310px;height: 310px"></router-link></div>
               <div style="width: 310px;height: 30px;font-weight: 600;line-height: 30px;background-color: white"><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}">{{shop.shopName}}</router-link></div>
@@ -280,8 +281,12 @@
         this.$router.push("/userRegist")
       },
       logout:function () {
-        this.$router.push("/userLogin")
-      },
+//          alert("hello")
+        Cookies.remove('uid'); // fail!
+        Cookies.remove('uid', { path: '/' });
+        this.users.uname='Hi,请登录'
+        this.$router.push("/")
+      }
     }
   }
 </script>

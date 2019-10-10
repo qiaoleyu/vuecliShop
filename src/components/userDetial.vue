@@ -26,7 +26,8 @@
               <router-link type="info" :to="{name:'userLogin'}" style="color:black"><a>Hi,请登录</a></router-link>
               &nbsp;&nbsp;&nbsp;
               <router-link type="info" :to="{name:'userRegist'}" style="color:black"><a>免费注册</a></router-link>
-
+              &nbsp;&nbsp;&nbsp;
+              <span type="info" style="color:black;cursor: pointer"><a @click="logout()">退出登录</a></span>
             </div>
           </el-col>
           <el-col :span="14">
@@ -103,12 +104,12 @@
               <el-form-item label="头像:">
                 <img :src="users.uPic" v-model="users.uPic" name="uPic" width="40" height="40" class="pic" style="margin-right: 400px"/>
               </el-form-item>
-              <el-form-item label="密码">
+              <el-form-item label="密码:">
                 <el-input name="uPassword" v-model="users.uPassword"></el-input>
               </el-form-item>
               <el-form-item label="性别:">
-                <el-radio v-model="users.uSex" name="uSex1" value="男">男</el-radio>
-                <el-radio v-model="users.uSex" name="uSex2" value="女">女</el-radio>
+                <el-radio v-model="uSex" label="1" value="男">男</el-radio>
+                <el-radio v-model="uSex" label="2" value="女">女</el-radio>
               </el-form-item>
               <el-form-item label="注册时间:">
                 <el-date-picker name="createTime" v-model="users.createTime" type="date" placeholder="选择日期" style="width: 400px"></el-date-picker>
@@ -180,12 +181,19 @@
             users:{
 
             },
-            uSex1:''
+            uSex:'1'
           }
       },methods:{
         backIndex:function () {
           this.$router.push("/")
-        }
+        },
+      logout:function () {
+//          alert("hello")
+        Cookies.remove('uid'); // fail!
+        Cookies.remove('uid', { path: '/' });
+        this.users.uname='Hi,请登录'
+        this.$router.push("/")
+      }
     }
   }
 </script>

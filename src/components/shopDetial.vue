@@ -14,7 +14,8 @@
             <div class="grid-content bg-purple" style="color: black;font-size: 14px;line-height: 30px">
               <el-dropdown>
           <span class="el-dropdown-link">
-            <a class="el-icon-location">地址</a><i class="el-icon-arrow-down el-icon--right"></i>
+            <a class="el-icon-location"
+            >地址</a><i class="el-icon-arrow-down el-icon--right"></i>
           </span>
                 <el-dropdown-menu slot="dropdown">
                   <el-dropdown-item >北京</el-dropdown-item>
@@ -24,10 +25,11 @@
                   <el-dropdown-item>杭州</el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
-              <router-link type="info" :to="{name:'userLogin'}" style="color:black"><a>Hi,请登录</a></router-link>
+              <router-link type="info" :to="{name:'userLogin'}" style="color:black"><a>{{users.uname}}</a></router-link>
               &nbsp;&nbsp;&nbsp;
               <router-link type="info" :to="{name:'userRegist'}" style="color:black"><a>免费注册</a></router-link>
-
+              &nbsp;&nbsp;&nbsp;
+              <span type="info" style="color:black;cursor: pointer"><a @click="logout()">退出登录</a></span>
             </div>
           </el-col>
           <el-col :span="14">
@@ -38,8 +40,9 @@
             <a>个人中心</a><i class="el-icon-arrow-down el-icon--left"></i>
           </span>
                 <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item>完善信息</el-dropdown-item>
-                  <el-dropdown-item>修改信息</el-dropdown-item>
+                  <el-dropdown-item><router-link :to="{name:'userDetial'}">完善信息</router-link></el-dropdown-item>
+                  <!--<el-dropdown-item>完善信息</el-dropdown-item>-->
+                  <!--<el-dropdown-item>修改信息</el-dropdown-item>-->
                   <!--<el-dropdown-item>3</el-dropdown-item>-->
                   <!--<el-dropdown-item>4</el-dropdown-item>-->
                   <!--<el-dropdown-item>5</el-dropdown-item>-->
@@ -93,8 +96,8 @@
         <el-row :gutter="10">
           <el-col :span="6">
             <router-link :to="{name:'index'}">
-              <div class="grid-content" style="float:left;width:205px;height: 70px;line-height: 70px;margin-top:10px;background-color:#F37A21 ">
-                <el-image src="../static/logo1.jpg" style="height: 70px;width:70px;border-radius: 3px"></el-image>
+              <div class="grid-content" style="float:left;width:205px;height: 70px;line-height: 70px;margin-top:10px; ">
+                <el-image src="../static/logo2.jpg" style="height: 70px;width:200px;border-radius: 3px"></el-image>
               </div>
             </router-link>
           </el-col>
@@ -151,30 +154,41 @@
                 </div>
               </el-col>
               <el-col :span="10">
-                <div  style="height: 400px;background-color: darkgrey;text-align: left;padding-left: 40px">
-                  <div style="height: 40px;background-color: darkgrey;padding-top: 40px">
+                <div  style="height: 400px;background-color: aliceblue;text-align: left;padding-left: 40px">
+                  <div style="height: 40px;background-color: aliceblue;padding-top: 40px">
                     <span style="line-height: 40px">商品名称：</span>
                     <span v-text="shop.shopName"></span>
                   </div>
-                  <div style="height: 40px;background-color: darkgrey">
+                  <div style="height: 40px;background-color: aliceblue">
                     <span style="line-height: 40px">商品数量：</span>
                     <span v-text="shop.shopNumber" te></span>
                   </div>
-                  <div style="height: 40px;background-color: darkgrey">
+                  <div style="height: 40px;background-color: aliceblue">
                     <span style="line-height: 40px">商品单价：</span>
                     <span v-text="shop.shopPrice"></span>
                   </div>
-                  <div style="height: 40px;background-color: darkgrey">
+                  <div style="height: 40px;background-color: aliceblue">
                     <span style="line-height: 40px">生产厂家：</span>
                     <span v-text="shop.factory"></span>
                   </div>
-                  <div style="height:40px;background-color: darkgrey">
+                  <div style="height:40px;background-color: aliceblue">
                     <span style="line-height: 40px">商品描述：</span>
                     <span v-text="shop.shopInfo"></span>
                   </div>
-                  <div style="height:40px;background-color: darkgrey">
+                  <div style="background-color: aliceblue">
                     <span style="line-height: 40px">配送地址：</span>
-                    <span v-text="">北京</span>
+                    <template>
+                      <el-select v-model="value" placeholder="请选择">
+                        <el-option
+                          v-for="item in options"
+                          :key="item.value"
+                          :label="item.label"
+                          :value="item.value"
+                          width="100px"
+                        >
+                        </el-option>
+                      </el-select>
+                    </template>
                   </div>
               <!--    <div style="height: 80px;background-color: #E5E9F2">
                     <div>
@@ -195,12 +209,13 @@
                       </template>
                     </div>
                   </div>-->
-                  <div style="height: 40px;background-color: darkgrey">
+                  <div style="height: 40px;background-color: aliceblue">
                     <span style="line-height: 40px">商品销量：</span>
                     <span v-text="shop.shopRepertory"></span>
                   </div>
-                  <div style="height: 40px;background-color: darkgrey">
+                  <div style="height: 40px;background-color: aliceblue">
                     <span style="line-height: 40px">总金额：</span>
+                    <span style="line-height: 40px;color: red" >￥：</span>
                     <span style="line-height: 40px;color: red" v-text="total"></span>
                     <span style="line-height: 40px;color: red" >元</span>
                   </div>
@@ -423,6 +438,7 @@
   import ElMain from "../../node_modules/element-ui/packages/main/src/main";
   import ElButton from "../../node_modules/element-ui/packages/button/src/button";
   import ElInput from "../../node_modules/element-ui/packages/input/src/input";
+  import Cookies from 'js-cookie'
   export default{
     components: {
       ElInput,
@@ -436,10 +452,38 @@
             msg: 'Welcome to 商品详情页',
             shop:{
               shopPrice:''
+            },users:{
+              uid:'',
+              uname:'Hi,请登录'
+
             },
-            total:''
+            total:'',
+            options: [{
+              value: 'adress1',
+              label: '北京'
+            }, {
+              value: 'address2',
+              label: '上海'
+            }, {
+              value: 'address3',
+              label: '广州'
+            }, {
+              value: 'address4',
+              label: '天津'
+            }, {
+              value: 'address5',
+              label: '杭州'
+            }],
+            value: ''
       }
     },mounted () {
+
+      var uid=Cookies.get("uid");
+      if (uid!=null){
+        axios.get("api/findUserByUid/"+uid).then(res=>{
+          this.users=res.data;
+        })
+      }
         var shopId=this.$route.params.shopId;
 
         axios.get("api/findById/"+shopId).then(res=>{
@@ -480,7 +524,11 @@
         this.$router.push("/userRegist")
       },
       logout:function () {
-        this.$router.push("/userLogin")
+//          alert("hello")
+        Cookies.remove('uid'); // fail!
+        Cookies.remove('uid', { path: '/' });
+        this.users.uname='Hi,请登录'
+        this.$router.push("/")
       }
     }
 

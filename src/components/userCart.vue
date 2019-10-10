@@ -52,6 +52,8 @@
 
     </el-table-column>
   </el-table>
+  <div v-show="list.length==0" style="font-size:20px;color:red;display:none">商品全部为空</div>
+
 
   <div style="background-color: aliceblue; height: 80px;margin: auto;margin-top: 20px">
     <div style="float: right;margin-top: 20px;margin-right: 30px"><el-button type="success" plain style="width: 120px" @click="submitForm()">立即购买</el-button></div>
@@ -74,6 +76,7 @@
 
   import axios from 'axios'
   import ElImage from "../../node_modules/element-ui/packages/image/src/main";
+  import Cookies from 'js-cookie'
   export default{
     components: {
         ElImage,
@@ -154,6 +157,8 @@
         }
       },
     mounted:function () {
+        var id=Cookies.get("uid")
+      console.log(id)
        this.query();
     },
       methods: {
@@ -181,11 +186,11 @@
 //          alert(this.shopCount)
 //          alert(this.list[0])
             axios.post("api/updateCart", this.list[index]).then(res => {
-              if (res.data != null) {
-                alert("加入成功")
-              } else {
-                alert("加入失败")
-              }
+//              if (res.data != null) {
+//                alert("加入成功")
+//              } else {
+//                alert("加入失败")
+//              }
             })
       },
         renderHeader: function (h, params) {//实现table表头添加

@@ -131,6 +131,7 @@
 <script>
   import axios from 'axios'
   import ElButton from "../../node_modules/element-ui/packages/button/src/button";
+  import Cookies from 'js-cookie'
 
   export default {
     components: {ElButton},
@@ -153,6 +154,9 @@
       }
     },
     mounted:function () {
+        var id=Cookies.get("uid")
+        console.log(id)
+     /**/
       this.query();
       this.msg1="删除"
     },
