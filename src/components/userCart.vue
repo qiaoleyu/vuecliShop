@@ -81,7 +81,7 @@
     components: {
         ElImage,
     },
-    el: "#app1",
+//    el: "#app1",
       data() {
         var checkAge = (rule, value, callback) => {
           if (!value) {
@@ -104,7 +104,7 @@
           list: [
             {
               cid:'',
-              uId:'',
+              uid:'',
               shopName:'',
               shopPrice:'',
               shopPic:'',
@@ -118,7 +118,7 @@
           list1:[
             {
               cid:'',
-              uId:'',
+              uid:'',
               shopName:'',
               shopPrice:'',
               shopPic:'',
@@ -157,16 +157,19 @@
         }
       },
     mounted:function () {
-        var id=Cookies.get("uid")
-      console.log(id)
-       this.query();
+      var uid=Cookies.get("uid");
+       this.query(uid);
     },
       methods: {
-        query:function () {
-          axios.get("api/findAllCart").then(res=>{
-            this.list=res.data;
-            //alert(this.list[1].cid)
-          })
+        query:function (uid) {
+            if (uid!=null){
+              axios.get("api/findAllCart/"+uid).then(res=>{
+                this.list=res.data;
+              })
+            }else {
+                alert("请登录")
+              this.$router.push('/')
+            }
         },
         removeId(row) {
 //        console.log(row.cid)
@@ -210,6 +213,7 @@
           this.$router.push("/")
         },
         submitForm:function () {
+          var uid=Cookies.get("uid")
           var a = 0;
           for (let i = 0; i < this.list.length; i++) {
             if (this.list[i].checked == true) {
@@ -217,7 +221,7 @@
               a++;
             }
           }
-          axios.post("api/userOrder2", this.list1).then(res=>{
+          axios.post("api/userOrder2/"+uid, this.list1).then(res=>{
             if(res.data!=null){
               this.$router.push("/userOrder");
             }else{

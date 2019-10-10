@@ -33,89 +33,41 @@
       </el-col>
     </el-row>
     <hr>-->
-    <el-table
-      align="center"
-      :data="order"
-      stripe
-      style="width: 100%">
-
-      <el-table-column
-        align="center"
-        prop="onumber"
-        label="订单编号"
-        width="180">
+    <el-table align="center" :data="order" stripe style="width: 100%" v-show="order.length" highlight-current-row>
+      <el-table-column label="复选框" width="100" style="color:red"  :render-header="renderHeader">
+        <template slot-scope="order">
+          <el-checkbox  v-model="order.row.checked"></el-checkbox>
+        </template>
       </el-table-column>
+      <el-table-column align="center" prop="onumber" label="订单编号" width="180"></el-table-column>
 
-      <el-table-column
-        align="center"
-        prop="shopName"
-        label="商品名称"
-        width="140">
-      </el-table-column>
+      <el-table-column align="center" prop="shopName" label="商品名称" width="140"></el-table-column>
 
-      <el-table-column
-        label="商品图片"
-        width="90" >
+      <el-table-column label="商品图片" width="90" >
         <template slot-scope="order">
           <img :src="order.row.shopPic" width="60" height="60" class="pic"/>
         </template>
       </el-table-column>
 
-      <el-table-column
-        align="center"
-        prop="shopFactory"
-        label="店铺"
-        width="100">
-      </el-table-column>
+      <el-table-column align="center" prop="shopFactory" label="店铺" width="100"></el-table-column>
 
-      <el-table-column
-        align="center"
-        prop="shopNumber"
-        label="商品数量"
-        width="80">
-      </el-table-column>
+      <el-table-column align="center" prop="shopNumber" label="商品数量" width="80"></el-table-column>
 
-      <el-table-column
-        align="center"
-        prop="shopPrice"
-        label="商品单价"
-        width="80">
-      </el-table-column>
+      <el-table-column align="center" prop="shopPrice" label="商品单价" width="80"></el-table-column>
 
-      <el-table-column
-        align="center"
-        prop="shopCount"
-        label="总金额"
-        width="80">
-      </el-table-column>
+      <el-table-column align="center" prop="shopCount" label="总金额" width="80"></el-table-column>
 
-      <el-table-column
-        align="center"
-        prop="userAddress"
-        label="配送地址"
-        width="180">
-      </el-table-column>
+      <el-table-column align="center" prop="userAddress" label="配送地址" width="180"></el-table-column>
 
-      <el-table-column
-        align="center"
-        prop="userName"
-        label="收件人"
-        width="80">
-      </el-table-column>
+      <el-table-column align="center" prop="userName" label="收件人" width="80"></el-table-column>
 
-      <el-table-column
-        align="center"
-        prop="userTell"
-        label="联系方式"
-        width="120">
-      </el-table-column>
+      <el-table-column align="center" prop="userTell" label="联系方式" width="120"></el-table-column>
 
       <el-table-column label="操作" width="140"  align="center">
         <template slot-scope="order">
-          <el-button type="danger" size="small" plain @click="operation(order.row.oid)">删除</el-button>
+          <el-button type="danger" size="small" plain @click="operation()">{{msg1}}</el-button>
         </template>
       </el-table-column>
-
     </el-table>
     <div style="background-color: aliceblue; height: 80px;margin: auto;margin-top: 20px">
 
@@ -139,8 +91,8 @@
     data () {
       return{
         msg:'订单详情页',
+        msg1:'',
         order:{
-          oid:"",
           onumber:"",
           shopName:"",
           shopPic:"",
@@ -151,40 +103,99 @@
           userAddress:"",
           userName:"",
           userTell:""
+        },
+        count: 0,
+        istrue: false,
+      }
+    },
+    computed: {
+      countList: function () {
+        var a = 0;
+        for (let i = 0; i < this.order.length; i++) {
+          if (this.order[i].checked == true) {
+
+            a += this.order[i].shopCount
+          }
         }
+        this.count = a;
+        return this.count
+      }
+    },
+    watch: {
+      istrue: function () {
+        if (this.istrue == true) {
+          for (let k = 0; k < this.order.length; k++) {
+            this.order[k].checked = true;
+          }
+        } else {
+          for (let k = 0; k < this.order.length; k++) {
+            this.order[k].checked = false;
+          }
+        }
+
       }
     },
     mounted:function () {
-      var id=Cookies.get("uid")
-      this.query();
+        var uid=Cookies.get("uid")
+        console.log(uid)
+
+      this.query(uid);
+      this.msg1="删除"
     },
     methods:{
-      query:function () {
-        axios.get("api/findAllOrder").then(res=>{
-            this.order=res.data;
-            console.log(this.order)
-        })
+      query:function (uid) {
+        if (uid!=null){
+          axios.get("api/findAllOrder/"+uid).then(res=>{
+              this.order=res.data;
+              for(var i=0;i<res.data.length;i++){
+                  if(res.data[i].oStatue==0){
+                    this.msg1="删除"
+                  }
+                else if(res.data[i].oStatue==1){
+                  this.msg1="去支付"
+                }
+              }
+          })
+        }else {
+          alert("请登录")
+          this.$router.push('/')
+        }
+      },
+      renderHeader: function (h, params) {//实现table表头添加
+        var self = this;
+        return h('div', [
+          h('el-checkbox', {
+            on: {
+              change: (i) => {
+                self.istrue = i;
+              }
+            }
+          }, '全选')
+        ]);
+
       },
       orderFindAll:function () {
         this.query();
       },
       orderStatue1:function () {
+        this.msg1="去支付"
         var url="api/findNotPayOrders"
         axios.get(url).then(res=>{
             this.order=res.data;
         })
       },
       orderStatue2:function () {
+        this.msg1="删除订单"
         var url="api/findAlreadyPayOrders"
         axios.get(url).then(res=>{
           this.order=res.data;
         })
       },
-      operation:function (oid) {
-          var url="api/deleteOrders/"+oid
-          axios.post(url).then(res=>{
-              this.query();
-          })
+      operation:function () {
+        axios.post("api/pay",this.order).then(res => {
+          this.$router.replace({path:'/applyText',query:{htmls:res.data}})
+
+        })
       },
       cart:function () {
         this.$router.push("/userCart")
@@ -192,6 +203,7 @@
       pay:function () {
         axios.post("api/pay").then(res => {
            this.$router.replace({path:'/applyText',query:{htmls:res.data}})
+
         })
       },
       reback:function () {
