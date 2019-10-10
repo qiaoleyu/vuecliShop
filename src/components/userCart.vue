@@ -81,7 +81,7 @@
     components: {
         ElImage,
     },
-    el: "#app1",
+//    el: "#app1",
       data() {
         var checkAge = (rule, value, callback) => {
           if (!value) {
