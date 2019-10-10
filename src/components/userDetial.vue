@@ -23,7 +23,7 @@
                   <el-dropdown-item>杭州</el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
-              <router-link type="info" :to="{name:'userLogin'}" style="color:black"><a>Hi,请登录</a></router-link>
+              <router-link type="info" :to="{name:'userLogin'}" style="color:black"><a>{{users.uname}}</a></router-link>
               &nbsp;&nbsp;&nbsp;
               <router-link type="info" :to="{name:'userRegist'}" style="color:black"><a>免费注册</a></router-link>
               &nbsp;&nbsp;&nbsp;
@@ -99,41 +99,38 @@
 
             <el-form label-width="100px" style="width: 500px;margin: auto;height: 80px;line-height: 80px;text-align: left">
               <el-form-item label="用户名:">
-                <el-input class="arrow" name="uName" v-model="users.uName" ></el-input>
+                <el-input class="arrow" name="uName" v-model="users.uname" ></el-input>
               </el-form-item>
               <el-form-item label="头像:">
-                <div class="demo-basic--circle">
-                  <div class="block"><el-avatar :size="50" :src="users.uPic" v-model="users.uPic" name="uPic" width="40" height="40" class="pic" style="margin-right: 400px"></el-avatar></div>
-                </div>
-                <!--<img :src="users.uPic" v-model="users.uPic" name="uPic" width="40" height="40" class="pic" style="margin-right: 400px"/>-->
+                <img :src="users.upic" v-model="users.upic" name="uPic" width="40" height="40" class="pic" style="margin-right: 400px"/>
               </el-form-item>
               <el-form-item label="密码:">
-                <el-input name="uPassword" v-model="users.uPassword"></el-input>
+                <el-input name="upassword" v-model="users.upassword"></el-input>
               </el-form-item>
               <el-form-item label="性别:">
-                <el-radio v-model="uSex" label="1" value="男">男</el-radio>
-                <el-radio v-model="uSex" label="2" value="女">女</el-radio>
+                <el-radio v-model="users.usex" label="false" :value="true">男</el-radio>
+                <el-radio v-model="users.usex" label="true" :value="false">女</el-radio>
               </el-form-item>
               <el-form-item label="注册时间:">
                 <el-date-picker name="createTime" v-model="users.createTime" type="date" placeholder="选择日期" style="width: 400px"></el-date-picker>
               </el-form-item>
               <el-form-item label="联系方式:">
-                <el-input name="uTell" v-model="users.uTell" ></el-input>
+                <el-input name="uTell" v-model="users.utell" ></el-input>
               </el-form-item>
               <el-form-item label="邮箱账号:">
-                <el-input name="uEmail" v-model="users.uEmail"></el-input>
+                <el-input name="uEmail" v-model="users.uemail"></el-input>
               </el-form-item>
               <el-form-item label="收货地址:">
-                <el-input v-model="users.uAddress" name="address">
+                <el-input v-model="users.uaddress" name="address">
                 </el-input>
               </el-form-item>
               <el-form-item label="出生日期:">
-                <el-date-picker name="uBirthday" v-model="users.uBirthday" type="date" placeholder="选择日期" style="width: 400px"></el-date-picker>
+                <el-date-picker name="uBirthday" v-model="users.ubirthday" type="date" placeholder="选择日期" style="width: 400px"></el-date-picker>
               </el-form-item>
-              <el-form-item label="账户余额:">
-                 <span v-model="users.uMoney" name="uMoney">
+              <!--<el-form-item label="账户余额:">
+                 <span v-model="users.umoney" name="uMoney">
                  </span>
-              </el-form-item>
+              </el-form-item>-->
               <div style="width: 200px;margin: auto;height: 40px;margin-left: 200px">
                 <el-button type="primary" style="height: 40px" plain @click="updateUsers()">确认</el-button>
                 <el-button type="primary" style="height: 40px" plain @click="backIndex()">返回</el-button>
@@ -178,15 +175,64 @@
 
 <script>
   import axios from 'axios'
+  import Cookies from 'js-cookie'
   export default{
       data(){
           return{
+              file:'',
             users:{
-
+                uid:'',
+                uname:'',
+              upic:'',
+              usex:true
             },
-            uSex:'1'
+
           }
-      },methods:{
+      },mounted(){
+          var uid=Cookies.get('uid');
+          if (uid!=null){
+            axios.get("api/findUserByUid/"+uid).then(res=>{
+                this.users=res.data;
+            })
+          }else {
+            alert("请登录")
+            this.$router.push('/')
+          }
+    },
+    methods:{
+      getFile: function (event) {
+        this.file = event.target.files[0];
+        console.log(this.file);
+      },
+      upload:function () {
+        let formData = new FormData();
+        formData.append("file", this.file);
+        axios.post("/api/upload",formData).then(res=>{
+          //window.location.reload();
+          console.log(res.data)
+          if(res.data!="fail"){
+            this.users.upic=res.data;
+//            alert(this.shop.shopPic)
+          }
+          else {
+            alert(res.data);
+          }
+        })
+      },
+      updateUsers:function () {
+          if (this.users.usex="1"){
+              this.users.usex=true;
+          }if(this.users.usex="2"){
+            this.users.usex=false;
+        }
+        axios.post("api/updateUser",this.users).then(res=>{
+            if (res.data=="success"){
+                alert("修改成功")
+            }else {
+                alert(res.data)
+            }
+        })
+      },
         backIndex:function () {
           this.$router.push("/")
         },

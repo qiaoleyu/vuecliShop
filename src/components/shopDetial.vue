@@ -523,24 +523,33 @@
 //        console.log(value);
       },
       addcart:function () {
-        axios.post("api/addCart",{num:this.num,shop:this.shop,total:this.total}).then(res=>{
-//            alert(this.total)
-            if (res.data!=null){
-                alert("加入成功")
-            }else {
-                alert("加入失败")
-            }
-        })
+        var uid=Cookies.get("uid");
+        if (uid!=null){
+          axios.post("api/addCart/"+uid,{num:this.num,shop:this.shop,total:this.total}).then(res=>{
+  //            alert(this.total)
+              if (res.data!=null){
+                  alert("加入成功")
+              }else {
+                  alert("加入失败")
+              }
+          })
+        }else {
+          alert("请登录")
+        }
       },
       submitForm:function () {
         var uid=Cookies.get("uid");
-        axios.post("api/userOrder1/"+uid,this.shop).then(res=>{
-          if (res.data!=null){
-            this.$router.push("/userOrder")
-          }else {
-            alert("生成订单失败")
-          }
-        })
+        if (uid!=null){
+          axios.post("api/userOrder1/"+uid,this.shop).then(res=>{
+            if (res.data!=null){
+              this.$router.push("/userOrder")
+            }else {
+              alert("生成订单失败")
+            }
+          })
+        }else {
+          alert("请登录")
+        }
       },
       show:function () {
         this.$router.push("/")

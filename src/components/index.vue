@@ -648,6 +648,7 @@
       logout:function () {
         Cookies.remove('uid'); // fail!
         Cookies.remove('uid', { path: '/' });
+        this.users.uname='Hi,请登录'
         this.$router.push("/")
       },
       show2:function (ids) {
