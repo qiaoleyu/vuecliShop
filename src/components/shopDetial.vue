@@ -97,7 +97,7 @@
           <el-col :span="6">
             <router-link :to="{name:'index'}">
               <div class="grid-content" style="float:left;width:205px;height: 70px;line-height: 70px;margin-top:10px; ">
-                <el-image src="../static/logo2.jpg" style="height: 70px;width:200px;border-radius: 3px"></el-image>
+                <el-image src="../static/logo2.jpg" style="height: 70px;width:205px;border-radius: 3px"></el-image>
               </div>
             </router-link>
           </el-col>
