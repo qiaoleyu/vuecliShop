@@ -90,8 +90,8 @@
         <!--logo、搜索框、购物车-->
         <el-row :gutter="10">
           <el-col :span="6">
-            <div class="grid-content" style="float:left;width:205px;height: 70px;line-height: 70px;margin-top:10px;background-color:#F37A21 ">
-              <el-image src="../static/logo1.jpg" style="height: 70px;width:70px;border-radius: 3px"></el-image>
+            <div class="grid-content" style="float:left;width:205px;height: 70px;line-height: 70px;margin-top:10px;background-color: azure ">
+              <el-image src="../static/1Logo.jpg" style="height: 70px;width:70px;border-radius: 3px"></el-image>
             </div>
           </el-col>
           <el-col :span="12">
