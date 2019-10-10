@@ -291,7 +291,7 @@
                 <div class=" bg-purple-dark" style="height: 120px">
                   <div style="height: 120px;margin-left: 150px">
                     <div style="float: left;margin-top: 40px;color: red;line-height: 40px;margin-right: 30px">
-                      <el-input-number v-model="num" size="small" style="width: 100px;" controls-position="right" @change="handleChange" :min="1" >
+                      <el-input-number v-model="num" size="small" style="width: 100px" controls-position="right" @change="handleChange" :min="1" >
                       </el-input-number>
                     </div>
                     <div style="float: left;margin-top: 40px;margin-right: 30px"><el-button type="primary" plain style="width: 120px" class="el-icon-plus" @click="addcart()">购物车</el-button></div>
@@ -558,6 +558,7 @@
           })
         }else {
           alert("请登录")
+          this.$router.push("/userLogin")
         }
       },
       show:function () {
