@@ -76,6 +76,7 @@
 
   import axios from 'axios'
   import ElImage from "../../node_modules/element-ui/packages/image/src/main";
+  import Cookies from 'js-cookie'
   export default{
     components: {
         ElImage,
@@ -156,6 +157,8 @@
         }
       },
     mounted:function () {
+        var id=Cookies.get("uid")
+      console.log(id)
        this.query();
     },
       methods: {

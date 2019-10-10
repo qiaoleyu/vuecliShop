@@ -70,6 +70,7 @@
 
 <script>
   import axios from 'axios'
+  import Cookies from 'js-cookie'
 
   export default {
   data () {
@@ -118,6 +119,8 @@
                     //接收后端返回来的数据
                   if(res.data!=null){
 //                      alert("登录成功！");
+                    this.user=res.data;
+                    Cookies.set('uid', this.user.uid, { expires: 7, path: '/' });
                       this.$router.push("/");
                   }else{
                       alert("登录失败");
