@@ -223,69 +223,81 @@
               </el-col>
               <el-col :span="4" :gutter="10">
                 <el-row :span="24">
-                  <div class=" bg-purple-dark" style="height: 126px">
-                    <el-image src="../static/logo1.jpg" style="height: 100px;width: 140px"></el-image>
+                  <div class=" bg-purple-dark" style="height: 125px">
+                    <el-image src="../static/logo1.jpg" style="height: 125px;width: 180px"></el-image>
 
                   </div>
                 </el-row>
                 <el-row :span="24">
-                  <div class=" bg-purple-dark" style="height: 126px">
-                    <el-image src="../static/logo1.jpg" style="height: 100px;width: 140px"></el-image>
+                  <div class=" bg-purple-dark" style="height: 125px">
+                    <el-image src="../static/logo1.jpg" style="height: 125px;width: 180px"></el-image>
                   </div>
                 </el-row>
                 <el-row :span="24">
-                  <div class=" bg-purple-dark" style="height: 126px">
-                    <el-image src="../static/logo1.jpg" style="height: 100px;width: 140px"></el-image>
+                  <div class=" bg-purple-dark" style="height: 125px">
+                    <el-image src="../static/logo1.jpg" style="height: 125px;width: 180px"></el-image>
                   </div>
                 </el-row>
               </el-col>
             </el-row>
             <el-row :gutter="10">
-              <el-col :span="1"><el-button class="el-icon-arrow-left" type="warning" plain style="height: 80px;width: 50%" @click=""></el-button></el-col>
-              <el-col :span="2">
-                <div class=" bg-purple-dark" style="height: 80px">
-                  <el-image src="../static/logo1.jpg" style="height: 80px;width: 80px"></el-image>
+              <!--<el-col :span="1"><el-button class="el-icon-arrow-left" type="warning" plain style="height: 80px;width: 50%" @click=""></el-button></el-col>-->
 
-                </div>
-              </el-col>
-              <el-col :span="2">
-                <div class=" bg-purple-dark" style="height: 80px">
-                  <el-image src="../static/logo1.jpg" style="height: 80px;width: 80px"></el-image>
 
-                </div>
-              </el-col>
-              <el-col :span="2">
-                <div class=" bg-purple-dark" style="height: 80px">
-                  <el-image src="../static/logo1.jpg" style="height: 80px;width: 80px"></el-image>
-
-                </div>
-              </el-col>
-              <el-col :span="2">
-                <div class=" bg-purple-dark" style="height: 80px">
-                  <el-image src="../static/logo1.jpg" style="height: 80px;width: 80px"></el-image>
-
-                </div>
-              </el-col>
-              <el-col :span="1"><el-button class=" el-icon-arrow-right" type="warning" plain style="height: 80px;width: 50%" @click=""></el-button></el-col>
               <el-col :span="10">
-                <div class=" bg-purple-dark" style="height: 80px">
-                  <div style="height: 80px">
-                    <div style="float: right;margin-top: 20px;margin-right: 30px"><el-button type="primary" plain style="width: 120px" class="el-icon-plus" @click="addcart()">购物车</el-button></div>
-                    <div style="float: right;margin-top: 20px;margin-right: 30px"><el-button type="success" plain style="width: 120px" @click="submitForm()">立即购买</el-button></div>
-                    <div style="float: right;margin-top: 20px;color: red;line-height: 40px;margin-right: 30px">
-                      <el-input-number v-model="num" size="small" style="width: 80px;" controls-position="right" @change="handleChange" :min="1" >
+                <div class="" style="height: 120px">
+                <template>
+                  <el-carousel :interval="4000" type="card" height="120px">
+                    <el-carousel-item v-for="item in 3" :key="item">
+                      <img :src="shop.shopBigPic" style="height: 100%;width: 100%">
+                    </el-carousel-item>
+                  </el-carousel>
+                </template>
+
+                  <!--<el-image src="../static/logo1.jpg" style="height: 120px;width: 180px"></el-image>-->
+
+                </div>
+              </el-col>
+              <!--<el-col :span="3">-->
+                <!--<div class=" bg-purple-dark" style="height: 120px">-->
+                  <!--<el-image src="../static/logo1.jpg" style="height: 120px;width: 140px"></el-image>-->
+
+                <!--</div>-->
+              <!--</el-col>-->
+              <!--<el-col :span="3">-->
+                <!--<div class=" bg-purple-dark" style="height: 120px">-->
+                  <!--<el-image src="../static/logo1.jpg" style="height: 120px;width: 140px"></el-image>-->
+
+                <!--</div>-->
+              <!--</el-col>-->
+
+              <!--<el-col :span="2">-->
+                <!--<div class=" bg-purple-dark" style="height: 100px">-->
+                  <!--<el-image src="../static/logo1.jpg" style="height: 100px;width: 100px"></el-image>-->
+
+                <!--</div>-->
+              <!--</el-col>-->
+              <!--<el-col :span="1"><el-button class=" el-icon-arrow-right" type="warning" plain style="height: 80px;width: 50%" @click=""></el-button></el-col>-->
+              <el-col :span="14">
+                <div class=" bg-purple-dark" style="height: 120px">
+                  <div style="height: 120px;margin-left: 150px">
+                    <div style="float: left;margin-top: 40px;color: red;line-height: 40px;margin-right: 30px">
+                      <el-input-number v-model="num" size="small" style="width: 100px;" controls-position="right" @change="handleChange" :min="1" >
                       </el-input-number>
                     </div>
+                    <div style="float: left;margin-top: 40px;margin-right: 30px"><el-button type="primary" plain style="width: 120px" class="el-icon-plus" @click="addcart()">购物车</el-button></div>
+                    <div style="float: left;margin-top: 40px;margin-right: 30px"><el-button type="success" plain style="width: 120px" @click="submitForm()">立即购买</el-button></div>
+
                   </div>
                 </div>
               </el-col>
-              <el-col :span="4">
-                <div class=" bg-purple-dark" style="height: 80px;line-height: 40px">
-                  <div><a><el-button plain type="warning" size="small" class="el-icon-star-on">关注</el-button></a></div>
-                  <div><a><el-button plain type="warning" size="small" class="el-icon-chat-dot-square">聊天</el-button></a></div>
-                </div>
+              <!--<el-col :span="4">-->
+                <!--<div class=" bg-purple-dark" style="height: 80px;line-height: 40px">-->
+                  <!--<div><a><el-button plain type="warning" size="small" class="el-icon-star-on">关注</el-button></a></div>-->
+                  <!--<div><a><el-button plain type="warning" size="small" class="el-icon-chat-dot-square">聊天</el-button></a></div>-->
+                <!--</div>-->
 
-              </el-col>
+              <!--</el-col>-->
             </el-row>
           </div>
           <!--下（bottom）-->
@@ -429,6 +441,21 @@
     font-size: 14px;
     width: 100px;
     line-height: 60px;
+  }
+  .el-carousel__item h3 {
+    color: #475669;
+    font-size: 14px;
+    opacity: 0.75;
+    line-height: 200px;
+    margin: 0;
+  }
+
+  .el-carousel__item:nth-child(2n) {
+    background-color: #99a9bf;
+  }
+
+  .el-carousel__item:nth-child(2n+1) {
+    background-color: #d3dce6;
   }
 
 </style>
