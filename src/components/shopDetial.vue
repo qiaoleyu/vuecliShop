@@ -28,9 +28,7 @@
               &nbsp;&nbsp;&nbsp;
               <router-link type="info" :to="{name:'userRegist'}" style="color:black"><a>免费注册</a></router-link>
               &nbsp;&nbsp;&nbsp;
-              <a type="info" style="color:black"><a @click="logout()">退出</a></a>
-
-              .0
+              <span type="info" style="color:black"><a @click="logout()">退出</a></span>
             </div>
           </el-col>
           <el-col :span="14">
@@ -524,11 +522,11 @@
         this.$router.push("/userRegist")
       },
       logout:function () {
-          alert("hello")
+//          alert("hello")
         Cookies.remove('uid'); // fail!
         Cookies.remove('uid', { path: '/' });
         this.users.uname='Hi,请登录'
-        this.$router.push("/userLogin")
+        this.$router.push("/")
       }
     }
 
