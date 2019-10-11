@@ -125,8 +125,8 @@
         <!--二级菜单-->
         <div id="second" v-show="second" @mouseover="show2(index+1)" @mouseleave="leave(index+1)">
           <div   v-for="(shop,index) in shops" v-bind:key="shop.shopId" style="float:left;width: 230px;height: 80px;margin-left: 20px" >
-            <div style="width: 60px;height: 80px;float:left;margin-top: 20px; text-align:center" ><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}"><img :src="shop.shopPic" style="width: 60px;height: 60px" ></router-link></div>
-            <div style="width: 170px;height: 80px;float:left;text-align:left;line-height: 80px;font-size: 14px;font-weight: bold;margin-top: 10px" ><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}">{{shop.shopName}}</router-link></div>
+            <div style="width: 60px;height: 80px;float:left;margin-top: 20px; text-align:center" ><router-link :to="{path:'/shopDetial/'+shop.shopId}"><img :src="shop.shopPic" style="width: 60px;height: 60px" ></router-link></div>
+            <div style="width: 170px;height: 80px;float:left;text-align:left;line-height: 80px;font-size: 14px;font-weight: bold;margin-top: 10px" ><router-link :to="{path:'/shopDetial/'+shop.shopId}">{{shop.shopName}}</router-link></div>
           </div>
         </div>
         <el-row :gutter="10">
@@ -145,7 +145,7 @@
               <el-carousel height="500px">
                 <el-carousel-item  v-for="(shop,index) in shop1" v-bind:key="shop.shopId">
 
-                  <router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}"><img :src="shop.shopLun" style="height: 100%;width: 100%"></router-link>
+                  <router-link :to="{path:'/shopDetial/'+shop.shopId}"><img :src="shop.shopLun" style="height: 100%;width: 100%"></router-link>
 
                 </el-carousel-item>
               </el-carousel>
@@ -176,8 +176,8 @@
             <!--<div  style="height: 400px;width: 1600px" >-->
               <!--<div v-for="(shop,index) in shop2" style="float: left;width: 350px;height: 400px">-->
                 <div style="height: 400px;width: 310px">
-                  <div style="height: 310px;width: 310px"><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}"><img :src="shop.shopBigPic" style="width:310px;height: 310px"></router-link></div>
-                  <div style="width: 310px;height: 30px;font-weight: 600;line-height: 30px;background-color: white"><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}">{{shop.shopName}}</router-link></div>
+                  <div style="height: 310px;width: 310px"><router-link :to="{path:'/shopDetial/'+shop.shopId}"><img :src="shop.shopBigPic" style="width:310px;height: 310px"></router-link></div>
+                  <div style="width: 310px;height: 30px;font-weight: 600;line-height: 30px;background-color: white"><router-link :to="{path:'/shopDetial/'+shop.shopId}">{{shop.shopName}}</router-link></div>
                   <div style="width: 310px;height: 30px;line-height: 30px;background-color: white">{{shop.shopInfo}}</div>
                   <div style="width: 310px;height: 30px;color: red;line-height: 30px;background-color: white">￥：{{shop.shopPrice}}元</div>
 
@@ -214,8 +214,8 @@
             <!--</el-col>-->
             <el-col :span="6" v-for="(shop,index) in shop3" v-bind:key="shop.shopId">
               <div style="height: 400px;width: 310px">
-                <div style="height: 310px;width: 310px"><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}"><img :src="shop.shopBigPic" style="width:310px;height: 310px"></router-link></div>
-                <div style="width: 310px;height: 30px;font-weight: 600;line-height: 30px;background-color: white"><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}">{{shop.shopName}}</router-link></div>
+                <div style="height: 310px;width: 310px"><router-link :to="{path:'/shopDetial/'+shop.shopId}"><img :src="shop.shopBigPic" style="width:310px;height: 310px"></router-link></div>
+                <div style="width: 310px;height: 30px;font-weight: 600;line-height: 30px;background-color: white"><router-link :to="{path:'/shopDetial/'+shop.shopId}">{{shop.shopName}}</router-link></div>
                 <div style="width: 310px;height: 30px;line-height: 30px;background-color: white">{{shop.shopInfo}}</div>
                 <div style="width: 310px;height: 30px;color: red;line-height: 30px;background-color: white">￥：{{shop.shopPrice}}元</div>
 

@@ -491,7 +491,6 @@
             shop:{
               shopPrice:'',
             },
-            shopId:'',
             users:{
               uid:'',
               uname:'Hi,请登录'
@@ -518,20 +517,19 @@
       }
     },mounted () {
 
+
+        var shopId=this.$route.params.shopId;
+        axios.get("api/findById/"+shopId).then(res=>{
+            this.shop=res.data;
+            this.total=this.shop.shopPrice;
+        })
+
       var uid=Cookies.get("uid");
       if (uid!=null){
         axios.get("api/findUserByUid/"+uid).then(res=>{
           this.users=res.data;
         })
       }
-        var shopId=this.$route.params.shopId;
-        if (shopId!=null){
-          this.shopId=shopId;
-        }
-        axios.get("api/findById/"+this.shopId).then(res=>{
-            this.shop=res.data;
-            this.total=this.shop.shopPrice;
-        })
     } ,methods:{
       handleChange(value) {
           this.total=value*this.shop.shopPrice;

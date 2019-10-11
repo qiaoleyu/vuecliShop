@@ -98,8 +98,8 @@
         <!--模糊查询-->
           <el-col :span="6" v-for="(shop,index) in shop4" v-bind:key="shop.shopId">
             <div style="height: 400px;width: 310px">
-              <div style="height: 310px;width: 310px"><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}"><img :src="shop.shopBigPic" style="width:310px;height: 310px"></router-link></div>
-              <div style="width: 310px;height: 30px;font-weight: 600;line-height: 30px;background-color: white"><router-link :to="{name:'shopDetial',params:{shopId:shop.shopId}}">{{shop.shopName}}</router-link></div>
+              <div style="height: 310px;width: 310px"><router-link :to="{path:'/shopDetial/'+shop.shopId}"><img :src="shop.shopBigPic" style="width:310px;height: 310px"></router-link></div>
+              <div style="width: 310px;height: 30px;font-weight: 600;line-height: 30px;background-color: white"><router-link :to="{path:'/shopDetial/'+shop.shopId}">{{shop.shopName}}</router-link></div>
               <div style="width: 310px;height: 30px;line-height: 30px;background-color: white">{{shop.shopInfo}}</div>
               <div style="width: 310px;height: 30px;color: red;line-height: 30px;background-color: white">{{shop.shopPrice}}</div>
 
