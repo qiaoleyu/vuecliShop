@@ -94,7 +94,7 @@
         <el-row :gutter="10">
           <el-col :span="6">
             <div class="grid-content" style="float:left;width:205px;height: 70px;line-height: 70px;margin-top:10px;background-color: azure ">
-              <el-image src="../static/logo2.jpg" style="height: 70px;width:205px;border-radius: 3px"></el-image>
+              <el-image src="http://pxx4c7852.bkt.clouddn.com/logo2%20%281%29.jpg" style="height: 70px;width:205px;border-radius: 3px"></el-image>
             </div>
           </el-col>
           <el-col :span="12">
@@ -299,7 +299,7 @@
 
         <el-row :gutter="10">
           <el-col :span="24">
-            <div class="" round style="line-height: 120px;height: 120px"><router-link :to="{path:'/shopDetial/'+29}"><el-image :src="url1"></el-image></router-link></div>
+            <div class="" round style="line-height: 120px;height: 120px;width: 100%"><router-link :to="{path:'/shopDetial/'+29}"><el-image :src="url1"></el-image></router-link></div>
 
           </el-col>
         </el-row>
@@ -598,7 +598,7 @@
     name: 'index',
     data () {
       return {
-          url1:'../static/url1.jpg',
+          url1:'http://pxx4c7852.bkt.clouddn.com/url1.jpg',
         input: '',
         msg: 'Welcome to 小米 首页',
         shop_kinds:[],
