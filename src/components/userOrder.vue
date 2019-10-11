@@ -65,7 +65,7 @@
 
       <el-table-column label="操作" width="140"  align="center">
         <template slot-scope="order">
-          <el-button type="danger" size="small" plain @click="operation()">{{msg1}}</el-button>
+          <el-button type="danger" size="small" plain @click="del(order.row.oid)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -91,7 +91,6 @@
     data () {
       return{
         msg:'订单详情页',
-        msg1:'',
         order:{
           onumber:"",
           shopName:"",
@@ -102,7 +101,8 @@
           shopCount:"",
           userAddress:"",
           userName:"",
-          userTell:""
+          userTell:"",
+          oid:""
         },
         count: 0,
         istrue: false,
@@ -136,18 +136,15 @@
       }
     },
     mounted:function () {
-        var uid=Cookies.get("uid")
-        console.log(uid)
-
+      var uid=Cookies.get("uid")
       this.query(uid);
-      this.msg1="删除"
     },
     methods:{
       query:function (uid) {
         if (uid!=null){
           axios.get("api/findAllOrder/"+uid).then(res=> {
             this.order = res.data;
-
+            //console.log(this.order)
           })
         }else {
           alert("请登录")
@@ -165,7 +162,6 @@
             }
           }, '全选')
         ]);
-
       },
       orderFindAll:function () {
         this.query(uid);
@@ -196,10 +192,15 @@
           this.$router.push('/')
         }
       },
-      operation:function () {
-        axios.post("api/pay",this.order).then(res => {
-          this.$router.replace({path:'/applyText',query:{htmls:res.data}})
-
+      del:function (oid) {
+        var uid=Cookies.get("uid")
+        var url="api/deleteOrders/"+oid
+        axios.post(url).then(res=>{
+          if(res.data==1){
+            this.query(uid);
+          }else{
+            alert("删除失败！")
+          }
         })
       },
       cart:function () {
