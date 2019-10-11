@@ -246,7 +246,7 @@
                 </el-row>
                 <el-row :span="24">
                   <div class=" bg-purple-dark" style="height: 125px">
-                    <router-link :to="{path:'/shops/'+'手环'}"> <el-image src="http://pxx4c7852.bkt.clouddn.com/ggao3.jpg" style="height: 125px;width: 185px"></el-image></router-link>
+                    <router-link :to="{path:'/shops/'+'手表'}"> <el-image src="http://pxx4c7852.bkt.clouddn.com/ggao3.jpg" style="height: 125px;width: 185px"></el-image></router-link>
                   </div>
                 </el-row>
               </el-col>
@@ -259,8 +259,8 @@
                 <div class="" style="height: 120px;background-color: white">
                 <template >
                   <el-carousel :interval="4000" type="card" height="120px">
-                    <el-carousel-item v-for="item in 3" :key="item" style=";background-color: white">
-                      <img :src="shop.shopBigPic" style="height: 100%;width: 180px">
+                    <el-carousel-item v-for="item in 3" :key="item" style=";background-color: white;width: 200px">
+                      <img :src="shop.shopBigPic" style="height: 100%;width: 160px">
                     </el-carousel-item>
                   </el-carousel>
                 </template>
