@@ -117,7 +117,7 @@
                 //发送请求 把参数发给后端（把用户名和密码发给后端 验证是否存在这个账号）
                 axios.post("api/userLogin", {loginName:this.loginName,password:this.password}).then(res=>{
                     //接收后端返回来的数据
-                  if(res.data!=null){
+                  if(res.data!=''){
 //                      alert("登录成功！");
                     this.user=res.data;
                     Cookies.set('uid', this.user.uid, { expires: 7, path: '/' });

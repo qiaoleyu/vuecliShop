@@ -266,7 +266,7 @@
     },
     mounted(){
       var uid=Cookies.get("uid");
-      if (uid!=null){
+      if (uid!=''){
         axios.get("api/findUserByUid/"+uid).then(res=>{
           this.users=res.data;
         })

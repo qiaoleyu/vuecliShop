@@ -91,20 +91,28 @@
 
       <el-main>
         <div style="width: 80%;height:800px;margin: auto">
-            <div style="width: 500px;margin: auto;height: 80px;line-height: 80px;text-align: right">
+           <!-- <div style="width: 500px;margin: auto;height: 80px;line-height: 80px;text-align: right">
               <div style="width: 90px;float: left;margin-right: 10px">头像:</div>
               <div style="width: 300px;float: left"><input type="file" @change="getFile($event)"></div>
               <div style="width: 100px;float: left"><el-button plain style="height: 40px" @click="upload()">上传</el-button></div>
-              <!--<el-radio-group size="small"></el-radio-group>-->
-              <!--<div style="margin: 20px;"></div>-->
-            </div>
+              &lt;!&ndash;<el-radio-group size="small"></el-radio-group>&ndash;&gt;
+              &lt;!&ndash;<div style="margin: 20px;"></div>&ndash;&gt;
+            </div>-->
 
             <el-form label-width="100px" style="width: 500px;margin: auto;height: 80px;line-height: 80px;text-align: left">
               <el-form-item label="用户名:">
                 <el-input class="arrow" name="uName" v-model="users.uname" ></el-input>
               </el-form-item>
               <el-form-item label="头像:">
-                <img :src="users.upic" v-model="users.upic" name="uPic" width="40" height="40" class="pic" style="margin-right: 400px"/>
+                <el-upload
+                  class="avatar-uploader"
+                  action="api/upload"
+                  :show-file-list="false"
+                  :on-success="handleAvatarSuccess"
+                  :before-upload="beforeAvatarUpload">
+                  <img v-if="users.upic" :src="users.upic" name="uPic" width="80px" height="80px" class="avatar">
+                  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                </el-upload>
               </el-form-item>
               <el-form-item label="密码:">
                 <el-input name="upassword" v-model="users.upassword"></el-input>
@@ -181,7 +189,6 @@
   export default{
       data(){
           return{
-              file:'',
             users:{
                 uid:'',
                 uname:'',
@@ -202,25 +209,6 @@
           }
     },
     methods:{
-      getFile: function (event) {
-        this.file = event.target.files[0];
-        console.log(this.file);
-      },
-      upload:function () {
-        let formData = new FormData();
-        formData.append("file", this.file);
-        axios.post("/api/upload",formData).then(res=>{
-          //window.location.reload();
-          console.log(res.data)
-          if(res.data!="fail"){
-            this.users.upic=res.data;
-//            alert(this.shop.shopPic)
-          }
-          else {
-            alert(res.data);
-          }
-        })
-      },
       updateUsers:function () {
           if (this.users.usex="1"){
               this.users.usex=true;
@@ -230,6 +218,7 @@
         axios.post("api/updateUser",this.users).then(res=>{
             if (res.data=="success"){
                 alert("修改成功")
+              this.$router.push('/')
             }else {
                 alert(res.data)
             }
@@ -244,6 +233,22 @@
         Cookies.remove('uid', { path: '/' });
         this.users.uname='Hi,请登录'
         this.$router.push("/")
+      },
+      handleAvatarSuccess(res, file) {
+        this.users.upic = URL.createObjectURL(file.raw);
+        console.log(this.users.upic)
+      },
+      beforeAvatarUpload(file) {
+        const isJPG = file.type === 'image/jpeg';
+        const isLt2M = file.size / 1024 / 1024 < 2;
+
+        if (!isJPG) {
+          this.$message.error('上传头像图片只能是 JPG 格式!');
+        }
+        if (!isLt2M) {
+          this.$message.error('上传头像图片大小不能超过 2MB!');
+        }
+        return isJPG && isLt2M;
       }
     }
   }
