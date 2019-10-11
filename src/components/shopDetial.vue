@@ -34,6 +34,8 @@
           </el-col>
           <el-col :span="14">
             <div class="grid-content bg-purple-light" style="color: black;line-height: 30px;font-size: 14px">
+              <router-link type="info" :to="{name:'index'}" style="color:black;margin-right: 20px"><a>首页</a></router-link>
+
               <router-link type="info" :to="{name:'userOrder'}" style="color: black"><a>我的订单</a></router-link>
               <el-dropdown style="margin-left: 10px">
           <span class="el-dropdown-link">
@@ -102,10 +104,10 @@
             </router-link>
           </el-col>
           <el-col :span="12">
-            <div class="grid-content " style="height: 80px;width:100%;">
-              <el-input type="text" style="width: 80%;margin: auto;margin-top: 20px"  placeholder="请输入内容"
+            <div class="grid-content" style="height: 80px;width:100%;">
+              <el-input ref="searchName" type="text" style="width: 80%;margin: auto;margin-top: 20px" placeholder="请输入内容"
                         v-model="input"
-                        clearable></el-input>
+              ></el-input>
               <el-button type="danger" icon="el-icon-search" plain @click="search()">查询</el-button>
             </div>
           </el-col>
@@ -575,6 +577,11 @@
         Cookies.remove('uid', { path: '/' });
         this.users.uname='Hi,请登录'
         this.$router.push("/")
+      },
+      search:function () {
+        var searchName=this.$refs.searchName.value
+        //alert(searchName)
+        this.$router.push('/shops/'+searchName)
       }
     }
 
