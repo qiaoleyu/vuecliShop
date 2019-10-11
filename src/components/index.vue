@@ -188,6 +188,15 @@
           </el-col>
 
         </el-row>
+
+        <!--<el-row :gutter="10">-->
+          <!--<el-col :span="24">-->
+            <!--<div class="grid-content bg-purple" style="line-height: 120px;height: 120px"><el-image :src="url1"></el-image></div>-->
+
+          <!--</el-col>-->
+        <!--</el-row>-->
+
+
         <!--手机专场-->
         <el-row :gutter="10">
           <el-col :span="6">
@@ -287,6 +296,15 @@
             <!--</div>-->
           <!--</el-col>-->
         <!--</el-row>-->
+
+        <el-row :gutter="10">
+          <el-col :span="24">
+            <div class="" round style="line-height: 120px;height: 120px"><router-link :to="{path:'/shopDetial/'+29}"><el-image :src="url1"></el-image></router-link></div>
+
+          </el-col>
+        </el-row>
+
+
         <!--多、快、好、省-->
         <el-row :gutter="10" style="margin-top: 20px">
           <el-col :span="6">
@@ -580,6 +598,7 @@
     name: 'index',
     data () {
       return {
+          url1:'../static/url1.jpg',
         input: '',
         msg: 'Welcome to 小米 首页',
         shop_kinds:[],
