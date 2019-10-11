@@ -558,7 +558,6 @@
           })
         }else {
           alert("请登录")
-          this.$router.push("/userLogin")
         }
       },
       show:function () {

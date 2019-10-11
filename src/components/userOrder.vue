@@ -145,16 +145,9 @@
     methods:{
       query:function (uid) {
         if (uid!=null){
-          axios.get("api/findAllOrder/"+uid).then(res=>{
-              this.order=res.data;
-              for(var i=0;i<res.data.length;i++){
-                  if(res.data[i].oStatue==0){
-                    this.msg1="删除"
-                  }
-                else if(res.data[i].oStatue==1){
-                  this.msg1="去支付"
-                }
-              }
+          axios.get("api/findAllOrder/"+uid).then(res=> {
+            this.order = res.data;
+
           })
         }else {
           alert("请登录")
@@ -175,21 +168,33 @@
 
       },
       orderFindAll:function () {
-        this.query();
+        this.query(uid);
       },
       orderStatue1:function () {
-        this.msg1="去支付"
-        var url="api/findNotPayOrders"
-        axios.get(url).then(res=>{
-            this.order=res.data;
-        })
+        var uid=Cookies.get("uid")
+        if (uid!=null){
+          this.msg1="去支付"
+          var url="api/findNotPayOrders/"+uid
+          axios.get(url).then(res=>{
+              this.order=res.data;
+          })
+        }else {
+          alert("请登录")
+          this.$router.push('/')
+        }
       },
       orderStatue2:function () {
-        this.msg1="删除订单"
-        var url="api/findAlreadyPayOrders"
-        axios.get(url).then(res=>{
-          this.order=res.data;
-        })
+        var uid=Cookies.get("uid")
+        if (uid!=null){
+          this.msg1="删除订单"
+          var url="api/findAlreadyPayOrders/"+uid
+          axios.get(url).then(res=>{
+            this.order=res.data;
+          })
+        }else {
+          alert("请登录")
+          this.$router.push('/')
+        }
       },
       operation:function () {
         axios.post("api/pay",this.order).then(res => {
