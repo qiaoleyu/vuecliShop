@@ -14,10 +14,10 @@
              >
       <!--Content-Type="multipart/form-data"-->
       <el-form-item label="邮箱" prop="uemail" style="text-align: left" >
-        <el-input type="text" v-model="users.uemail" placeholder="请填写邮箱地址"></el-input>
+        <el-input type="text" v-model="users.uemail" name="uemail" placeholder="请填写邮箱地址"></el-input>
       </el-form-item>
       <el-form-item label="用户名" prop="uname" style="text-align: left">
-        <el-input type="text" v-model="users.uname" placeholder="请输入确认密码"></el-input>
+        <el-input type="text" v-model="users.uname" name="uname" placeholder="请输入确认密码"></el-input>
       </el-form-item>
       <!--<el-form-item label="头像"  style="text-align: left">-->
         <!--&lt;!&ndash;<el-input type="file" v-model="file" name="file"></el-input>&ndash;&gt;-->
@@ -54,7 +54,7 @@
         <!--&lt;!&ndash;<div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>&ndash;&gt;-->
       <!--</el-upload>-->
       <el-form-item label="验证码" prop="code" style="text-align: left">
-        <el-input type="text" v-model="code" placeholder="请输入验证码" style="width: 280px"></el-input>
+        <el-input type="text" v-model="code" placeholder="请输入验证码" onme="code" style="width: 280px"></el-input>
         <!--<el-container id='app'>-->
         <!-- :disabled="isDisabled"-->
         <el-button round type="primary" plain :class="{disabled: !this.canClick}" @click="sendMail()">{{content}}</el-button>
@@ -62,14 +62,14 @@
         <!--</el-container>-->
       </el-form-item>
       <el-form-item label="密码" prop="upassword" style="text-align: left">
-        <el-input type="password" v-model="users.upassword"  autocomplete="off" placeholder="请设置密码"></el-input>
+        <el-input type="password" v-model="users.upassword" name="upassword" autocomplete="off" placeholder="请设置密码"></el-input>
       </el-form-item>
       <el-form-item label="确认密码" prop="checkPass" style="text-align: left">
         <el-input type="password" v-model="users.checkPass" autocomplete="off"  placeholder="请输入确认密码"></el-input>
       </el-form-item>
 
       <el-form-item label="联系方式" prop="utell" style="text-align: left" >
-        <el-input type="text" v-model="users.utell" placeholder="请填写联系方式"></el-input>
+        <el-input type="text" v-model="users.utell" name="utell" placeholder="请填写联系方式"></el-input>
       </el-form-item>
 
 
@@ -256,27 +256,10 @@ import ElContainer from "../../node_modules/element-ui/packages/container/src/ma
         axios.post("/api/sendEmail",this.users).then(res=>{
           if(res.data!=''){
               alert(res.data)
-//            this.$message({
-//              message: '邮件发送成功，请输入验证码!',
-//              type: 'success'
-//            })
           }else{
               alert("发送失败！")
           }
         })
-
-
-
-//        console.log(this.users);
-//        axios.post("/api/sendEmail",this.users).then(res=>{
-//          console.log(res.data);
-//          if(res.data!=null){
-//
-//            alert(res.data);
-//          }else{
-//            alert("发送失败！");
-//          }
-//        })
       },
         back:function(){
             this.$router.push("/");
@@ -285,7 +268,10 @@ import ElContainer from "../../node_modules/element-ui/packages/container/src/ma
         add:function(){
           this.$refs['users'].validate((valid) => {
             if(valid){
+              console.log(this.users)
              axios.post("api/userRegister",{users:this.users,code:this.code}).then(res=>{
+               console.log(this.users)
+               console.log(this.code)
                if(res.data=="success"){
                    alert("注册成功，欢迎进行登录")
                  this.$router.push("/userLogin")
