@@ -209,25 +209,6 @@
           }
     },
     methods:{
-      /*getFile: function (event) {
-        this.file = event.target.files[0];
-        console.log(this.file);
-      },
-      upload:function () {
-        let formData = new FormData();
-        formData.append("file", this.file);
-        axios.post("/api/upload",formData).then(res=>{
-          //window.location.reload();
-          console.log(res.data)
-          if(res.data!="fail"){
-            this.users.upic=res.data;
-//            alert(this.shop.shopPic)
-          }
-          else {
-            alert(res.data);
-          }
-        })
-      },*/
       updateUsers:function () {
           if (this.users.usex="1"){
               this.users.usex=true;
@@ -237,6 +218,7 @@
         axios.post("api/updateUser",this.users).then(res=>{
             if (res.data=="success"){
                 alert("修改成功")
+              this.$router.push('/')
             }else {
                 alert(res.data)
             }

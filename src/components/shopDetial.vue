@@ -540,7 +540,7 @@
         if (uid!=null){
           axios.post("api/addCart/"+uid,{num:this.num,shop:this.shop,total:this.total}).then(res=>{
   //            alert(this.total)
-              if (res.data!=null){
+              if (res.data!=''){
                   alert("加入成功")
               }else {
                   alert("加入失败")
@@ -554,7 +554,7 @@
         var uid=Cookies.get("uid");
         if (uid!=null){
           axios.post("api/userOrder1/"+uid,{num:this.num,shop:this.shop,total:this.total}).then(res=>{
-            if (res.data!=null){
+            if (res.data!=''){
               this.$router.push("/userOrder")
             }else {
               alert("生成订单失败")

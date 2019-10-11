@@ -254,8 +254,7 @@ import ElContainer from "../../node_modules/element-ui/packages/container/src/ma
           }
         },1000)
         axios.post("/api/sendEmail",this.users).then(res=>{
-          console.log(res.data);
-          if(res.data!=null){
+          if(res.data!=''){
               alert(res.data)
 //            this.$message({
 //              message: '邮件发送成功，请输入验证码!',
