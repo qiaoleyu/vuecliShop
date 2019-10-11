@@ -164,6 +164,7 @@
         ]);
       },
       orderFindAll:function () {
+        var uid=Cookies.get("uid")
         this.query(uid);
       },
       orderStatue1:function () {
