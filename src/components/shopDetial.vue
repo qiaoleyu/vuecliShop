@@ -549,7 +549,7 @@
       submitForm:function () {
         var uid=Cookies.get("uid");
         if (uid!=null){
-          axios.post("api/userOrder1/"+uid,this.shop).then(res=>{
+          axios.post("api/userOrder1/"+uid,{num:this.num,shop:this.shop,total:this.total}).then(res=>{
             if (res.data!=null){
               this.$router.push("/userOrder")
             }else {
