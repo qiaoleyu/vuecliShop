@@ -299,14 +299,14 @@
 
         <el-row :gutter="10">
           <el-col :span="24">
-            <div class="" round style="line-height: 120px;height: 120px;width: 100%"><router-link :to="{path:'/shopDetial/'+29}"><el-image :src="url1"></el-image></router-link></div>
+            <div class="" round style="line-height: 120px;height: 120px;width: 100%"><router-link :to="{path:'/shopDetial/'+29}"><el-image :src="url1" style="width: 100%;height: 100%;margin: auto;margin-top: 20px"></el-image></router-link></div>
 
           </el-col>
         </el-row>
 
 
         <!--多、快、好、省-->
-        <el-row :gutter="10" style="margin-top: 20px">
+        <el-row :gutter="10" style="margin-top: 40px">
           <el-col :span="6">
             <div  style="height: 50px;line-height: 50px;border-right: 1px solid #e5e9f2">
               <div style="height: 50px;width: 50px;float: left;margin-left: 50px"><el-image src="../static/duo.jpg" style="height: 50px;width: 50px"></el-image></div>
