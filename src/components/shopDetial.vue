@@ -489,8 +489,10 @@
             num: 1,
             msg: 'Welcome to 商品详情页',
             shop:{
-              shopPrice:''
-            },users:{
+              shopPrice:'',
+            },
+            shopId:'',
+            users:{
               uid:'',
               uname:'Hi,请登录'
 
@@ -523,8 +525,10 @@
         })
       }
         var shopId=this.$route.params.shopId;
-
-        axios.get("api/findById/"+shopId).then(res=>{
+        if (shopId!=null){
+          this.shopId=shopId;
+        }
+        axios.get("api/findById/"+this.shopId).then(res=>{
             this.shop=res.data;
             this.total=this.shop.shopPrice;
         })
