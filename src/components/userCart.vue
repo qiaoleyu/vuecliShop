@@ -168,7 +168,7 @@
               })
             }else {
 //                alert("请登录")
-              this.$message.error('错了哦，请登录后再试');
+//              this.$message.error('错了哦，请登录后再试');
               this.$router.push('/')
             }
         },
@@ -177,6 +177,10 @@
           axios.get("api/deleteCart/"+row.cid).then(res=>{
             if (res.data!=null){
               this.query();
+              this.$message({
+                message: '恭喜你，删除成功',
+                type: 'success'
+              });
             }else {
 //              alert("")
               this.$message.error('错了哦，删除失败');
