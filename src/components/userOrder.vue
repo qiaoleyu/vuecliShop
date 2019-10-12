@@ -227,13 +227,14 @@
           }
         }
         console.log(this.list.length)
-        if(this.list.length>1){
-          this.$message.error('只能选中一件商品');
-        }else if(this.list.length=1){
+        if(this.list.length==1){
           //console.log(this.list)
           axios.post("api/pay",this.list).then(res => {
             this.$router.replace({path:'/applyText',query:{htmls:res.data}})
           })
+        }else{
+          this.$message.error('只能选中一件商品');
+          this.$router.go(0)
         }
 
       }
