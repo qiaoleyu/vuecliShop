@@ -113,7 +113,7 @@
               shopFactory:""
             }
           ],
-          count: 0,
+          count: '',
           istrue: false,
           list1:[
             {
@@ -131,11 +131,12 @@
       },
       computed: {
         countList: function () {
-          var a = 0;
+
+          var a = new Number(0);
           for (let i = 0; i < this.list.length; i++) {
             if (this.list[i].checked == true) {
 
-              a += this.list[i].shopPrice * this.list[i].shopCount
+              a = Number(a)+Number((this.list[i].shopPrice * this.list[i].shopCount).toFixed(2))
             }
           }
           this.count = a;
@@ -167,18 +168,16 @@
                 this.list=res.data;
               })
             }else {
-//                alert("请登录")
               this.$message.error('错了哦，请登录后再试');
               this.$router.push('/')
             }
         },
         removeId(row) {
-//        console.log(row.cid)
           axios.get("api/deleteCart/"+row.cid).then(res=>{
             if (res.data!=null){
-              this.query();
+              var uid=Cookies.get("uid");
+              this.query(uid);
             }else {
-//              alert("")
               this.$message.error('错了哦，删除失败');
 
             }
@@ -187,17 +186,13 @@
         },
         handleChange(event,index) {
 
-            this.list[index].shopTotal = event * this.list[index].shopPrice;
+            this.list[index].shopTotal = (event * this.list[index].shopPrice).toFixed(2);
 
             this.list[index].shopCount = event;
-//          alert(this.shopCount)
-//          alert(this.list[0])
+
             axios.post("api/updateCart", this.list[index]).then(res => {
-//              if (res.data != null) {
-//                alert("加入成功")
-//              } else {
-//                alert("加入失败")
-//              }
+
+
             })
       },
         renderHeader: function (h, params) {//实现table表头添加
@@ -229,7 +224,6 @@
             if(res.data!=null){
               this.$router.push("/userOrder");
             }else{
-//              alert("");
               this.$message.error('错了哦，订单生成失败');
               this.$router.push("/userCart");
             }

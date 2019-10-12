@@ -518,8 +518,6 @@
             count:0
       }
     },mounted () {
-
-
       var shopId=this.$route.params.shopId;
       axios.get("api/findById/"+shopId).then(res=>{
         this.shop=res.data;
@@ -539,8 +537,7 @@
       })
     } ,methods:{
       handleChange(value) {
-          this.total=value*this.shop.shopPrice;
-//        console.log(value);
+          this.total=(value*this.shop.shopPrice).toFixed(2);
       },
       addcart:function () {
         var uid=Cookies.get("uid");
@@ -558,12 +555,10 @@
                   this.count=res.data
                 })
               }else {
-//                  alert("加入失败")
                 this.$message.error('错了哦，加入失败');
               }
           })
         }else {
-//          alert("请登录")
           this.$message.error('错了哦，请登录后再试');
         }
       },
@@ -574,13 +569,11 @@
             if (res.data!=''){
               this.$router.push("/userOrder")
             }else {
-//              alert("生成订单失败")
               this.$message.error('错了哦，生成订单失败');
             }
           })
         }else {
           this.$message.error('错了哦，请登录后再试');
-//          alert("请登录")
         }
       },
       show:function () {
@@ -593,7 +586,6 @@
         this.$router.push("/userRegist")
       },
       logout:function () {
-//          alert("hello")
         Cookies.remove('uid'); // fail!
         Cookies.remove('uid', { path: '/' });
         this.users.uname='Hi,请登录'
@@ -601,7 +593,6 @@
       },
       search:function () {
         var searchName=this.$refs.searchName.value
-        //alert(searchName)
         this.$router.push('/shops/'+searchName)
       }
     }
