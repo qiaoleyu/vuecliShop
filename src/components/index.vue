@@ -623,10 +623,7 @@
       }
     },
     mounted(){
-      var url="api/count"
-      axios.post(url).then(res=>{
-          this.count=res.data
-      })
+
 
      var uid=Cookies.get("uid");
       if (uid!=null){
@@ -634,6 +631,11 @@
           this.users=res.data;
         })
       }
+
+      var url="api/count/"+uid
+      axios.post(url).then(res=>{
+        this.count=res.data
+      })
 
       var url="api/show1"
       axios.get(url).then(res=>{
