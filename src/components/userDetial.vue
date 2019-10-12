@@ -235,8 +235,7 @@
         this.$router.push("/")
       },
       handleAvatarSuccess(res, file) {
-        this.users.upic = URL.createObjectURL(file.raw);
-        console.log(this.users.upic)
+        this.users.upic = res;
       },
       beforeAvatarUpload(file) {
         const isJPG = file.type === 'image/jpeg';
