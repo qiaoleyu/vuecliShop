@@ -163,21 +163,7 @@
                     <span style="line-height: 40px">商品描述：</span>
                     <span v-text="shop.shopInfo"></span>
                   </div>
-                  <div style="background-color: aliceblue">
-                    <span style="line-height: 40px">配送地址：</span>
-                    <template>
-                      <el-select v-model="value" placeholder="请选择">
-                        <el-option
-                          v-for="item in options"
-                          :key="item.value"
-                          :label="item.label"
-                          :value="item.value"
-                          width="100px"
-                        >
-                        </el-option>
-                      </el-select>
-                    </template>
-                  </div>
+
 
                   <div style="height: 40px;background-color: aliceblue;">
                     <span style="line-height: 40px">商品销量：</span>
@@ -395,6 +381,7 @@
             msg: 'Welcome to 商品详情页',
             shop:{
               shopPrice:'',
+              shopBigPic:''
             },
             users:{
               uid:'',
@@ -402,22 +389,6 @@
 
             },
             total:'',
-            options: [{
-              value: 'adress1',
-              label: '北京'
-            }, {
-              value: 'address2',
-              label: '上海'
-            }, {
-              value: 'address3',
-              label: '广州'
-            }, {
-              value: 'address4',
-              label: '天津'
-            }, {
-              value: 'address5',
-              label: '杭州'
-            }],
             value: '',
             //购物车数量
             count:0,
