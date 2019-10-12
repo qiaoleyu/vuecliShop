@@ -22,9 +22,9 @@
                 </el-dropdown-menu>
               </el-dropdown>
 
-              <router-link type="info" :to="{name:'userLogin'}" style="color:black" v-if="this.uid==null"><a>Hi,请登录</a></router-link>
+              <router-link type="info" :to="{name:'userLogin'}" style="color:black;margin-right: 20px" v-if="this.uid==null"><a>Hi,请登录</a></router-link>
 
-                <span style="color:black" v-if="this.uid!=null"><a>{{users.uname}}</a></span>
+                <span style="color:black;margin-right: 20px" v-if="this.uid!=null"><a>{{users.uname}}</a></span>
 
               <router-link type="info" :to="{name:'userRegist'}" style="color:black"><a>免费注册</a></router-link>
               &nbsp;&nbsp;&nbsp;
