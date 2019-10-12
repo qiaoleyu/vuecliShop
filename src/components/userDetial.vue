@@ -197,8 +197,9 @@
 
           }
       },mounted(){
-          var uid=Cookies.get('uid');
-          if (uid!=null){
+
+           var uid=Cookies.get('uid');
+          if (uid!=''){
             axios.get("api/findUserByUid/"+uid).then(res=>{
                 this.users=res.data;
                 /*if (this.users.usex=0){
