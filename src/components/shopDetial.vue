@@ -553,7 +553,10 @@
                   message: '恭喜你，这是一条成功消息',
                   type: 'success'
                 });
-                this.$router.go(0)
+                var url="api/count/"+uid
+                axios.post(url).then(res=>{
+                  this.count=res.data
+                })
               }else {
                   alert("加入失败")
               }
