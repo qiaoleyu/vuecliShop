@@ -42,6 +42,7 @@
             <a>个人中心</a><i class="el-icon-arrow-down el-icon--left"></i>
           </span>
                 <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item><a @click="toUser()">完善信息</a></el-dropdown-item>
                   <el-dropdown-item><a @click="toModify()">修改密码</a></el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
@@ -99,7 +100,7 @@
 
             <el-form label-width="100px" style="width: 500px;margin: auto;height: 80px;line-height: 80px;text-align: left">
               <el-form-item label="用户名:">
-                <el-input class="arrow" name="uname" v-model="users.uname" ></el-input>
+                <el-input class="arrow" name="uname" v-model="users.uname" disabled></el-input>
               </el-form-item>
               <el-form-item label="头像:">
                 <el-upload
