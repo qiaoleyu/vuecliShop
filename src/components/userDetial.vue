@@ -111,11 +111,11 @@
                   :on-success="handleAvatarSuccess"
                   :before-upload="beforeAvatarUpload">
                   <img v-if="users.upic" :src="users.upic" name="uPic" width="80px" height="80px" class="avatar">
-                  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                  <i v-else class="el-icon-plusavatar-uploader-icon"></i>
                 </el-upload>
               </el-form-item>
               <el-form-item label="密码:">
-                <el-input name="upassword" v-model="users.upassword"></el-input>
+                <el-input name="upassword" type="password" v-model="users.upassword" disabled></el-input>
               </el-form-item>
               <el-form-item label="性别:">
                 <el-radio v-model="users.usex" label="false" :value="true">男</el-radio>
