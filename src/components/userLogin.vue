@@ -110,6 +110,7 @@
     methods: {
       login:function () {
                 axios.post("api/userLogin", {loginName:this.users.loginName,password:this.users.password}).then(res=>{
+
                     //接收后端返回来的数据
                   if(res.data=='success'){
                       axios.post("api/findUserByName/"+this.users.loginName).then(res=>{

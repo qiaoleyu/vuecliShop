@@ -111,7 +111,7 @@
                   :on-success="handleAvatarSuccess"
                   :before-upload="beforeAvatarUpload">
                   <img v-if="users.upic" :src="users.upic" name="upic" width="80px" height="80px" class="avatar">
-                  <i v-else class="el-icon-plusavatar-uploader-icon"></i>
+                  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                 </el-upload>
               </el-form-item>
               <el-form-item label="性别:">
