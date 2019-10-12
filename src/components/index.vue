@@ -21,8 +21,11 @@
                   <el-dropdown-item>杭州</el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
+              <div v-if="this.uid==null">
               <router-link type="info" :to="{name:'userLogin'}" style="color:black"><a>{{users.uname}}</a></router-link>
-              &nbsp;&nbsp;&nbsp;
+              </div>
+                <span style="color:black" v-if="this.uid!=null"><a>{{users.uname}}</a></span>
+
               <router-link type="info" :to="{name:'userRegist'}" style="color:black"><a>免费注册</a></router-link>
               &nbsp;&nbsp;&nbsp;
               <span type="info" style="color:black;cursor: pointer"><a @click="logout()">退出登录</a></span>
