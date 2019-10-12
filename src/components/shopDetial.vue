@@ -25,7 +25,9 @@
                   <el-dropdown-item>杭州</el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
-              <router-link type="info" :to="{name:'userLogin'}" style="color:black"><a>{{users.uname}}</a></router-link>
+              <router-link type="info" :to="{name:'userLogin'}" style="color:black" v-if="this.uid==null"><a>Hi,请登录</a></router-link>
+
+              <span style="color:black" v-if="this.uid!=null"><a>{{users.uname}}</a></span>
               &nbsp;&nbsp;&nbsp;
               <router-link type="info" :to="{name:'userRegist'}" style="color:black"><a>免费注册</a></router-link>
               &nbsp;&nbsp;&nbsp;

@@ -21,9 +21,9 @@
                   <el-dropdown-item>杭州</el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
-              <div v-if="this.uid==null">
-              <router-link type="info" :to="{name:'userLogin'}" style="color:black"><a>{{users.uname}}</a></router-link>
-              </div>
+
+              <router-link type="info" :to="{name:'userLogin'}" style="color:black" v-if="this.uid==null"><a>Hi,请登录</a></router-link>
+
                 <span style="color:black" v-if="this.uid!=null"><a>{{users.uname}}</a></span>
 
               <router-link type="info" :to="{name:'userRegist'}" style="color:black"><a>免费注册</a></router-link>
@@ -604,7 +604,7 @@
         Cookies.remove('uid'); // fail!
         Cookies.remove('uid', { path: '/' });
         this.users.uname='Hi,请登录'
-//        this.$router.push("/")
+       this.$router.go(0)
       },
       show2:function (ids) {
         this.second = true;
