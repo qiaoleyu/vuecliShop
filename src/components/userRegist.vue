@@ -223,8 +223,10 @@ import ElContainer from "../../node_modules/element-ui/packages/container/src/ma
           if(res.data!=''){
             this.$message({
               message: '验证码发送成功，欢迎注册！',
+
               type: 'success'
             });
+            console.log(res.data)
 //              alert(res.data)
           }else{
 //              alert("发送失败！")

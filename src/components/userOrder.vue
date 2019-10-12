@@ -72,8 +72,10 @@
     <div style="background-color: aliceblue; height: 80px;margin: auto;margin-top: 20px">
 
       <div style="float: right;margin-top: 20px;margin-right: 60px"><el-button type="warning" plain style="width: 100px" @click="reback()">取消</el-button></div>
-      <div style="float: right;margin-top: 20px;margin-right: 30px"><el-button type="success" plain style="width: 100px" @click="pay()">立即支付</el-button></div>
-      <div style="float: right;margin-top: 20px;margin-right: 30px"><el-button type="primary" plain style="width: 100px" @click="cart()">上一步</el-button></div>
+
+        <div style="float: right;margin-top: 20px;margin-right: 30px"><el-button v-if="this.statue==2" type="success" plain style="width: 100px" @click="pay()">立即支付</el-button></div>
+
+        <div style="float: right;margin-top: 20px;margin-right: 30px"><el-button type="primary" plain style="width: 100px" @click="cart()">上一步</el-button></div>
       <div style="float: right;margin-top: 20px;font-size:16px;color: red;line-height: 40px;margin-right: 60px">总消费：<span>{{countList}}元</span></div>
     </div>
   </div>
@@ -108,6 +110,7 @@
         ],
         count: 0,
         istrue: false,
+        statue:'1',
         list:[]
       }
     },
@@ -152,7 +155,7 @@
         }else {
 //          alert("请登录")
           this.$message.error('您还没登录哦，请登录后再试');
-          this.$router.push('/')
+          this.$router.push("/userLogin")
         }
       },
       renderHeader: function (h, params) {//实现table表头添加
@@ -169,10 +172,12 @@
       },
       orderFindAll:function () {
         var uid=Cookies.get("uid")
+        this.statue=1;
         this.query(uid);
       },
       orderStatue1:function () {
         var uid=Cookies.get("uid")
+        this.statue=2;
         if (uid!=null){
           this.msg1="去支付"
           var url="api/findNotPayOrders/"+uid
@@ -182,11 +187,12 @@
         }else {
 //          alert("请登录")
           this.$message.error('您还没登录哦，请登录后再试');
-          this.$router.push('/')
+          this.$router.push("/userLogin")
         }
       },
       orderStatue2:function () {
         var uid=Cookies.get("uid")
+        this.statue=3;
         if (uid!=null){
           this.msg1="删除订单"
           var url="api/findAlreadyPayOrders/"+uid
@@ -197,7 +203,7 @@
 //          alert("请登录")
           this.$message.error('您还没登录哦，请登录后再试');
 
-          this.$router.push('/')
+          this.$router.push("/userLogin")
         }
       },
       del:function (oid) {
