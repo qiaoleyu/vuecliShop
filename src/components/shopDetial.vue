@@ -36,19 +36,15 @@
             <div class="grid-content" style="color: black;line-height: 30px;font-size: 14px">
               <router-link type="info" :to="{name:'index'}" style="color:black;margin-right: 20px"><a>首页</a></router-link>
 
-              <router-link type="info" :to="{name:'userOrder'}" style="color: black"><a>我的订单</a></router-link>
+              <a @click="toOrders()">我的订单</a>
               <el-dropdown style="margin-left: 10px">
           <span class="el-dropdown-link">
             <a>个人中心</a><i class="el-icon-arrow-down el-icon--left"></i>
           </span>
                 <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item><router-link :to="{name:'userDetial'}">完善信息</router-link></el-dropdown-item>
-                  <el-dropdown-item><router-link :to="{name:'modifyPassword'}">修改密码</router-link></el-dropdown-item>
-                  <!--<el-dropdown-item>完善信息</el-dropdown-item>-->
-                  <!--<el-dropdown-item>修改信息</el-dropdown-item>-->
-                  <!--<el-dropdown-item>3</el-dropdown-item>-->
-                  <!--<el-dropdown-item>4</el-dropdown-item>-->
-                  <!--<el-dropdown-item>5</el-dropdown-item>-->
+                  <el-dropdown-item @click="toUser()">完善信息</el-dropdown-item>
+                  <el-dropdown-item @click="toModify()">修改密码</el-dropdown-item>
+
                 </el-dropdown-menu>
               </el-dropdown>
               <el-dropdown>
@@ -118,7 +114,7 @@
                 <el-tooltip content="购物车" placement="bottom" effect="light">
                   <el-button size="" plain style="width: 180px;height: 60px">
                     <i style="font-size: 16px; font-weight: bold;color:red"  class="el-icon-shopping-cart-full "></i>
-                    <router-link :to="{name:'userCart'}" style="font-size: 16px"><a>购物车</a></router-link>
+                    <a @click="toCart">购物车</a>
 
                   </el-button>
                 </el-tooltip>
@@ -127,28 +123,9 @@
             </div>
           </el-col>
         </el-row>
-        <!--详情页的头-->
-        <!--<el-row>-->
-          <!--<el-col :span="24"><div class=" bg-purple-dark" style="height: 40px"></div></el-col>-->
-        <!--</el-row>-->
+
         <div style="width: 90%;margin: auto">
-          <!--上（top）-->
-          <!--<div>-->
-            <!--<el-row>-->
-              <!--<el-col :span="24">-->
-                <!--<div class=" bg-purple-dark" style="height: 40px">-->
-                  <!--<el-row>-->
-                    <!--<el-col :span="10">-->
-                      <!--<div class="bg-purple" plain style="color: black;font-size: 14px;float: left;margin-left: 40px">-->
-                        <!--<el-button @click="show()">首页-->
-                        <!--</el-button>-->
-                      <!--</div>-->
-                    <!--</el-col>-->
-                  <!--</el-row>-->
-                <!--</div></el-col>-->
-            <!--</el-row>-->
-          <!--</div>-->
-          <!--中（middle）-->
+
           <div>
             <el-row :gutter="10">
               <el-col :span="10">
@@ -200,25 +177,7 @@
                       </el-select>
                     </template>
                   </div>
-              <!--    <div style="height: 80px;background-color: #E5E9F2">
-                    <div>
-                      <span style="line-height: 30px">配送地址：</span>
-                    </div>
-                    <div>
-                      <template>
-                        <div>
-                          <el-radio-group v-model="radio1">
-                            <el-radio-button label="上海"></el-radio-button>
-                            <el-radio-button label="北京"></el-radio-button>
-                            <el-radio-button label="广州"></el-radio-button>
-                            <el-radio-button label="深圳"></el-radio-button>
-                            <el-radio-button label="杭州"></el-radio-button>
-                            <el-radio-button label="西安"></el-radio-button>
-                          </el-radio-group>
-                        </div>
-                      </template>
-                    </div>
-                  </div>-->
+
                   <div style="height: 40px;background-color: aliceblue;">
                     <span style="line-height: 40px">商品销量：</span>
                     <span v-text="shop.shopRepertory"></span>
@@ -257,8 +216,6 @@
               </el-col>
             </el-row>
             <el-row :gutter="10">
-              <!--<el-col :span="1"><el-button class="el-icon-arrow-left" type="warning" plain style="height: 80px;width: 50%" @click=""></el-button></el-col>-->
-
 
               <el-col :span="10">
                 <div class="" style="height: 120px;background-color: white">
@@ -270,30 +227,8 @@
                   </el-carousel>
                 </template>
 
-                  <!--<el-image src="../static/logo1.jpg" style="height: 120px;width: 180px"></el-image>-->
-
                 </div>
               </el-col>
-              <!--<el-col :span="3">-->
-                <!--<div class=" bg-purple-dark" style="height: 120px">-->
-                  <!--<el-image src="../static/logo1.jpg" style="height: 120px;width: 140px"></el-image>-->
-
-                <!--</div>-->
-              <!--</el-col>-->
-              <!--<el-col :span="3">-->
-                <!--<div class=" bg-purple-dark" style="height: 120px">-->
-                  <!--<el-image src="../static/logo1.jpg" style="height: 120px;width: 140px"></el-image>-->
-
-                <!--</div>-->
-              <!--</el-col>-->
-
-              <!--<el-col :span="2">-->
-                <!--<div class=" bg-purple-dark" style="height: 100px">-->
-                  <!--<el-image src="../static/logo1.jpg" style="height: 100px;width: 100px"></el-image>-->
-
-                <!--</div>-->
-              <!--</el-col>-->
-              <!--<el-col :span="1"><el-button class=" el-icon-arrow-right" type="warning" plain style="height: 80px;width: 50%" @click=""></el-button></el-col>-->
               <el-col :span="14">
                 <!--bg-purple-dark-->
                 <div class=" " style="height: 120px;background-color: aliceblue;">
@@ -308,47 +243,10 @@
                   </div>
                 </div>
               </el-col>
-              <!--<el-col :span="4">-->
-                <!--<div class=" bg-purple-dark" style="height: 80px;line-height: 40px">-->
-                  <!--<div><a><el-button plain type="warning" size="small" class="el-icon-star-on">关注</el-button></a></div>-->
-                  <!--<div><a><el-button plain type="warning" size="small" class="el-icon-chat-dot-square">聊天</el-button></a></div>-->
-                <!--</div>-->
 
-              <!--</el-col>-->
             </el-row>
           </div>
-          <!--下（bottom）-->
-          <!--<div>-->
-            <!--<el-row :gutter="10">-->
-              <!--<el-col :span="2"><el-button class=" el-icon-arrow-left" type="warning" plain style="height: 120px"></el-button></el-col>-->
-              <!--<el-col :span="4">-->
-                <!--<div class=" bg-purple-dark" style="height: 120px">-->
-                  <!--<el-image src="../static/logo1.jpg" style="height: 100px;width: 140px"></el-image>-->
 
-                <!--</div></el-col>-->
-              <!--<el-col :span="4">-->
-                <!--<div class=" bg-purple-dark" style="height: 120px">-->
-                  <!--<el-image src="../static/logo1.jpg" style="height: 100px;width: 140px"></el-image>-->
-
-                <!--</div></el-col>-->
-              <!--<el-col :span="4">-->
-                <!--<div class=" bg-purple-dark" style="height: 120px">-->
-                  <!--<el-image src="../static/logo1.jpg" style="height: 100px;width: 140px"></el-image>-->
-
-                <!--</div></el-col>-->
-              <!--<el-col :span="4">-->
-                <!--<div class=" bg-purple-dark" style="height: 120px">-->
-                  <!--<el-image src="../static/logo1.jpg" style="height: 100px;width: 140px"></el-image>-->
-
-                <!--</div></el-col>-->
-              <!--<el-col :span="4">-->
-                <!--<div class=" bg-purple-dark" style="height: 120px">-->
-                  <!--<el-image src="../static/logo1.jpg" style="height: 100px;width: 140px"></el-image>-->
-
-                <!--</div></el-col>-->
-              <!--<el-col :span="2"><el-button class=" el-icon-arrow-right" type="warning" plain style="height: 120px" @click=""></el-button></el-col>-->
-            <!--</el-row>-->
-          <!--</div>-->
         </div>
 
       </el-main>
@@ -523,6 +421,7 @@
             //购物车数量
             count:0,
 //            详情页轮播图
+            uid:'',
             pic:[]
 
       }
@@ -540,13 +439,14 @@
       })
 
       var uid=Cookies.get("uid");
-      if (uid!=null){
-        axios.get("api/findUserByUid/"+uid).then(res=>{
+      this.uid=uid;
+      if (this.uid!=null){
+        axios.get("api/findUserByUid/"+this.uid).then(res=>{
           this.users=res.data;
         })
       }
 
-      var url="api/count/"+uid
+      var url="api/count/"+this.uid
       axios.post(url).then(res=>{
         this.count=res.data
       })
@@ -555,9 +455,9 @@
           this.total=(value*this.shop.shopPrice).toFixed(2);
       },
       addcart:function () {
-        var uid=Cookies.get("uid");
-        if (uid!=null){
-          axios.post("api/addCart/"+uid,{num:this.num,shop:this.shop,total:this.total}).then(res=>{
+
+        if (this.uid!=null){
+          axios.post("api/addCart/"+this.uid,{num:this.num,shop:this.shop,total:this.total}).then(res=>{
   //            alert(this.total)
               if (res.data!=''){
 //                  alert("加入成功")
@@ -565,7 +465,7 @@
                   message: '恭喜你，加入成功',
                   type: 'success'
                 });
-                var url="api/count/"+uid
+                var url="api/count/"+this.uid
                 axios.post(url).then(res=>{
                   this.count=res.data
                 })
@@ -579,9 +479,9 @@
         }
       },
       submitForm:function () {
-        var uid=Cookies.get("uid");
-        if (uid!=null){
-          axios.post("api/userOrder1/"+uid,{num:this.num,shop:this.shop,total:this.total}).then(res=>{
+
+        if (this.uid!=null){
+          axios.post("api/userOrder1/"+this.uid,{num:this.num,shop:this.shop,total:this.total}).then(res=>{
             if (res.data!=''){
               this.$router.push("/userOrder")
             }else {
@@ -590,6 +490,34 @@
           })
         }else {
           this.$message.error('错了哦，请登录后再试');
+          this.$router.push("/userLogin")
+        }
+      },
+      toOrders:function () {
+        if (this.uid!=null) {
+          this.$router.push("/userOrder")
+        }else {
+          this.$router.push("/userLogin")
+        }
+      },
+      toCart:function () {
+        if (this.uid!=null) {
+          this.$router.push("/userCart")
+        }else {
+          this.$router.push("/userLogin")
+        }
+      },
+      toUser:function () {
+        if (this.uid!=null) {
+          this.$router.push("/userDetial")
+        }else {
+          this.$router.push("/userLogin")
+        }
+      },
+      toModify:function () {
+        if (this.uid!=null) {
+          this.$router.push("/modifyPassword")
+        }else {
           this.$router.push("/userLogin")
         }
       },

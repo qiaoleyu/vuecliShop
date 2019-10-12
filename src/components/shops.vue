@@ -34,15 +34,14 @@
             <div class="grid-content" style="color: black;line-height: 30px;font-size: 14px">
               <router-link type="info" :to="{name:'index'}" style="color:black;margin-right: 20px"><a>首页</a></router-link>
 
-              <router-link type="info" :to="{name:'userOrder'}" style="color: black"><a>我的订单</a></router-link>
+              <a @click="toOrders()">我的订单</a>
               <el-dropdown style="margin-left: 10px">
           <span class="el-dropdown-link">
             <a>个人中心</a><i class="el-icon-arrow-down el-icon--left"></i>
           </span>
                 <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item><router-link :to="{name:'userDetial'}">完善信息</router-link></el-dropdown-item>
-                  <el-dropdown-item><router-link :to="{name:'modifyPassword'}">修改密码</router-link></el-dropdown-item>
-
+                  <el-dropdown-item @click="toUser()">完善信息</el-dropdown-item>
+                  <el-dropdown-item @click="toModify()">修改密码</el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
               <el-dropdown>
@@ -260,12 +259,14 @@
         users:{
           uname:'Hi,请登录'
         },
+        uid:''
       }
     },
     mounted(){
       var uid=Cookies.get("uid");
-      if (uid!=''){
-        axios.get("api/findUserByUid/"+uid).then(res=>{
+      this.uid=uid;
+      if (this.uid!=''){
+        axios.get("api/findUserByUid/"+this.uid).then(res=>{
           this.users=res.data;
         })
       }
@@ -284,6 +285,34 @@
     },
 
     methods:{
+      toOrders:function () {
+        if (this.uid!=null) {
+          this.$router.push("/userOrder")
+        }else {
+          this.$router.push("/userLogin")
+        }
+      },
+      toCart:function () {
+        if (this.uid!=null) {
+          this.$router.push("/userCart")
+        }else {
+          this.$router.push("/userLogin")
+        }
+      },
+      toUser:function () {
+        if (this.uid!=null) {
+          this.$router.push("/userDetial")
+        }else {
+          this.$router.push("/userLogin")
+        }
+      },
+      toModify:function () {
+        if (this.uid!=null) {
+          this.$router.push("/modifyPassword")
+        }else {
+          this.$router.push("/userLogin")
+        }
+      },
       login:function () {
         this.$router.push("/userLogin")
       },
