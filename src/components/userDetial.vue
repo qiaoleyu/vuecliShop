@@ -115,7 +115,7 @@
                 </el-upload>
               </el-form-item>
               <el-form-item label="密码:">
-                <el-input name="upassword" type="password" v-model="users.upassword" disabled style="width: 300px"></el-input>
+                <el-input name="upassword" type="password" v-model="users.upassword" style="width: 300px"></el-input>
                 <el-button type="primary" plain round @click="updatePassword">修改</el-button>
               </el-form-item>
               <el-form-item label="性别:">
