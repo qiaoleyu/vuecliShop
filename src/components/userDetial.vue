@@ -40,7 +40,7 @@
             <a>个人中心</a><i class="el-icon-arrow-down el-icon--left"></i>
           </span>
                 <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item @click="toModify()">修改密码</el-dropdown-item>
+                  <el-dropdown-item><a @click="toModify()">修改密码</a></el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
               <el-dropdown>
@@ -230,6 +230,7 @@
         if (this.uid!=null) {
           this.$router.push("/userOrder")
         }else {
+          this.$message.error('还没登录哦，请登录后再试');
           this.$router.push("/userLogin")
         }
       },
@@ -237,6 +238,7 @@
         if (this.uid!=null) {
           this.$router.push("/userCart")
         }else {
+          this.$message.error('还没登录哦，请登录后再试');
           this.$router.push("/userLogin")
         }
       },
@@ -245,6 +247,7 @@
         if (this.uid!=null) {
           this.$router.push("/modifyPassword")
         }else {
+          this.$message.error('还没登录哦，请登录后再试');
           this.$router.push("/userLogin")
         }
       },
