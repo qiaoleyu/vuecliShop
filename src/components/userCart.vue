@@ -136,7 +136,7 @@
           for (let i = 0; i < this.list.length; i++) {
             if (this.list[i].checked == true) {
 
-              a = Number(a)+Number((this.list[i].shopPrice * this.list[i].shopCount).toFixed(2))
+              a = Number(a)+Number((this.list[i].shopPrice * this.list[i].shopCount).toFixed(2));
             }
           }
           this.count = a;

@@ -112,9 +112,12 @@
                 axios.post("api/userLogin", {loginName:this.users.loginName,password:this.users.password}).then(res=>{
                     //接收后端返回来的数据
                   if(res.data=='success'){
-                    this.user=res.data;
-                    Cookies.set('uid', this.user.uid, { expires: 7, path: '/' });
-                      this.$router.push("/");
+                      axios.post("api/findUserByName/"+this.users.loginName).then(res=>{
+                        this.users=res.data;
+                        Cookies.set('uid', this.users.uid, { expires: 7, path: '/' });
+                        this.$router.push("/");
+                      })
+
                   }else{
                     this.$message.error(res.data);
                   }
