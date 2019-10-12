@@ -575,6 +575,7 @@
           })
         }else {
           this.$message.error('错了哦，请登录后再试');
+          this.$router.push("/userLogin")
         }
       },
       submitForm:function () {
@@ -589,6 +590,7 @@
           })
         }else {
           this.$message.error('错了哦，请登录后再试');
+          this.$router.push("/userLogin")
         }
       },
       show:function () {
