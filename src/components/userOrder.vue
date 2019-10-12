@@ -70,9 +70,6 @@
       </el-table-column>
     </el-table>
     <div style="background-color: aliceblue; height: 80px;margin: auto;margin-top: 20px">
-
-      <div style="float: right;margin-top: 20px;margin-right: 60px"><el-button type="warning" plain style="width: 100px" @click="reback()">取消</el-button></div>
-
         <div style="float: right;margin-top: 20px;margin-right: 30px"><el-button v-if="this.statue==2" type="success" plain style="width: 100px" @click="pay()">立即支付</el-button></div>
 
         <div style="float: right;margin-top: 20px;margin-right: 30px"><el-button type="primary" plain style="width: 100px" @click="cart()">上一步</el-button></div>
@@ -229,18 +226,16 @@
             a++;
           }
         }
-        //console.log(this.list)
-        axios.post("api/pay",this.list).then(res => {
-           this.$router.replace({path:'/applyText',query:{htmls:res.data}})
-        })
-      },
-      reback:function () {
-        axios.post("api/delOrder",this.order).then(res=>{
-            if(res.data.code==1){
-                this.$router.push("/userCart");
-            }
-        })
-      },
+        if(this.list.length==1){
+          //console.log(this.list)
+          axios.post("api/pay",this.list).then(res => {
+            this.$router.replace({path:'/applyText',query:{htmls:res.data}})
+          })
+        }else{
+          this.$message.error('只能选择一件商品');
+        }
+
+      }
     }
   }
 
