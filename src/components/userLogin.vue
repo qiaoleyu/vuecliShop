@@ -109,19 +109,20 @@
   },
     methods: {
       login:function () {
-                axios.post("api/userLogin", {loginName:this.users.loginName,password:this.users.password}).then(res=>{
-                    //接收后端返回来的数据
-                  if(res.data=='success'){
-                      axios.post("api/findUserByName/"+this.users.loginName).then(res=>{
-                        this.users=res.data;
-                        Cookies.set('uid', this.users.uid, { expires: 7, path: '/' });
-                        this.$router.push("/");
-                      })
-
-                  }else{
-                    this.$message.error(res.data);
-                  }
-                })
+        axios.post("api/userLogin", {loginName:this.users.loginName,password:this.users.password}).then(res=>{
+          var msg=res.data;
+          console.log(msg)
+          //接收后端返回来的数据
+          if(res.data=='success'){
+            axios.post("api/findUserByName/"+this.users.loginName).then(res=>{
+              this.users=res.data;
+              Cookies.set('uid', this.users.uid, { expires: 7, path: '/' });
+              this.$router.push("/");
+            })
+          }else{
+            this.$message.error(res.data);
+          }
+        })
       },resetForm(formName) {
         this.$refs[formName].resetFields();
       },

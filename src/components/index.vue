@@ -1,8 +1,5 @@
 <template>
   <div class="hello" style="width: 100%;margin: auto">
-    <!--<el-button type="primary" plain @click="login()">登录</el-button>-->
-    <!--<el-button type="primary" plain @click="regist()">注册</el-button>-->
-    <!--<el-button type="primary" plain @click="logout()">退出登录</el-button>-->
 
     <el-container>
 
@@ -36,17 +33,14 @@
             <div class="grid-content" style="color: black;line-height: 30px;font-size: 14px">
               <router-link type="info" :to="{name:'index'}" style="color:black;margin-right: 20px"><a>首页</a></router-link>
 
-              <router-link type="info" :to="{name:'userOrder'}" style="color: black"><a>我的订单</a></router-link>
+              <a @click="toOrders()">我的订单</a>
               <el-dropdown style="margin-left: 10px">
           <span class="el-dropdown-link">
             <a>个人中心</a><i class="el-icon-arrow-down el-icon--left"></i>
           </span>
                 <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item><router-link :to="{name:'userDetial'}">完善信息</router-link></el-dropdown-item>
-                  <!--<el-dropdown-item>修改信息</el-dropdown-item>-->
-                  <!--<el-dropdown-item>3</el-dropdown-item>-->
-                  <!--<el-dropdown-item>4</el-dropdown-item>-->
-                  <!--<el-dropdown-item>5</el-dropdown-item>-->
+                  <el-dropdown-item @click="toUser()">完善信息</el-dropdown-item>
+                  <el-dropdown-item @click="toModify()">修改密码</el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
               <el-dropdown>
@@ -113,7 +107,7 @@
                 <el-tooltip content="购物车" placement="bottom" effect="light">
                   <el-button size="" plain style="width: 180px;height: 60px">
                     <i style="font-size: 16px; font-weight: bold;color:red"  class="el-icon-shopping-cart-full "></i>
-                    <router-link :to="{name:'userCart'}" style="font-size: 16px"><a>购物车</a></router-link>
+                    <a @click="toCart">购物车</a>
 
                   </el-button>
                 </el-tooltip>
@@ -122,7 +116,6 @@
             </div>
           </el-col>
         </el-row>
-        <!--<hr color="pink">-->
 
         <!--二级菜单-->
         <div id="second" v-show="second" @mouseover="show2(index+1)" @mouseleave="leave(index+1)">
@@ -175,8 +168,7 @@
         <!--热卖中四个模块-->
         <el-row :gutter="10">
           <el-col :span="6" v-for="(shop,index) in shop2" v-bind:key="shop.shopId">
-            <!--<div  style="height: 400px;width: 1600px" >-->
-              <!--<div v-for="(shop,index) in shop2" style="float: left;width: 350px;height: 400px">-->
+
                 <div style="height: 400px;width: 310px">
                   <div style="height: 310px;width: 310px"><router-link :to="{path:'/shopDetial/'+shop.shopId}"><img :src="shop.shopBigPic" style="width:310px;height: 310px"></router-link></div>
                   <div style="width: 310px;height: 30px;font-weight: 600;line-height: 30px;background-color: white"><router-link :to="{path:'/shopDetial/'+shop.shopId}">{{shop.shopName}}</router-link></div>
@@ -185,44 +177,20 @@
 
                 </div>
 
-              <!--</div>-->
-            <!--</div>-->
           </el-col>
 
         </el-row>
-
-        <!--<el-row :gutter="10">-->
-          <!--<el-col :span="24">-->
-            <!--<div class="grid-content bg-purple" style="line-height: 120px;height: 120px"><el-image :src="url1"></el-image></div>-->
-
-          <!--</el-col>-->
-        <!--</el-row>-->
-
 
         <!--手机专场-->
         <el-row :gutter="10">
           <el-col :span="6">
             <div class="grid-content bg-purple" style="line-height: 60px;font-weight: bolder"><h3>手机专场</h3></div>
           </el-col>
-          <!--<el-col :span="6" :offset="12">-->
-            <!--<div class="grid-content" style="line-height: 60px;float: right">-->
-              <!--<el-tooltip content="上一页" placement="bottom" effect="light">-->
-                <!--<el-button class="el-icon-arrow-left" plain @click=""></el-button>-->
-              <!--</el-tooltip>-->
-              <!--<el-tooltip content="下一页" placement="bottom" effect="light">-->
-                <!--<el-button class="el-icon-arrow-right" plain @click=""></el-button>-->
-              <!--</el-tooltip>-->
-            <!--</div>-->
-          <!--</el-col>-->
+
         </el-row>
         <!--新品五个模块-->
         <el-row :gutter="10">
-            <!--<el-col :span="6">-->
-              <!--<div class="grid-content bg-purple" style="height: 240px">-->
-                <!--<el-image src="../static/logo1.jpg">商品2</el-image>-->
-                <!--<div><span>商品2</span></div>-->
-              <!--</div>-->
-            <!--</el-col>-->
+
             <el-col :span="6" v-for="(shop,index) in shop3" v-bind:key="shop.shopId">
               <div style="height: 400px;width: 310px">
                 <div style="height: 310px;width: 310px"><router-link :to="{path:'/shopDetial/'+shop.shopId}"><img :src="shop.shopBigPic" style="width:310px;height: 310px"></router-link></div>
@@ -234,70 +202,6 @@
             </el-col>
 
         </el-row>
-        <!--&lt;!&ndash;促销模块&ndash;&gt;-->
-        <!--<el-row :gutter="10">-->
-        <!--<el-col :span="6"><div class="grid-content bg-purple"></div></el-col>-->
-        <!--</el-row>-->
-        <!--&lt;!&ndash;促销五个模块&ndash;&gt;-->
-        <!--<el-row :gutter="10">-->
-        <!--<el-col :span="4"><div class="grid-content bg-purple"></div></el-col>-->
-        <!--<el-col :span="5"><div class="grid-content bg-purple"></div></el-col>-->
-        <!--<el-col :span="5"><div class="grid-content bg-purple"></div></el-col>-->
-        <!--<el-col :span="5"><div class="grid-content bg-purple"></div></el-col>-->
-        <!--<el-col :span="5"><div class="grid-content bg-purple"></div></el-col>-->
-        <!--</el-row>-->
-
-        <!--&lt;!&ndash;促销&ndash;&gt;-->
-        <!--<el-row :gutter="10">-->
-          <!--<el-col :span="6">-->
-            <!--<div class="grid-content bg-purple" style="line-height: 60px;font-weight: bolder">促销</div>-->
-          <!--</el-col>-->
-          <!--<el-col :span="6" :offset="12">-->
-            <!--<div class="grid-content" style="line-height: 60px;float: right">-->
-              <!--<el-tooltip content="上一页" placement="bottom" effect="light">-->
-                <!--<el-button class="el-icon-arrow-left" plain @click=""></el-button>-->
-              <!--</el-tooltip>-->
-              <!--<el-tooltip content="下一页" placement="bottom" effect="light">-->
-                <!--<el-button class="el-icon-arrow-right" plain @click=""></el-button>-->
-              <!--</el-tooltip>-->
-            <!--</div>-->
-          <!--</el-col>-->
-        <!--</el-row>-->
-        <!--&lt;!&ndash;倒计时栏&ndash;&gt;-->
-        <!--<el-row :gutter="10">-->
-          <!--<el-col :span="4">-->
-            <!--<div class="grid-content bg-purple" style="height: 250px;line-height: 250px">-->
-              <!--倒计时-->
-            <!--</div>-->
-          <!--</el-col>-->
-          <!--<el-col :span="5">-->
-            <!--<div class="grid-content bg-purple" style="height: 250px;line-height: 250px">-->
-              <!--促销商品1-->
-            <!--</div>-->
-          <!--</el-col>-->
-          <!--<el-col :span="5">-->
-            <!--<div class="grid-content bg-purple" style="height: 250px;line-height: 250px">-->
-              <!--促销商品2-->
-            <!--</div>-->
-          <!--</el-col>-->
-          <!--<el-col :span="5">-->
-            <!--<div class="grid-content bg-purple" style="height: 250px;line-height: 250px">-->
-              <!--促销商品3-->
-            <!--</div>-->
-          <!--</el-col>-->
-          <!--<el-col :span="5">-->
-            <!--<div class="grid-content bg-purple" style="height: 250px">-->
-              <!--<template>-->
-                <!--<el-carousel height="250px" direction="vertical" :autoplay="false">-->
-                  <!--<el-carousel-item v-for="item2 in 3" :key="item2">-->
-                    <!--<el-image src="../static/logo1.jpg" style="height: 250px"></el-image>-->
-                    <!--&lt;!&ndash;<h3 class="medium">{{ item2 }}</h3>&ndash;&gt;-->
-                  <!--</el-carousel-item>-->
-                <!--</el-carousel>-->
-              <!--</template>-->
-            <!--</div>-->
-          <!--</el-col>-->
-        <!--</el-row>-->
 
         <el-row :gutter="10">
           <el-col :span="24">
@@ -528,9 +432,6 @@
     width: 100px;
     line-height: 60px;
   }
-  /*.el-container:nth-child(7) .el-aside {*/
-  /*line-height: 320px;*/
-  /*}*/
 
   /*轮播图、跑马灯特效*/
   .el-carousel__item h3 {
@@ -568,20 +469,7 @@
 </style>
 
 <script>
-  //  new Vue({
-  //    el:'#demo',
-  //    data(){
-  //      return{
-  //        active:'background-color:red'
-  //      }
-  //    },methods:{
-  //      show2:function (ids){
-  //        this.active='background-color:red'
-  //      },leave(ids){
-  //        this.active = '';
-  //      }
-  //    }
-  //  })
+
   import ElFooter from "../../node_modules/element-ui/packages/footer/src/main";
   import ElImage from "../../node_modules/element-ui/packages/image/src/main";
   import ElInput from "../../node_modules/element-ui/packages/input/src/input";
@@ -613,7 +501,7 @@
             uname:'Hi,请登录'
 
         },
-
+        uid:'',
         second:false,
         total:16,
         params:{
@@ -628,13 +516,14 @@
 
 
      var uid=Cookies.get("uid");
-      if (uid!=null){
-        axios.get("api/findUserByUid/"+uid).then(res=>{
+     this.uid=uid;
+      if (this.uid!=null){
+        axios.get("api/findUserByUid/"+this.uid).then(res=>{
           this.users=res.data;
         })
       }
 
-      var url="api/count/"+uid
+      var url="api/count/"+this.uid
       axios.post(url).then(res=>{
         this.count=res.data
       })
@@ -664,6 +553,34 @@
           this.shop2=res.data.list
           this.total=16
         })
+      },
+      toOrders:function () {
+        if (this.uid!=null) {
+          this.$router.push("/userOrder")
+        }else {
+          this.$router.push("/userLogin")
+        }
+      },
+      toCart:function () {
+        if (this.uid!=null) {
+          this.$router.push("/userCart")
+        }else {
+          this.$router.push("/userLogin")
+        }
+      },
+      toUser:function () {
+        if (this.uid!=null) {
+          this.$router.push("/userDetial")
+        }else {
+          this.$router.push("/userLogin")
+        }
+      },
+      toModify:function () {
+        if (this.uid!=null) {
+          this.$router.push("/modifyPassword")
+        }else {
+          this.$router.push("/userLogin")
+        }
       },
       changePage:function (page) {
         // alert(page)

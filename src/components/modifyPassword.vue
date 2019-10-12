@@ -1,8 +1,5 @@
 <template>
   <div class="hello" style="width: 100%;margin: auto">
-    <!--<el-button type="primary" plain @click="login()">登录</el-button>-->
-    <!--<el-button type="primary" plain @click="regist()">注册</el-button>-->
-    <!--<el-button type="primary" plain @click="logout()">退出登录</el-button>-->
 
     <el-container>
       <el-header>
@@ -10,7 +7,7 @@
         <!--导航栏-->
         <el-row>
           <el-col :span="10">
-            <div class="grid-content" style="color: black;font-size: 14px;line-height: 30px">
+            <div class="grid-content bg-purple" style="color: black;font-size: 14px;line-height: 30px">
               <el-dropdown>
           <span class="el-dropdown-link">
             <a class="el-icon-location">地址</a><i class="el-icon-arrow-down el-icon--right"></i>
@@ -31,7 +28,7 @@
             </div>
           </el-col>
           <el-col :span="14">
-            <div class="grid-content" style="color: black;line-height: 30px;font-size: 14px">
+            <div class="grid-content bg-purple-light" style="color: black;line-height: 30px;font-size: 14px">
               <router-link type="info" :to="{name:'index'}" style="color:black;margin-right: 20px"><a>首页</a></router-link>
 
               <a @click="toOrders()">我的订单</a>
@@ -41,7 +38,7 @@
           </span>
                 <el-dropdown-menu slot="dropdown">
                   <el-dropdown-item @click="toUser()">完善信息</el-dropdown-item>
-                  <el-dropdown-item @click="toModify()">修改密码</el-dropdown-item>
+
                 </el-dropdown-menu>
               </el-dropdown>
               <el-dropdown>
@@ -83,28 +80,27 @@
             </div>
           </el-col>
         </el-row>
-        <!--"http://pxx4c7852.bkt.clouddn.com/666.gif"-->
+
       </el-header>
       <el-main>
-        <div v-if="img==''"></div>
-        <div v-else-if="img!=''">
-          <el-image :src="img" style="width: 30% ;margin: auto;margin-top: 60px"></el-image>
+        <div style="width: 80%;height:400px;margin: auto;margin-top: 150px">
+          <el-form :model="users" status-icon :rules="rules" ref="users" class="demo-ruleForm" label-width="100px" style="width: 500px;margin: auto;height: 80px;line-height: 80px;text-align: left">
+            <el-form-item label="设置新密码" prop="upassword" style="text-align: left;margin-bottom: 40px">
+              <el-input type="password" v-model="users.upassword" name="upassword" autocomplete="off" placeholder="请设置密码"></el-input>
+            </el-form-item>
+            <el-form-item label="确认新密码" prop="checkPass" style="text-align: left;margin-bottom: 40px">
+              <el-input type="password" v-model="users.checkPass" autocomplete="off"  placeholder="请输入确认密码"></el-input>
+            </el-form-item>
+            <el-from-item>
+              <div style="margin: auto;height: 40px;margin-left: 100px">
+                <el-button type="primary" round plain style="height: 40px;width: 150px;float: left" plain @click="updatePassword()">确认</el-button>
+                <el-button type="primary" round plain style="height: 40px;width: 150px;float: left" plain @click="reference('users')">重置</el-button>
+              </div>
+            </el-from-item>
+          </el-form>
         </div>
-        <h1>{{this.msg}}</h1>
-        <el-row :gutter="10">
-        <!--模糊查询-->
-          <el-col :span="6" v-for="(shop,index) in shop4" v-bind:key="shop.shopId">
-            <div style="height: 400px;width: 310px">
-              <div style="height: 310px;width: 310px"><router-link :to="{path:'/shopDetial/'+shop.shopId}"><img :src="shop.shopBigPic" style="width:310px;height: 310px"></router-link></div>
-              <div style="width: 310px;height: 30px;font-weight: 600;line-height: 30px;background-color: white"><router-link :to="{path:'/shopDetial/'+shop.shopId}">{{shop.shopName}}</router-link></div>
-              <div style="width: 310px;height: 30px;line-height: 30px;background-color: white">{{shop.shopInfo}}</div>
-              <div style="width: 310px;height: 30px;color: red;line-height: 30px;background-color: white">￥：{{shop.shopPrice}}元</div>
-
-            </div>
-          </el-col>
-
-        </el-row>
       </el-main>
+
       <el-footer style="height: 120px">
 
         <!--bottom-->
@@ -133,31 +129,127 @@
         </el-row>
 
       </el-footer>
+
     </el-container>
-
   </div>
-
 </template>
+
+
+<script>
+  import axios from 'axios'
+  import Cookies from 'js-cookie'
+  import ElButton from "../../node_modules/element-ui/packages/button/src/button";
+  export default{
+    components: {
+        ElButton,
+    },
+    data(){
+      var validatePass = (rule, value, callback) => {
+        if (value === '') {
+          callback(new Error('请输入密码'));
+        } else {
+          if (this.users.checkPass !== '') {
+            this.$refs.users.validateField('checkPass');
+          }
+          callback();
+        }
+      };
+      var validatePass2 = (rule, value, callback) => {
+        if (value === '') {
+          callback(new Error('请再次输入密码'));
+        } else if (value !== this.users.upassword) {
+          callback(new Error('两次输入密码不一致!'));
+        } else {
+          callback();
+        }
+      };
+      return{
+        uid:'',
+        users:{
+          uid:'',
+          uname:'',
+          upassword:'',
+          checkPass:''
+        },
+        rules: {
+          upassword: [{ validator: validatePass, trigger: 'blur' }],
+          checkPass: [{ validator: validatePass2, trigger: 'blur' }],
+        },
+      }
+    },mounted(){
+
+      var uid=Cookies.get('uid');
+      this.uid=uid;
+      if (this.uid!=''){
+        axios.get("api/findUserByUid/"+this.uid).then(res=>{
+          this.users.uid=res.data.uid;
+          this.users.uname=res.data.uname;
+        })
+      }else {
+        alert("请登录")
+        this.$router.push('/')
+      }
+    },
+    methods:{
+      updatePassword:function () {
+        this.$refs['users'].validate((valid) => {
+          if (valid) {
+            axios.post("api/updatePassword", this.users).then(res => {
+              if (res.data == "success") {
+//                alert("修改成功")
+                this.$message({
+                  message: '恭喜你，修改成功',
+                  type: 'success'
+                });
+                this.$router.push('/')
+              }
+              else {
+                this.$message.error('错了哦，修改失败');
+                this.$router.push("/modifyPassword")
+              }
+            })
+          } else {
+//
+            return false;
+          }
+        })
+      },
+      toOrders:function () {
+        if (this.uid!=null) {
+          this.$router.push("/userOrder")
+        }else {
+          this.$router.push("/userLogin")
+        }
+      },
+      toCart:function () {
+        if (this.uid!=null) {
+          this.$router.push("/userCart")
+        }else {
+          this.$router.push("/userLogin")
+        }
+      },
+      toUser:function () {
+        if (this.uid!=null) {
+          this.$router.push("/userDetial")
+        }else {
+          this.$router.push("/userLogin")
+        }
+      },
+
+      reference:function () {
+        this.$refs['users'].resetFields();
+      },
+      logout:function () {
+//          alert("hello")
+        Cookies.remove('uid'); // fail!
+        Cookies.remove('uid', { path: '/' });
+        this.users.uname='Hi,请登录'
+        this.$router.push("/")
+      },
+    }
+  }
+</script>
 <style>
-  #second{
-    /*display: none;*/
-    position: absolute;
-    height: 500px;
-    width: 76%;
-    left: 235px;
-    top:178px;
-    overflow: hidden;
-    background-color: white;
-    z-index: 3;
-    text-align: left;
-    padding-left:20px;
-  }
-  #menu{
-    /*position: relative;*/
-    color: white;
-    font-weight: 500;
-    /*background-color: gray;*/
-  }
   .el-row {
     margin-bottom: 10px;
   &:last-child {
@@ -208,6 +300,9 @@
   body > .el-container {
     /*margin-bottom: 40px;*/
   }
+  .el-main{
+    font-weight: bolder;
+  }
 
   .el-container:nth-child(5) .el-aside,
   .el-container:nth-child(6) .el-aside {
@@ -229,108 +324,7 @@
     width: 100px;
     line-height: 60px;
   }
-
 </style>
-<script>
-
-  import ElFooter from "../../node_modules/element-ui/packages/footer/src/main";
-  import ElImage from "../../node_modules/element-ui/packages/image/src/main";
-  import ElInput from "../../node_modules/element-ui/packages/input/src/input";
-  import ElButton from "../../node_modules/element-ui/packages/button/src/button";
-  import Cookies from 'js-cookie'
-
-  import axios from 'axios';
-
-  export default {
-
-    components: {
-      ElButton,
-      ElInput,
-      ElImage,
-      ElFooter},
-    name: 'shops',
-    data () {
-      return {
-        msg: '',
-        img:'http://pxx4c7852.bkt.clouddn.com/666.gif',
-        shop_kinds:[],
-        shops:[],
-        shop4:[],
-        users:{
-          uname:'Hi,请登录'
-        },
-        uid:''
-      }
-    },
-    mounted(){
-      var uid=Cookies.get("uid");
-      this.uid=uid;
-      if (this.uid!=''){
-        axios.get("api/findUserByUid/"+this.uid).then(res=>{
-          this.users=res.data;
-        })
-      }
-      //alert(this.$route.params.searchName)
-      var name=this.$route.params.searchName
-      var url="api/vague/"+name
-      axios.get(url).then(res=>{
-          if(res.data!=''){
-            this.shop4=res.data
-            this.img=''
-          }else{
-            this.msg='不好意思，没有该类商品!'
-
-          }
-      })
-    },
-
-    methods:{
-      toOrders:function () {
-        if (this.uid!=null) {
-          this.$router.push("/userOrder")
-        }else {
-          this.$router.push("/userLogin")
-        }
-      },
-      toCart:function () {
-        if (this.uid!=null) {
-          this.$router.push("/userCart")
-        }else {
-          this.$router.push("/userLogin")
-        }
-      },
-      toUser:function () {
-        if (this.uid!=null) {
-          this.$router.push("/userDetial")
-        }else {
-          this.$router.push("/userLogin")
-        }
-      },
-      toModify:function () {
-        if (this.uid!=null) {
-          this.$router.push("/modifyPassword")
-        }else {
-          this.$router.push("/userLogin")
-        }
-      },
-      login:function () {
-        this.$router.push("/userLogin")
-      },
-      regist:function () {
-        this.$router.push("/userRegist")
-      },
-      logout:function () {
-//          alert("hello")
-        Cookies.remove('uid'); // fail!
-        Cookies.remove('uid', { path: '/' });
-        this.users.uname='Hi,请登录'
-        this.$router.push("/")
-      }
-    }
-  }
-</script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   h1, h2 {
     font-weight: normal;
@@ -351,3 +345,4 @@
     color: red;
   }
 </style>
+
