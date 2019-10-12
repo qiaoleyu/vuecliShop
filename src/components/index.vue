@@ -33,7 +33,7 @@
             <div class="grid-content" style="color: black;line-height: 30px;font-size: 14px">
               <router-link type="info" :to="{name:'index'}" style="color:black;margin-right: 20px"><a>首页</a></router-link>
 
-              <a @click="toOrders()">我的订单</a>
+              <a @click="toOrders()" style="cursor: pointer">我的订单</a>
               <el-dropdown style="margin-left: 10px">
           <span class="el-dropdown-link">
             <a>个人中心</a><i class="el-icon-arrow-down el-icon--left"></i>
