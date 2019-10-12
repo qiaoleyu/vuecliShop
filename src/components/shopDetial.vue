@@ -218,7 +218,7 @@
                       </template>
                     </div>
                   </div>-->
-                  <div style="height: 40px;background-color: aliceblue">
+                  <div style="height: 40px;background-color: aliceblue;">
                     <span style="line-height: 40px">商品销量：</span>
                     <span v-text="shop.shopRepertory"></span>
                     <span>件</span>
@@ -294,7 +294,8 @@
               <!--</el-col>-->
               <!--<el-col :span="1"><el-button class=" el-icon-arrow-right" type="warning" plain style="height: 80px;width: 50%" @click=""></el-button></el-col>-->
               <el-col :span="14">
-                <div class=" bg-purple-dark" style="height: 120px">
+                <!--bg-purple-dark-->
+                <div class=" " style="height: 120px;background-color: aliceblue;">
                   <div style="height: 120px;margin-left: 150px">
                     <div style="float: left;margin-top: 40px;color: red;line-height: 40px;margin-right: 30px">
                       <el-input-number v-model="num" size="small" style="width: 100px" controls-position="right" @change="handleChange" :min="1" >
