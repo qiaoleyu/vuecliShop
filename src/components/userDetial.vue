@@ -25,7 +25,7 @@
               </el-dropdown>
               <router-link type="info" :to="{name:'userLogin'}" style="color:black" v-if="this.uid==null"><a>Hi,请登录</a></router-link>
 
-              <span style="color:black" v-if="this.uid!=null"><a>{{users.uname}}</a></span>
+              <span style="color:black;cursor: pointer" v-if="this.uid!=null"><a>{{users.uname}}</a></span>
               &nbsp;&nbsp;&nbsp;
               <router-link type="info" :to="{name:'userRegist'}" style="color:black"><a>免费注册</a></router-link>
               &nbsp;&nbsp;&nbsp;
