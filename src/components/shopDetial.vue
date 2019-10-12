@@ -550,7 +550,7 @@
               if (res.data!=''){
 //                  alert("加入成功")
                 this.$message({
-                  message: '恭喜你，这是一条成功消息',
+                  message: '恭喜你，加入成功',
                   type: 'success'
                 });
                 var url="api/count/"+uid
@@ -558,11 +558,13 @@
                   this.count=res.data
                 })
               }else {
-                  alert("加入失败")
+//                  alert("加入失败")
+                this.$message.error('错了哦，加入失败');
               }
           })
         }else {
-          alert("请登录")
+//          alert("请登录")
+          this.$message.error('错了哦，请登录后再试');
         }
       },
       submitForm:function () {
@@ -572,11 +574,13 @@
             if (res.data!=''){
               this.$router.push("/userOrder")
             }else {
-              alert("生成订单失败")
+//              alert("生成订单失败")
+              this.$message.error('错了哦，生成订单失败');
             }
           })
         }else {
-          alert("请登录")
+          this.$message.error('错了哦，请登录后再试');
+//          alert("请登录")
         }
       },
       show:function () {

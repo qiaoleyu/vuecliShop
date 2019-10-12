@@ -222,7 +222,11 @@
         }
         axios.post("api/updateUser",this.users).then(res=>{
             if (res.data=="success"){
-                alert("修改成功")
+//                alert("修改成功")
+              this.$message({
+                message: '恭喜你，修改成功',
+                type: 'success'
+              });
               this.$router.push('/')
             }else {
                 alert(res.data)

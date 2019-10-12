@@ -124,7 +124,8 @@
                     Cookies.set('uid', this.user.uid, { expires: 7, path: '/' });
                       this.$router.push("/");
                   }else{
-                      alert("登录失败");
+//                      alert("登录失败");
+                    this.$message.error('错了哦，登录失败，请检查后再试');
 //                      this.$router.push("/");
                   }
                 })

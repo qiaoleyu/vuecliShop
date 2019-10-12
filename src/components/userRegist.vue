@@ -278,7 +278,13 @@ import ElContainer from "../../node_modules/element-ui/packages/container/src/ma
                console.log(this.users)
                console.log(this.code)
                if(res.data=="success"){
-                   alert("注册成功，欢迎进行登录")
+//                   alert("注册成功，欢迎进行登录")
+                 if(res.data!='') {
+                   this.$message({
+                     message: '注册成功，欢迎进行登录！',
+                     type: 'success'
+                   })
+                 }
                  this.$router.push("/userLogin")
                }else{
                  alert(res.data)
