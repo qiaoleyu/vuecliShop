@@ -107,7 +107,7 @@
           </el-col>
           <el-col :span="6">
             <div class="grid-content" style="height: 80px;line-height: 80px">
-              <el-badge :value="100" :max="10" class="item">
+              <el-badge :value="count" :max="100" class="item">
                 <el-tooltip content="购物车" placement="bottom" effect="light">
                   <el-button size="" plain style="width: 180px;height: 60px">
                     <i style="font-size: 16px; font-weight: bold;color:red"  class="el-icon-shopping-cart-full "></i>
@@ -617,10 +617,16 @@
         params:{
           size:4,
           page:1
-        }
+        },
+
+        count:0
       }
     },
     mounted(){
+      var url="api/count"
+      axios.post(url).then(res=>{
+          this.count=res.data
+      })
 
      var uid=Cookies.get("uid");
       if (uid!=null){
