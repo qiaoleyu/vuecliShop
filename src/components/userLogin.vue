@@ -109,37 +109,16 @@
   },
     methods: {
       login:function () {
-         /* this.$refs['users'].validate((valid)=>{
-              if(valid){*/
-//                  alert("submit");
-                  //获得用户的数据
-                //console.log(this.user.name, this.user.password )
-
-                //发送请求 把参数发给后端（把用户名和密码发给后端 验证是否存在这个账号）
                 axios.post("api/userLogin", {loginName:this.users.loginName,password:this.users.password}).then(res=>{
                     //接收后端返回来的数据
-                  if(res.data!=''){
-//                      alert("登录成功！");
+                  if(res.data=='success'){
                     this.user=res.data;
                     Cookies.set('uid', this.user.uid, { expires: 7, path: '/' });
                       this.$router.push("/");
                   }else{
-//                      alert("登录失败");
-                    this.$message.error('错了哦，登录失败，请检查后再试');
-//                      this.$router.push("/");
+                    this.$message.error(res.data);
                   }
                 })
-             /* }else{
-                return false;
-              }
-          })*/
-//        axios.post('http://localhost/login',{name:this.user.name,password:this.user.password}).then(res => {
-//          if (res.data!= null) {
-//            this.$router.push({name:"userlist"})
-//          } else {
-//            alert(res.data);
-//          }
-//        })
       },resetForm(formName) {
         this.$refs[formName].resetFields();
       },
