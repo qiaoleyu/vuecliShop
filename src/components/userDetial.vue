@@ -101,7 +101,7 @@
 
             <el-form label-width="100px" style="width: 500px;margin: auto;height: 80px;line-height: 80px;text-align: left">
               <el-form-item label="用户名:">
-                <el-input class="arrow" name="uName" v-model="users.uname" ></el-input>
+                <el-input class="arrow" name="uname" v-model="users.uname" ></el-input>
               </el-form-item>
               <el-form-item label="头像:">
                 <el-upload
@@ -110,33 +110,29 @@
                   :show-file-list="false"
                   :on-success="handleAvatarSuccess"
                   :before-upload="beforeAvatarUpload">
-                  <img v-if="users.upic" :src="users.upic" name="uPic" width="80px" height="80px" class="avatar">
+                  <img v-if="users.upic" :src="users.upic" name="upic" width="80px" height="80px" class="avatar">
                   <i v-else class="el-icon-plusavatar-uploader-icon"></i>
                 </el-upload>
               </el-form-item>
-              <el-form-item label="密码:">
-                <el-input name="upassword" type="password" v-model="users.upassword" style="width: 300px"></el-input>
-                <el-button type="primary" plain round @click="updatePassword">修改</el-button>
-              </el-form-item>
               <el-form-item label="性别:">
-                <el-radio v-model="users.usex" label="false" :value="true">男</el-radio>
-                <el-radio v-model="users.usex" label="true" :value="false">女</el-radio>
+                <el-radio v-model="users.usex" label="true">男</el-radio>
+                <el-radio v-model="users.usex" label="false">女</el-radio>
               </el-form-item>
               <el-form-item label="注册时间:">
                 <el-date-picker name="createTime" v-model="users.createTime" type="date" placeholder="选择日期" style="width: 400px"></el-date-picker>
               </el-form-item>
               <el-form-item label="联系方式:">
-                <el-input name="uTell" v-model="users.utell" ></el-input>
+                <el-input name="utell" v-model="users.utell" ></el-input>
               </el-form-item>
               <el-form-item label="邮箱账号:">
-                <el-input name="uEmail" v-model="users.uemail"></el-input>
+                <el-input name="uemail" v-model="users.uemail"></el-input>
               </el-form-item>
               <el-form-item label="收货地址:">
-                <el-input v-model="users.uaddress" name="address">
+                <el-input name="uaddress" v-model="users.uaddress">
                 </el-input>
               </el-form-item>
               <el-form-item label="出生日期:">
-                <el-date-picker name="uBirthday" v-model="users.ubirthday" type="date" placeholder="选择日期" style="width: 400px"></el-date-picker>
+                <el-date-picker name="ubirthday" v-model="users.ubirthday" type="date" placeholder="选择日期" style="width: 400px"></el-date-picker>
               </el-form-item>
               <!--<el-form-item label="账户余额:">
                  <span v-model="users.umoney" name="uMoney">
@@ -196,7 +192,7 @@
                 uid:'',
                 uname:'',
               upic:'',
-              usex:true
+              usex:''
             },
 
           }
@@ -205,6 +201,12 @@
           if (uid!=null){
             axios.get("api/findUserByUid/"+uid).then(res=>{
                 this.users=res.data;
+                /*if (this.users.usex=0){
+                  this.users.usex=true;
+                }/!*else if (this.users.usex=1){
+                  this.users.usex=false;
+                }*!/
+                console.log(this.users.usex)*/
             })
           }else {
             alert("请登录")
