@@ -23,7 +23,9 @@
                   <el-dropdown-item>杭州</el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
-              <router-link type="info" :to="{name:'userLogin'}" style="color:black"><a>{{users.uname}}</a></router-link>
+              <router-link type="info" :to="{name:'userLogin'}" style="color:black" v-if="this.uid==null"><a>Hi,请登录</a></router-link>
+
+              <span style="color:black;cursor: pointer" v-if="this.uid!=null"><a>{{users.uname}}</a></span>
               &nbsp;&nbsp;&nbsp;
               <router-link type="info" :to="{name:'userRegist'}" style="color:black"><a>免费注册</a></router-link>
               &nbsp;&nbsp;&nbsp;
@@ -34,12 +36,13 @@
             <div class="grid-content bg-purple-light" style="color: black;line-height: 30px;font-size: 14px">
               <router-link type="info" :to="{name:'index'}" style="color:black;margin-right: 20px"><a>首页</a></router-link>
 
-              <a @click="toOrders()">我的订单</a>
+              <a @click="toOrders()" style="cursor: pointer">我的订单</a>
               <el-dropdown style="margin-left: 10px">
           <span class="el-dropdown-link">
             <a>个人中心</a><i class="el-icon-arrow-down el-icon--left"></i>
           </span>
                 <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item><a @click="toUser()">完善信息</a></el-dropdown-item>
                   <el-dropdown-item><a @click="toModify()">修改密码</a></el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
@@ -97,7 +100,7 @@
 
             <el-form label-width="100px" style="width: 500px;margin: auto;height: 80px;line-height: 80px;text-align: left">
               <el-form-item label="用户名:">
-                <el-input class="arrow" name="uname" v-model="users.uname" ></el-input>
+                <el-input class="arrow" name="uname" v-model="users.uname" disabled></el-input>
               </el-form-item>
               <el-form-item label="头像:">
                 <el-upload
