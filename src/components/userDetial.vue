@@ -115,7 +115,8 @@
                 </el-upload>
               </el-form-item>
               <el-form-item label="密码:">
-                <el-input name="upassword" type="password" v-model="users.upassword" disabled></el-input>
+                <el-input name="upassword" type="password" v-model="users.upassword" disabled style="width: 300px"></el-input>
+                <el-button type="primary" plain round @click="updatePassword">修改</el-button>
               </el-form-item>
               <el-form-item label="性别:">
                 <el-radio v-model="users.usex" label="false" :value="true">男</el-radio>
@@ -142,8 +143,8 @@
                  </span>
               </el-form-item>-->
               <div style="width: 200px;margin: auto;height: 40px;margin-left: 200px">
-                <el-button type="primary" style="height: 40px" plain @click="updateUsers()">确认</el-button>
-                <el-button type="primary" style="height: 40px" plain @click="backIndex()">返回</el-button>
+                <el-button type="primary" round plain style="height: 40px" plain @click="updateUsers()">确认</el-button>
+                <el-button type="primary" round plain style="height: 40px" plain @click="backIndex()">返回</el-button>
               </div>
             </el-form>
 
@@ -186,8 +187,10 @@
 <script>
   import axios from 'axios'
   import Cookies from 'js-cookie'
+  import ElButton from "../../node_modules/element-ui/packages/button/src/button";
   export default{
-      data(){
+    components: {ElButton},
+    data(){
           return{
             users:{
                 uid:'',
