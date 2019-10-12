@@ -132,7 +132,7 @@
             <div id="menu" class="grid-content" style="height: 100%;width:100%;text-align:center;background-color: black;padding-top: 5px">
               <!--一级菜单-->
               <div v-for="(shop_kind,index) in shop_kinds" v-bind:key="shop_kind.skId">
-                <div id="demo" style="height: 45px;line-height: 30px;margin-top: 5px"   @mouseover="show2(index+1)" @mouseleave="leave(index+1)">{{shop_kind.skName}}</div>
+                <div id="demo" style="height: 45px;line-height: 30px;margin-top: 5px;text-align: left;margin-left: 60px"   @mouseover="show2(index+1)" @mouseleave="leave(index+1)">{{shop_kind.skName}}</div>
               </div>
             </div>
           </el-col>
