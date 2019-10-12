@@ -549,6 +549,10 @@
   //            alert(this.total)
               if (res.data!=''){
                   alert("加入成功")
+                var url="api/count/"+uid
+                axios.post(url).then(res=>{
+                  this.count=res.data
+                })
               }else {
                   alert("加入失败")
               }
