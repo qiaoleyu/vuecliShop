@@ -91,21 +91,24 @@
     data () {
       return{
         msg:'订单详情页',
-        order:{
-          onumber:"",
-          shopName:"",
-          shopPic:"",
-          shopFactory:"",
-          shopNumber:"",
-          shopPrice:"",
-          shopCount:"",
-          userAddress:"",
-          userName:"",
-          userTell:"",
-          oid:""
-        },
+        order:[
+            {
+              onumber:"",
+              shopName:"",
+              shopPic:"",
+              shopFactory:"",
+              shopNumber:"",
+              shopPrice:"",
+              shopCount:"",
+              userAddress:"",
+              userName:"",
+              userTell:"",
+              oid:""
+            }
+        ],
         count: 0,
         istrue: false,
+        list:[]
       }
     },
     computed: {
@@ -213,9 +216,16 @@
         this.$router.push("/userCart")
       },
       pay:function () {
-        axios.post("api/pay").then(res => {
+        var a = 0;
+        for (let i = 0; i < this.order.length; i++) {
+          if (this.order[i].checked == true) {
+            this.list[a]=this.order[i];
+            a++;
+          }
+        }
+        //console.log(this.list)
+        axios.post("api/pay",this.list).then(res => {
            this.$router.replace({path:'/applyText',query:{htmls:res.data}})
-
         })
       },
       reback:function () {
