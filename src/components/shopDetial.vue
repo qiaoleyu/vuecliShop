@@ -152,7 +152,11 @@
             <el-row :gutter="10">
               <el-col :span="10">
                 <div class=" bg-purple-dark" style="height: 400px;width: 450px">
-                  <img :src="shop.shopBigPic" style="height: 400px;width: 450px">
+                  <el-carousel height="400px">
+                    <el-carousel-item v-for="item in pic" :key="item">
+                      <img :src="item" style="height: 400px;width: 450px">
+                    </el-carousel-item>
+                  </el-carousel>
                 </div>
               </el-col>
               <el-col :span="10">
@@ -259,8 +263,8 @@
                 <div class="" style="height: 120px;background-color: white">
                 <template >
                   <el-carousel :interval="4000" type="card" height="120px">
-                    <el-carousel-item v-for="item in 3" :key="item" style=";background-color: white;width: 200px">
-                      <img :src="shop.shopBigPic" style="height: 100%;width: 160px">
+                    <el-carousel-item v-for="item in pic" :key="item" style=";background-color: white;width: 200px">
+                      <img :src="item" style="height: 100%;width: 160px">
                     </el-carousel-item>
                   </el-carousel>
                 </template>
@@ -515,13 +519,22 @@
             }],
             value: '',
             //购物车数量
-            count:0
+            count:0,
+//            详情页轮播图
+            pic:[]
+
       }
     },mounted () {
       var shopId=this.$route.params.shopId;
       axios.get("api/findById/"+shopId).then(res=>{
         this.shop=res.data;
         this.total=this.shop.shopPrice;
+      })
+
+      var shopId=this.$route.params.shopId;
+      axios.get("api/findPic/"+shopId).then(res=>{
+        this.pic=res.data;
+
       })
 
       var uid=Cookies.get("uid");
