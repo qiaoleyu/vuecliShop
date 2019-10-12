@@ -115,8 +115,8 @@
                 </el-upload>
               </el-form-item>
               <el-form-item label="性别:">
-                <el-radio v-model="users.usex" label="true">男</el-radio>
-                <el-radio v-model="users.usex" label="false">女</el-radio>
+                <el-radio v-model="users.usex" :label="true" name="usex">男</el-radio>
+                <el-radio v-model="users.usex" :label="false" name="usex">女</el-radio>
               </el-form-item>
               <el-form-item label="注册时间:">
                 <el-date-picker name="createTime" v-model="users.createTime" type="date" placeholder="选择日期" style="width: 400px"></el-date-picker>
@@ -192,8 +192,9 @@
                 uid:'',
                 uname:'',
               upic:'',
-              usex:''
+              usex:'',
             },
+//            radio:0
 
           }
       },mounted(){
@@ -202,12 +203,6 @@
           if (uid!=''){
             axios.get("api/findUserByUid/"+uid).then(res=>{
                 this.users=res.data;
-                /*if (this.users.usex=0){
-                  this.users.usex=true;
-                }/!*else if (this.users.usex=1){
-                  this.users.usex=false;
-                }*!/
-                console.log(this.users.usex)*/
             })
           }else {
             alert("请登录")
