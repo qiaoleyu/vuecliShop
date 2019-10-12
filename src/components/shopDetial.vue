@@ -548,7 +548,12 @@
           axios.post("api/addCart/"+uid,{num:this.num,shop:this.shop,total:this.total}).then(res=>{
   //            alert(this.total)
               if (res.data!=''){
-                  alert("加入成功")
+//                  alert("加入成功")
+                this.$message({
+                  message: '恭喜你，这是一条成功消息',
+                  type: 'success'
+                });
+                this.$router.go(0)
               }else {
                   alert("加入失败")
               }
