@@ -10,7 +10,7 @@
         <!--导航栏-->
         <el-row>
           <el-col :span="10">
-            <div class="grid-content bg-purple" style="color: black;font-size: 14px;line-height: 30px">
+            <div class="grid-content" style="color: black;font-size: 14px;line-height: 30px">
               <el-dropdown>
           <span class="el-dropdown-link">
             <a class="el-icon-location">地址</a><i class="el-icon-arrow-down el-icon--right"></i>
@@ -31,7 +31,7 @@
             </div>
           </el-col>
           <el-col :span="14">
-            <div class="grid-content bg-purple-light" style="color: black;line-height: 30px;font-size: 14px">
+            <div class="grid-content" style="color: black;line-height: 30px;font-size: 14px">
               <router-link type="info" :to="{name:'index'}" style="color:black;margin-right: 20px"><a>首页</a></router-link>
 
               <router-link type="info" :to="{name:'userOrder'}" style="color: black"><a>我的订单</a></router-link>
