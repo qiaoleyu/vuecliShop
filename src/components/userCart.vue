@@ -167,7 +167,8 @@
                 this.list=res.data;
               })
             }else {
-                alert("请登录")
+//                alert("请登录")
+              this.$message.error('错了哦，请登录后再试');
               this.$router.push('/')
             }
         },
@@ -177,8 +178,11 @@
             if (res.data!=null){
               this.query();
             }else {
-              alert("删除失败")
+//              alert("")
+              this.$message.error('错了哦，删除失败');
+
             }
+
           });
         },
         handleChange(event,index) {
@@ -225,7 +229,8 @@
             if(res.data!=null){
               this.$router.push("/userOrder");
             }else{
-              alert("订单生成失败");
+//              alert("");
+              this.$message.error('错了哦，订单生成失败');
               this.$router.push("/userCart");
             }
           })
