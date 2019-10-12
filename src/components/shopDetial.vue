@@ -518,10 +518,7 @@
             count:0
       }
     },mounted () {
-      var url="api/count"
-      axios.post(url).then(res=>{
-        this.count=res.data
-      })
+
 
       var shopId=this.$route.params.shopId;
       axios.get("api/findById/"+shopId).then(res=>{
@@ -535,6 +532,11 @@
           this.users=res.data;
         })
       }
+
+      var url="api/count/"+uid
+      axios.post(url).then(res=>{
+        this.count=res.data
+      })
     } ,methods:{
       handleChange(value) {
           this.total=value*this.shop.shopPrice;
