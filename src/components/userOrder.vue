@@ -63,6 +63,13 @@
 
       <el-table-column align="center" prop="userTell" label="联系方式" width="120"></el-table-column>
 
+      <el-table-column align="center" prop="ostatue" label="订单状态" width="120">
+        <template slot-scope="scope">
+          <div v-if="scope.row.ostatue==0">未付款</div>
+          <div v-if="scope.row.ostatue==1">已付款</div>
+        </template>
+      </el-table-column>
+
       <el-table-column label="操作" width="140"  align="center">
         <template slot-scope="order">
           <el-button type="danger" size="small" plain @click="del(order.row.oid)">删除</el-button>
@@ -102,7 +109,8 @@
               userAddress:"",
               userName:"",
               userTell:"",
-              oid:""
+              oid:"",
+              ostatue:"",
             }
         ],
         count: 0,
