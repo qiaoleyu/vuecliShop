@@ -3,19 +3,24 @@
     <h1>{{msg}}</h1>
     <div style="height: 50px">
       <el-row :gutter="10">
-        <el-col :span="4" :offset="1">
+        <el-col :span="4">
           <div class="grid-content" style="font-weight: bolder;text-align: left">
-            <el-button type="warning" @click="orderFindAll()">全部订单</el-button>
+            <router-link :to="{name:'index'}" style="width: 100px"><el-image src="http://pxx4c7852.bkt.clouddn.com/logo2%20%281%29.jpg" style="width: 150px;height: 60px"></el-image></router-link>
           </div>
         </el-col>
         <el-col :span="4">
-          <div class="grid-content" style="font-weight: bolder;text-align: left">
-            <el-button type="warning" @click="orderStatue1()">待支付</el-button>
+          <div class="grid-content" style="font-weight: bolder;text-align: left;margin-top: 15px">
+            <el-button type="warning" round plain style="width: 100px" @click="orderFindAll()">全部订单</el-button>
           </div>
         </el-col>
         <el-col :span="4">
-          <div class="grid-content" style="font-weight: bolder;text-align: left">
-            <el-button type="warning" @click="orderStatue2()">待发货</el-button>
+          <div class="grid-content" style="font-weight: bolder;text-align: left;margin-top: 15px">
+            <el-button type="warning" round plain style="width: 100px" @click="orderStatue1()">待支付</el-button>
+          </div>
+        </el-col>
+        <el-col :span="4">
+          <div class="grid-content" style="font-weight: bolder;text-align: left;margin-top: 15px">
+            <el-button type="warning" round plain style="width: 100px" @click="orderStatue2()">待发货</el-button>
           </div>
         </el-col>
         <!--<el-col :span="3" style="height: 40px">-->

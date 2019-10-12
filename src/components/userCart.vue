@@ -3,7 +3,8 @@
   <h1>{{msg}}</h1>
   <el-row :gutter="10">
     <el-col :span="6" style="height: 40px">
-      <div class="grid-content" style="line-height: 40px;font-weight: bolder;text-align: left">全部商品</div>
+      <div class="grid-content" style="line-height: 40px;font-weight: bolder;text-align: left;float: left"><router-link :to="{name:'index'}"><el-image src="http://pxx4c7852.bkt.clouddn.com/logo2%20%281%29.jpg" style="width: 100px;height: 50px"></el-image></router-link></div>
+      <div class="grid-content" style="line-height: 60px;font-weight: bolder;text-align: left;float: left;margin-left: 20px">全部商品</div>
     </el-col>
   </el-row>
   <hr>
@@ -57,7 +58,7 @@
 
   <div style="background-color: aliceblue; height: 80px;margin: auto;margin-top: 20px">
     <div style="float: right;margin-top: 20px;margin-right: 30px"><el-button type="success" plain style="width: 120px" @click="submitForm()">立即购买</el-button></div>
-    <div style="float: right;margin-top: 20px;margin-right: 30px"><el-button type="primary" plain style="width: 120px" @click="back()">上一步</el-button></div>
+    <div style="float: right;margin-top: 20px;margin-right: 30px"><el-button type="primary" plain style="width: 120px" @click="back()">返回主页</el-button></div>
     <div style="float: right;margin-top: 20px;color: red;line-height: 40px;margin-right: 60px">总金额：<span>{{countList}}元</span></div>
   </div>
 
