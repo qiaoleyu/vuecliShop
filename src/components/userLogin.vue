@@ -18,12 +18,12 @@
 
       <br>
       <h1 style="font-weight: bold">{{ msg }}</h1>
-    <el-form status-icon :rules="rules" ref="users" label-width="40px" style="width: 50%;margin: auto" >
+    <el-form :model="users" status-icon :rules="rules" ref="users" label-width="40px" style="width: 50%;margin: auto" >
       <el-form-item label="昵称" prop="loginName" style="text-align: left;font-weight: bold">
-        <el-input type="text" name="loginName" v-model="loginName" style="width: 340px" placeholder="用户名/邮箱/手机号"></el-input>
+        <el-input type="text" name="loginName" v-model="users.loginName" style="width: 340px" placeholder="用户名/邮箱/手机号"></el-input>
       </el-form-item><br>
       <el-form-item label="密码" prop="password" style="text-align: left;font-weight: bold" show-password>
-        <el-input type="Password" name="password" v-model="password" style="width: 340px" placeholder="请输入密码"></el-input>
+        <el-input type="Password" name="password" v-model="users.password" style="width: 340px" placeholder="请输入密码"></el-input>
       </el-form-item><br>
       <el-row>
         <el-button type="primary" plain @click="login()">确认</el-button>
@@ -96,10 +96,11 @@
       users:{
           uid:'',
         uemail:'',
-        upassword:''
+        upassword:'',
+        password:'',
+        loginName:'',
       },
-      password:'',
-      loginName:'',
+
       rules: {
         uname: [{ validator: checkName, trigger: 'blur' }],
         upassword: [{ validator: validatePass, trigger: 'blur' }],
@@ -115,7 +116,7 @@
                 //console.log(this.user.name, this.user.password )
 
                 //发送请求 把参数发给后端（把用户名和密码发给后端 验证是否存在这个账号）
-                axios.post("api/userLogin", {loginName:this.loginName,password:this.password}).then(res=>{
+                axios.post("api/userLogin", {loginName:this.users.loginName,password:this.users.password}).then(res=>{
                     //接收后端返回来的数据
                   if(res.data!=''){
 //                      alert("登录成功！");
