@@ -42,10 +42,7 @@
                 <el-dropdown-menu slot="dropdown">
                   <el-dropdown-item><router-link :to="{name:'userDetial'}">完善信息</router-link></el-dropdown-item>
                   <el-dropdown-item><router-link :to="{name:'modifyPassword'}">修改密码</router-link></el-dropdown-item>
-                  <!--<el-dropdown-item>修改信息</el-dropdown-item>-->
-                  <!--<el-dropdown-item>3</el-dropdown-item>-->
-                  <!--<el-dropdown-item>4</el-dropdown-item>-->
-                  <!--<el-dropdown-item>5</el-dropdown-item>-->
+
                 </el-dropdown-menu>
               </el-dropdown>
               <el-dropdown>
@@ -89,64 +86,25 @@
         </el-row>
 
       </el-header>
-
       <el-main>
-        <div style="width: 80%;height:600px;margin: auto;margin-top: 50px">
-           <!-- <div style="width: 500px;margin: auto;height: 80px;line-height: 80px;text-align: right">
-              <div style="width: 90px;float: left;margin-right: 10px">头像:</div>
-              <div style="width: 300px;float: left"><input type="file" @change="getFile($event)"></div>
-              <div style="width: 100px;float: left"><el-button plain style="height: 40px" @click="upload()">上传</el-button></div>
-              &lt;!&ndash;<el-radio-group size="small"></el-radio-group>&ndash;&gt;
-              &lt;!&ndash;<div style="margin: 20px;"></div>&ndash;&gt;
-            </div>-->
-
-            <el-form label-width="100px" style="width: 500px;margin: auto;height: 80px;line-height: 80px;text-align: left">
-              <el-form-item label="用户名:">
-                <el-input class="arrow" name="uname" v-model="users.uname" ></el-input>
-              </el-form-item>
-              <el-form-item label="头像:">
-                <el-upload
-                  class="avatar-uploader"
-                  action="api/upload"
-                  :show-file-list="false"
-                  :on-success="handleAvatarSuccess"
-                  :before-upload="beforeAvatarUpload">
-                  <img v-if="users.upic" :src="users.upic" name="upic" width="80px" height="80px" class="avatar">
-                  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                </el-upload>
-              </el-form-item>
-              <el-form-item label="性别:">
-                <el-radio v-model="users.usex" :label="true" name="usex">男</el-radio>
-                <el-radio v-model="users.usex" :label="false" name="usex">女</el-radio>
-              </el-form-item>
-              <el-form-item label="注册时间:">
-                <el-date-picker name="createTime" v-model="users.createTime" type="date" placeholder="选择日期" style="width: 400px"></el-date-picker>
-              </el-form-item>
-              <el-form-item label="联系方式:">
-                <el-input name="utell" v-model="users.utell" ></el-input>
-              </el-form-item>
-              <el-form-item label="邮箱账号:">
-                <el-input name="uemail" v-model="users.uemail"></el-input>
-              </el-form-item>
-              <el-form-item label="收货地址:">
-                <el-input name="uaddress" v-model="users.uaddress">
-                </el-input>
-              </el-form-item>
-              <el-form-item label="出生日期:">
-                <el-date-picker name="ubirthday" v-model="users.ubirthday" type="date" placeholder="选择日期" style="width: 400px"></el-date-picker>
-              </el-form-item>
-              <!--<el-form-item label="账户余额:">
-                 <span v-model="users.umoney" name="uMoney">
-                 </span>
-              </el-form-item>-->
-              <div style="width: 200px;margin: auto;height: 40px;margin-left: 200px">
-                <el-button type="primary" round plain style="height: 40px" plain @click="updateUsers()">确认</el-button>
-                <el-button type="primary" round plain style="height: 40px" plain @click="backIndex()">返回</el-button>
+        <div style="width: 80%;height:400px;margin: auto;margin-top: 150px">
+          <el-form :model="users" status-icon :rules="rules" ref="users" class="demo-ruleForm" label-width="100px" style="width: 500px;margin: auto;height: 80px;line-height: 80px;text-align: left">
+            <el-form-item label="设置新密码" prop="upassword" style="text-align: left;margin-bottom: 40px">
+              <el-input type="password" v-model="users.upassword" name="upassword" autocomplete="off" placeholder="请设置密码"></el-input>
+            </el-form-item>
+            <el-form-item label="确认新密码" prop="checkPass" style="text-align: left;margin-bottom: 40px">
+              <el-input type="password" v-model="users.checkPass" autocomplete="off"  placeholder="请输入确认密码"></el-input>
+            </el-form-item>
+            <el-from-item>
+              <div style="margin: auto;height: 40px;margin-left: 100px">
+                <el-button type="primary" round plain style="height: 40px;width: 150px;float: left" plain @click="updatePassword()">确认</el-button>
+                <el-button type="primary" round plain style="height: 40px;width: 150px;float: left" plain @click="reference('users')">重置</el-button>
               </div>
-            </el-form>
-
-          </div>
+            </el-from-item>
+          </el-form>
+        </div>
       </el-main>
+
       <el-footer style="height: 120px">
 
         <!--bottom-->
@@ -186,53 +144,81 @@
   import Cookies from 'js-cookie'
   import ElButton from "../../node_modules/element-ui/packages/button/src/button";
   export default{
-    components: {ElButton},
+    components: {
+        ElButton,
+    },
     data(){
-          return{
-            users:{
-                uid:'',
-                uname:'',
-              upic:'',
-              usex:'',
-            },
-//            radio:0
-
+      var validatePass = (rule, value, callback) => {
+        if (value === '') {
+          callback(new Error('请输入密码'));
+        } else {
+          if (this.users.checkPass !== '') {
+            this.$refs.users.validateField('checkPass');
           }
-      },mounted(){
+          callback();
+        }
+      };
+      var validatePass2 = (rule, value, callback) => {
+        if (value === '') {
+          callback(new Error('请再次输入密码'));
+        } else if (value !== this.users.upassword) {
+          callback(new Error('两次输入密码不一致!'));
+        } else {
+          callback();
+        }
+      };
+      return{
+        users:{
+          uid:'',
+          uname:'',
+          upassword:'',
+          checkPass:''
+        },
+        rules: {
+          upassword: [{ validator: validatePass, trigger: 'blur' }],
+          checkPass: [{ validator: validatePass2, trigger: 'blur' }],
+        },
+      }
+    },mounted(){
 
-           var uid=Cookies.get('uid');
-          if (uid!=''){
-            axios.get("api/findUserByUid/"+uid).then(res=>{
-                this.users=res.data;
-            })
-          }else {
-            alert("请登录")
-            this.$router.push("/userLogin")
-          }
+      var uid=Cookies.get('uid');
+      if (uid!=''){
+        axios.get("api/findUserByUid/"+uid).then(res=>{
+          this.users.uid=res.data.uid;
+          this.users.uname=res.data.uname;
+        })
+      }else {
+        alert("请登录")
+        this.$router.push('/')
+      }
     },
     methods:{
-      updateUsers:function () {
-          if (this.users.usex="1"){
-              this.users.usex=true;
-          }if(this.users.usex="2"){
-            this.users.usex=false;
-        }
-        axios.post("api/updateUser",this.users).then(res=>{
-            if (res.data=="success"){
+      updatePassword:function () {
+        this.$refs['users'].validate((valid) => {
+          if (valid) {
+            axios.post("api/updatePassword", this.users).then(res => {
+              if (res.data == "success") {
 //                alert("修改成功")
-              this.$message({
-                message: '恭喜你，修改成功',
-                type: 'success'
-              });
-              this.$router.push('/')
-            }else {
-                alert(res.data)
-            }
+                this.$message({
+                  message: '恭喜你，修改成功',
+                  type: 'success'
+                });
+                this.$router.push('/')
+              }
+              else {
+                this.$message.error('错了哦，修改失败');
+                this.$router.push("/modifyPassword")
+              }
+            })
+          } else {
+//
+            return false;
+          }
         })
       },
-        backIndex:function () {
-          this.$router.push("/")
-        },
+      reference:function () {
+        this.$refs['users'].resetFields();
+      },
       logout:function () {
 //          alert("hello")
         Cookies.remove('uid'); // fail!
@@ -240,44 +226,10 @@
         this.users.uname='Hi,请登录'
         this.$router.push("/")
       },
-      handleAvatarSuccess(res, file) {
-        this.users.upic = res;
-      },
-      beforeAvatarUpload(file) {
-        const isJPG = file.type === 'image/jpeg';
-        const isLt2M = file.size / 1024 / 1024 < 2;
-
-        if (!isJPG) {
-          this.$message.error('上传头像图片只能是 JPG 格式!');
-        }
-        if (!isLt2M) {
-          this.$message.error('上传头像图片大小不能超过 2MB!');
-        }
-        return isJPG && isLt2M;
-      }
     }
   }
 </script>
 <style>
-  #second{
-    /*display: none;*/
-    position: absolute;
-    height: 500px;
-    width: 76%;
-    left: 235px;
-    top:178px;
-    overflow: hidden;
-    background-color: white;
-    z-index: 3;
-    text-align: left;
-    padding-left:20px;
-  }
-  #menu{
-    /*position: relative;*/
-    color: white;
-    font-weight: 500;
-    /*background-color: gray;*/
-  }
   .el-row {
     margin-bottom: 10px;
   &:last-child {
@@ -352,7 +304,7 @@
     width: 100px;
     line-height: 60px;
   }
-  </style>
+</style>
 <style scoped>
   h1, h2 {
     font-weight: normal;

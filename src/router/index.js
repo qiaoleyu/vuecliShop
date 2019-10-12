@@ -9,6 +9,7 @@ import shopDetial from '@/components/shopDetial'
 import userDetial from '@/components/userDetial'
 import shops from '@/components/shops'
 import applyText from '@/components/applyText'
+import modifyPassword from '@/components/modifyPassword'
 
 Vue.use(Router)
 
@@ -58,6 +59,11 @@ export default new Router({
       path: '/applyText',
       name: 'applyText',
       component: applyText
+    },
+    {
+      path: '/modifyPassword',
+      name: 'modifyPassword',
+      component: modifyPassword
     }
   ]
 })

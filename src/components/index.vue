@@ -43,6 +43,7 @@
           </span>
                 <el-dropdown-menu slot="dropdown">
                   <el-dropdown-item><router-link :to="{name:'userDetial'}">完善信息</router-link></el-dropdown-item>
+                  <el-dropdown-item><router-link :to="{name:'modifyPassword'}">修改密码</router-link></el-dropdown-item>
                   <!--<el-dropdown-item>修改信息</el-dropdown-item>-->
                   <!--<el-dropdown-item>3</el-dropdown-item>-->
                   <!--<el-dropdown-item>4</el-dropdown-item>-->
