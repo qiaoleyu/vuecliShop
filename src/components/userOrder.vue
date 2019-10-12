@@ -150,7 +150,8 @@
             //console.log(this.order)
           })
         }else {
-          alert("请登录")
+//          alert("请登录")
+          this.$message.error('您还没登录哦，请登录后再试');
           this.$router.push('/')
         }
       },
@@ -179,7 +180,8 @@
               this.order=res.data;
           })
         }else {
-          alert("请登录")
+//          alert("请登录")
+          this.$message.error('您还没登录哦，请登录后再试');
           this.$router.push('/')
         }
       },
@@ -192,7 +194,9 @@
             this.order=res.data;
           })
         }else {
-          alert("请登录")
+//          alert("请登录")
+          this.$message.error('您还没登录哦，请登录后再试');
+
           this.$router.push('/')
         }
       },
@@ -203,7 +207,8 @@
           if(res.data==1){
             this.query(uid);
           }else{
-            alert("删除失败！")
+//            alert("删除失败！")
+            this.$message.error('错了哦，删除失败');
           }
         })
       },

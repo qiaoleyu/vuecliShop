@@ -113,7 +113,7 @@
           </el-col>
           <el-col :span="6">
             <div class="grid-content " style="height: 80px;line-height: 80px">
-              <el-badge :value="100" :max="10" class="item">
+              <el-badge :value="count" :max="100" class="item">
                 <el-tooltip content="购物车" placement="bottom" effect="light">
                   <el-button size="" plain style="width: 180px;height: 60px">
                     <i style="font-size: 16px; font-weight: bold;color:red"  class="el-icon-shopping-cart-full "></i>
@@ -513,16 +513,18 @@
               value: 'address5',
               label: '杭州'
             }],
-            value: ''
+            value: '',
+            //购物车数量
+            count:0
       }
     },mounted () {
 
 
-        var shopId=this.$route.params.shopId;
-        axios.get("api/findById/"+shopId).then(res=>{
-            this.shop=res.data;
-            this.total=this.shop.shopPrice;
-        })
+      var shopId=this.$route.params.shopId;
+      axios.get("api/findById/"+shopId).then(res=>{
+        this.shop=res.data;
+        this.total=this.shop.shopPrice;
+      })
 
       var uid=Cookies.get("uid");
       if (uid!=null){
@@ -530,6 +532,11 @@
           this.users=res.data;
         })
       }
+
+      var url="api/count/"+uid
+      axios.post(url).then(res=>{
+        this.count=res.data
+      })
     } ,methods:{
       handleChange(value) {
           this.total=value*this.shop.shopPrice;
@@ -541,13 +548,23 @@
           axios.post("api/addCart/"+uid,{num:this.num,shop:this.shop,total:this.total}).then(res=>{
   //            alert(this.total)
               if (res.data!=''){
-                  alert("加入成功")
+//                  alert("加入成功")
+                this.$message({
+                  message: '恭喜你，加入成功',
+                  type: 'success'
+                });
+                var url="api/count/"+uid
+                axios.post(url).then(res=>{
+                  this.count=res.data
+                })
               }else {
-                  alert("加入失败")
+//                  alert("加入失败")
+                this.$message.error('错了哦，加入失败');
               }
           })
         }else {
-          alert("请登录")
+//          alert("请登录")
+          this.$message.error('错了哦，请登录后再试');
         }
       },
       submitForm:function () {
@@ -557,11 +574,13 @@
             if (res.data!=''){
               this.$router.push("/userOrder")
             }else {
-              alert("生成订单失败")
+//              alert("生成订单失败")
+              this.$message.error('错了哦，生成订单失败');
             }
           })
         }else {
-          alert("请登录")
+          this.$message.error('错了哦，请登录后再试');
+//          alert("请登录")
         }
       },
       show:function () {
