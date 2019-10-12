@@ -19,40 +19,6 @@
       <el-form-item label="用户名" prop="uname" style="text-align: left">
         <el-input type="text" v-model="users.uname" name="uname" placeholder="请输入确认密码"></el-input>
       </el-form-item>
-      <!--<el-form-item label="头像"  style="text-align: left">-->
-        <!--&lt;!&ndash;<el-input type="file" v-model="file" name="file"></el-input>&ndash;&gt;-->
-
-
-        <!--&lt;!&ndash;:on-preview="handlePictureCardPreview"&ndash;&gt;-->
-      <!--<el-upload-->
-        <!--action="http://localhost/add"-->
-        <!--list-type="picture-card"-->
-        <!--ref="add"-->
-        <!--:multiple="false"-->
-        <!--:auto-upload="false"-->
-        <!--:on-change="fileChange"-->
-      <!--&gt;-->
-        <!--<i class="el-icon-plus"></i>-->
-      <!--</el-upload>-->
-        <!---->
-      <!--&lt;!&ndash;<el-dialog :visible.sync="dialogVisible">&ndash;&gt;-->
-        <!--&lt;!&ndash;<img width="100%" :src="dialogImageUrl" alt>&ndash;&gt;-->
-      <!--&lt;!&ndash;</el-dialog>&ndash;&gt;-->
-
-      <!--</el-form-item>-->
-
-      <!--<label class="el-form-item__label" style="width: 80px;">上传图片</label>-->
-      <!--&lt;!&ndash;elementui的上传图片的upload组件&ndash;&gt;-->
-      <!--<el-upload-->
-        <!--class="upload-demo"-->
-        <!--:before-upload="beforeupload"-->
-        <!--drag-->
-        <!--action="https://jsonplaceholder.typicode.com/posts/"-->
-        <!--style="margin-left:80px;">-->
-        <!--<i class="el-icon-upload"></i>-->
-        <!--<div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>-->
-        <!--&lt;!&ndash;<div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>&ndash;&gt;-->
-      <!--</el-upload>-->
       <el-form-item label="验证码" prop="code" style="text-align: left">
         <el-input type="text" v-model="code" placeholder="请输入验证码" onme="code" style="width: 280px"></el-input>
         <!--<el-container id='app'>-->
@@ -257,8 +223,10 @@ import ElContainer from "../../node_modules/element-ui/packages/container/src/ma
           if(res.data!=''){
             this.$message({
               message: '验证码发送成功，欢迎注册！',
+
               type: 'success'
             });
+            console.log(res.data)
 //              alert(res.data)
           }else{
 //              alert("发送失败！")
@@ -287,41 +255,19 @@ import ElContainer from "../../node_modules/element-ui/packages/container/src/ma
                  }
                  this.$router.push("/userLogin")
                }else{
-                 alert(res.data)
+//                 alert(res.data)
+                 this.$message.error(res.data);
                }
              })
             }else{
-              console.log('error submit!!');
+//              console.log('error submit!!');
               return false;
             }
           })
         },
-
       resetForm() {
         this.$refs['users'].resetFields();
-      },
-      fileChange(file) {
-        const typeArr = ['image/png', 'image/gif', 'image/jpeg', 'image/jpg'];
-        const isJPG = typeArr.indexOf(file.raw.type) !== -1;
-        // image/png, image/jpeg, image/gif, image/jpg
-        const isLt3M = file.size / 1024 / 1024 < 3;
-
-        if (!isJPG) {
-          this.$message.error('只能是图片!');
-          this.$refs.upload.clearFiles();
-          this.files = null;
-          return;
-        }
-        if (!isLt3M) {
-          this.$message.error('上传图片大小不能超过 3MB!');
-          this.$refs.upload.clearFiles();
-          this.files = null;
-          return;
-        }
-        this.files = file.raw;
-        console.log(file);
-      },
-
+      }
     }
   }
 

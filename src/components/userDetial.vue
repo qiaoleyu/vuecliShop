@@ -206,7 +206,7 @@
             })
           }else {
             alert("请登录")
-            this.$router.push('/')
+            this.$router.push("/userLogin")
           }
     },
     methods:{

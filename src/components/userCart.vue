@@ -115,18 +115,7 @@
           ],
           count: '',
           istrue: false,
-          list1:[
-            {
-              cid:'',
-              uid:'',
-              shopName:'',
-              shopPrice:'',
-              shopPic:'',
-              shopCount:'',
-              shopTotal:'',
-              shopFactory:""
-            }
-          ]
+          list1:[]
         }
       },
       computed: {
@@ -169,7 +158,7 @@
               })
             }else {
               this.$message.error('错了哦，请登录后再试');
-              this.$router.push('/')
+              this.$router.push("/userLogin")
             }
         },
         removeId(row) {
@@ -220,14 +209,18 @@
               a++;
             }
           }
-          axios.post("api/userOrder2/"+uid, this.list1).then(res=>{
-            if(res.data!=null){
-              this.$router.push("/userOrder");
-            }else{
-              this.$message.error('错了哦，订单生成失败');
-              this.$router.push("/userCart");
-            }
-          })
+          if(this.list1==''){
+            this.$message.error('请至少选中一件商品');
+          }else{
+            axios.post("api/userOrder2/"+uid, this.list1).then(res=>{
+              if(res.data!=null){
+                this.$router.push("/userOrder");
+              }else{
+                this.$message.error('错了哦，订单生成失败');
+                this.$router.push("/userCart");
+              }
+            })
+          }
         }
 
       }
