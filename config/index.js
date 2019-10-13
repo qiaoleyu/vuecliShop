@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        target: 'http://localhost:8082/', // 设置你调用的接口域名和端口号
+        target: 'http://121.40.115.218:8080/xiaoMi/', // 设置你调用的接口域名和端口号
         changeOrigin: true,   // 跨域
         pathRewrite: {
           '^/api': '/'
