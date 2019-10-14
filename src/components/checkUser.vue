@@ -110,37 +110,6 @@
           return callback();
         }
       }
-      var validatePass = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('请输入密码'));
-        } else {
-          if (this.users.checkPass !== '') {
-            this.$refs.users.validateField('checkPass');
-          }
-          callback();
-        }
-      };
-      var validatePass2 = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('请再次输入密码'));
-        } else if (value !== this.users.upassword) {
-          callback(new Error('两次输入密码不一致!'));
-        } else {
-          callback();
-        }
-      };
-//      var checkPic = (rule, value, callback) => {
-//        if (!this.$refs.users) {
-//          return callback(new Error('用户名不能为空'));
-//        }
-//      };
-//      var checkUaddress = (rule, value, callback) => {
-//        if (!value) {
-//          return callback(new Error('家庭住址不能为空'));
-//        }else{
-//            return callback();
-//        }
-//      };
       var checkUtell = (rule, value, callback) => {
         if (!value) {
           return callback(new Error('联系方式不能为空'));
@@ -148,13 +117,7 @@
           return callback();
         }
       };
-      var checkCode = (rule, value, callback) => {
-        if (!value) {
-          return callback(new Error('验证码不能为空'));
-        }else{
-          return callback();
-        }
-      };
+
       return{
         msg: '用户验证',
         users:{
@@ -166,19 +129,10 @@
         rules: {
           uemail: [{ validator: checkName, trigger: 'blur' }],
           uname:[{ validator: checkUname, trigger: 'blur' }],
-          upassword: [{ validator: validatePass, trigger: 'blur' }],
-          checkPass: [{ validator: validatePass2, trigger: 'blur' }],
-//          pic: [{ validator: checkPic, trigger: 'blur' }],
-//          uAddress: [{ validator: checkUaddress, trigger: 'blur' }],
           utell: [{ validator: checkUtell, trigger: 'blur' }],
 //         code:[{validator:checkCode,trigger:'blur'}]
 
         },
-//        验证码失效时间控制
-        code:'',
-        content:'发送验证码',
-        totalTime:60,
-        canClick:true
       };
     },
     methods:{
@@ -194,8 +148,6 @@
             axios.post("api/checkUser",this.users).then(res=>{
               console.log(this.users)
               if(res.data!=""){
-//                   alert("注册成功，欢迎进行登录")
-                alert(res.data[0].uid)
                 this.$router.push( '/updatePassword/'+res.data[0].uid);
 //                this.$router.push({"/modifyPassword",params:})
               }else{
