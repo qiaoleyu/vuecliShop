@@ -457,7 +457,7 @@
             if (res.data!=''){
               this.$router.push("/userOrder")
             }else {
-              this.$message.error('错了哦，生成订单失败');
+              this.$message.error('未检测到您当前配送地址，请前往个人中心完善信息');
             }
           })
         }else {
