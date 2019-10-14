@@ -8,10 +8,10 @@ import userOrder from '@/components/userOrder'
 import shopDetial from '@/components/shopDetial'
 import userDetial from '@/components/userDetial'
 import shops from '@/components/shops'
-import applyText from '@/components/applyText'
-import modifyPassword from '@/components/modifyPassword'
 import checkUser from '@/components/checkUser'
 import updatePassword from '@/components/updatePassword'
+import applyText from '@/components/applyText'
+import modifyPassword from '@/components/modifyPassword'
 
 
 Vue.use(Router)

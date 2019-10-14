@@ -29,7 +29,7 @@
         <el-button type="primary" plain @click="login()">确认</el-button>
         <el-button type="primary" plain @click="toinsetUser()">注册</el-button>
         <el-button type="primary" plain @click="resetForm('users')">重置</el-button>
-        <router-link type="info" :to="{name:'checkUser'}" style="color:black">忘记密码</router-link>
+        <el-button type="primary" plain @click="toCheck()">忘记密码</el-button>
 
       </el-row>
     </el-form>
@@ -86,12 +86,10 @@
     var validatePass = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('密码不能为空'));
-      } else {
-        if (this.users.password !== '') {
-          this.$refs.users.validateField('password');
-        }
-        callback();
+      } else{
+        return callback();
       }
+
     };
     return {
       msg: '登录',
@@ -114,7 +112,6 @@
           if (valid) {
             axios.post("api/userLogin", {loginName: this.users.loginName, password: this.users.password}).then(res => {
               var msg = res.data;
-              console.log(msg)
               //接收后端返回来的数据
               if (res.data == 'success') {
                 axios.post("api/findUserByName/" + this.users.loginName).then(res => {
@@ -135,6 +132,9 @@
       },
       toinsetUser: function () {
         this.$router.push('userRegist')
+      },
+      toCheck:function () {
+        this.$router.push('checkUser')
       }
     }
 }

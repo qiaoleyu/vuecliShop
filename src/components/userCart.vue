@@ -127,7 +127,7 @@
             if (this.list[i].checked == true) {
 
             a = Number(a)+Number((this.list[i].shopPrice * this.list[i].shopCount).toFixed(2));
-//              a = Number(a)+Number(this.list[i].shopPrice) * Number(this.list[i].shopCount);
+              a = Number(a)+Number(this.list[i].shopPrice) * Number(this.list[i].shopCount);
             }
           }
           this.count = a;
