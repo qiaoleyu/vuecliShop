@@ -247,7 +247,7 @@
           })
         }else{
           this.$message.error('只能选中一件商品');
-          this.$router.go(0)
+//          this.$router.go(0)
         }
 
       }
