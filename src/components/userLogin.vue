@@ -29,6 +29,8 @@
         <el-button type="primary" plain @click="login()">确认</el-button>
         <el-button type="primary" plain @click="toinsetUser()">注册</el-button>
         <el-button type="primary" plain @click="resetForm('users')">重置</el-button>
+        <router-link type="info" :to="{name:'checkUser'}" style="color:black">忘记密码</router-link>
+
       </el-row>
     </el-form>
     </div>

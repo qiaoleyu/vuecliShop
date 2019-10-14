@@ -10,6 +10,9 @@ import userDetial from '@/components/userDetial'
 import shops from '@/components/shops'
 import applyText from '@/components/applyText'
 import modifyPassword from '@/components/modifyPassword'
+import checkUser from '@/components/checkUser'
+import updatePassword from '@/components/updatePassword'
+
 
 Vue.use(Router)
 
@@ -64,6 +67,16 @@ export default new Router({
       path: '/modifyPassword',
       name: 'modifyPassword',
       component: modifyPassword
+    },
+    {
+      path: '/checkUser',
+      name: 'checkUser',
+      component: checkUser
+    },
+    {
+      path: '/updatePassword/:uid',
+      name: 'updatePassword',
+      component: updatePassword
     }
   ]
 })
