@@ -23,7 +23,7 @@
         <el-input type="text" name="loginName" v-model="users.loginName" style="width: 340px" placeholder="用户名/邮箱/手机号"></el-input>
       </el-form-item><br>
       <el-form-item label="密码" prop="password" style="text-align: left;font-weight: bold" show-password>
-        <el-input type="Password" name="password" v-model="users.password" style="width: 340px" placeholder="请输入密码"></el-input>
+        <el-input type="password" name="password" v-model="users.password" style="width: 340px" placeholder="请输入密码"></el-input>
       </el-form-item><br>
       <el-row>
         <el-button type="primary" plain @click="login()">确认</el-button>
@@ -83,10 +83,10 @@
     };
     var validatePass = (rule, value, callback) => {
       if (value === '') {
-        callback(new Error('请输入密码'));
+        callback(new Error('密码不能为空'));
       } else {
-        if (this.users.upassword !== '') {
-          this.$refs.users.validateField('uPassword');
+        if (this.users.password !== '') {
+          this.$refs.users.validateField('password');
         }
         callback();
       }
@@ -96,31 +96,36 @@
       users:{
           uid:'',
         uemail:'',
-        upassword:'',
         password:'',
         loginName:'',
       },
 
       rules: {
-        uname: [{ validator: checkName, trigger: 'blur' }],
-        upassword: [{ validator: validatePass, trigger: 'blur' }],
+        loginName: [{ validator: checkName, trigger: 'blur' }],
+        password: [{ validator: validatePass, trigger: 'blur' }],
       }
     }
   },
     methods: {
       login:function () {
-        axios.post("api/userLogin", {loginName:this.users.loginName,password:this.users.password}).then(res=>{
-          var msg=res.data;
-          console.log(msg)
-          //接收后端返回来的数据
-          if(res.data=='success'){
-            axios.post("api/findUserByName/"+this.users.loginName).then(res=>{
-              this.users=res.data;
-              Cookies.set('uid', this.users.uid, { expires: 7, path: '/' });
-              this.$router.push("/");
+        this.$refs['users'].validate((valid) => {
+          if (valid) {
+            axios.post("api/userLogin", {loginName: this.users.loginName, password: this.users.password}).then(res => {
+              var msg = res.data;
+              console.log(msg)
+              //接收后端返回来的数据
+              if (res.data == 'success') {
+                axios.post("api/findUserByName/" + this.users.loginName).then(res => {
+                  this.users = res.data;
+                  Cookies.set('uid', this.users.uid, {expires: 7, path: '/'});
+                  this.$router.push("/");
+                })
+              } else {
+                this.$message.error(res.data);
+              }
             })
           }else{
-            this.$message.error(res.data);
+              return false;
           }
         })
       },resetForm(formName) {
