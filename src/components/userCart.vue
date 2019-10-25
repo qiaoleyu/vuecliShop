@@ -126,7 +126,8 @@
           for (let i = 0; i < this.list.length; i++) {
             if (this.list[i].checked == true) {
 
-              a = Number(a)+Number((this.list[i].shopPrice * this.list[i].shopCount).toFixed(2));
+            a = Number(a)+Number((this.list[i].shopPrice * this.list[i].shopCount).toFixed(2));
+              a = Number(a)+Number(this.list[i].shopPrice) * Number(this.list[i].shopCount);
             }
           }
           this.count = a;
@@ -164,7 +165,7 @@
         },
         removeId(row) {
           axios.get("api/deleteCart/"+row.cid).then(res=>{
-            if (res.data!=null){
+            if (res.data!=''){
               var uid=Cookies.get("uid");
               this.query(uid);
             }else {
@@ -214,10 +215,10 @@
             this.$message.error('请至少选中一件商品');
           }else{
             axios.post("api/userOrder2/"+uid, this.list1).then(res=>{
-              if(res.data!=null){
+              if(res.data!=''){
                 this.$router.push("/userOrder");
               }else{
-                this.$message.error('错了哦，订单生成失败');
+                this.$message.error('未检测到您当前配送地址，请前往个人中心完善信息');
                 this.$router.push("/userCart");
               }
             })
