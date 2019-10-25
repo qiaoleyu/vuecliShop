@@ -3,7 +3,7 @@
   <h1>{{msg}}</h1>
   <el-row :gutter="10">
     <el-col :span="6" style="height: 40px">
-      <div class="grid-content" style="line-height: 40px;font-weight: bolder;text-align: left;float: left"><router-link :to="{name:'index'}"><el-image src="http://pxx4c7852.bkt.clouddn.com/logo2%20%281%29.jpg" style="width: 100px;height: 50px"></el-image></router-link></div>
+      <div class="grid-content" style="line-height: 40px;font-weight: bolder;text-align: left;float: left"><router-link :to="{name:'index'}"><el-image src="/static/logo2.jpg" style="width: 100px;height: 50px"></el-image></router-link></div>
       <div class="grid-content" style="line-height: 60px;font-weight: bolder;text-align: left;float: left;margin-left: 20px">全部商品</div>
     </el-col>
   </el-row>

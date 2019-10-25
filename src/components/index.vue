@@ -93,7 +93,7 @@
         <el-row :gutter="10">
           <el-col :span="6">
             <div class="grid-content" style="float:left;width:205px;height: 70px;line-height: 70px;margin-top:10px;background-color: azure ">
-              <el-image src="http://pxx4c7852.bkt.clouddn.com/logo2%20%281%29.jpg" style="height: 70px;width:205px;border-radius: 3px"></el-image>
+              <el-image src="/static/logo2.jpg" style="height: 70px;width:205px;border-radius: 3px"></el-image>
             </div>
           </el-col>
           <el-col :span="12">
@@ -123,7 +123,7 @@
         <!--二级菜单-->
         <div id="second" v-show="second" @mouseover="show2(index+1)" @mouseleave="leave(index+1)">
           <div   v-for="(shop,index) in shops" v-bind:key="shop.shopId" style="float:left;width: 230px;height: 80px;margin-left: 20px" >
-            <div style="width: 60px;height: 80px;float:left;margin-top: 20px; text-align:center" ><router-link :to="{path:'/shopDetial/'+shop.shopId}"><img :src="shop.shopPic" style="width: 60px;height: 60px" ></router-link></div>
+            <div style="width: 60px;height: 80px;float:left;margin-top: 20px; text-align:center" ><router-link :to="{path:'/shopDetial/'+shop.shopId}"><img :src="shop.shopBigPic" style="width: 60px;height: 60px" ></router-link></div>
             <div style="width: 170px;height: 80px;float:left;text-align:left;line-height: 80px;font-size: 14px;font-weight: bold;margin-top: 10px" ><router-link :to="{path:'/shopDetial/'+shop.shopId}">{{shop.shopName}}</router-link></div>
           </div>
         </div>
@@ -208,7 +208,7 @@
 
         <el-row :gutter="10">
           <el-col :span="24">
-            <div class="" round style="line-height: 120px;height: 120px;width: 100%"><router-link :to="{path:'/shopDetial/'+29}"><el-image :src="url1" style="width: 100%;height: 100%;margin: auto;margin-top: 20px"></el-image></router-link></div>
+            <div class="" round style="line-height: 120px;height: 120px;width: 100%"><router-link :to="{path:'/shopDetial/'+29}"><el-image src="http://pzwtcm79f.bkt.clouddn.com/url1.jpg" style="width: 100%;height: 100%;margin: auto;margin-top: 20px"></el-image></router-link></div>
 
           </el-col>
         </el-row>
@@ -350,7 +350,7 @@
     position: absolute;
     height: 500px;
     width: 76%;
-    left: 235px;
+    left: 265px;
     top:178px;
     overflow: hidden;
     background-color: white;

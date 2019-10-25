@@ -5,7 +5,7 @@
       <el-row :gutter="10">
         <el-col :span="4">
           <div class="grid-content" style="font-weight: bolder;text-align: left">
-            <router-link :to="{name:'index'}" style="width: 100px"><el-image src="http://pxx4c7852.bkt.clouddn.com/logo2%20%281%29.jpg" style="width: 150px;height: 60px"></el-image></router-link>
+            <router-link :to="{name:'index'}" style="width: 100px"><el-image src="/static/logo2.jpg" style="width: 150px;height: 60px"></el-image></router-link>
           </div>
         </el-col>
         <el-col :span="4">
